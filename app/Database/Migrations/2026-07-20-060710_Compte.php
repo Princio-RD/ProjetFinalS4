@@ -27,6 +27,11 @@ class Compte extends Migration
                 'unsigned'   => true,
                 'null'       => false,
             ],
+            'numero_telephone' => [  // AJOUTÉ
+                'type'       => 'VARCHAR',
+                'constraint' => '15',
+                'null'       => false,
+            ],
             'solde' => [
                 'type'       => 'DECIMAL',
                 'constraint' => '15,2',

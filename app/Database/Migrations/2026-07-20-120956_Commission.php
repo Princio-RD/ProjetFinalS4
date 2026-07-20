@@ -35,6 +35,7 @@ class Commission extends Migration
             ],
         ]);
         $this->forge->addKey('id_commission', true);
+        $this->forge->addUniqueKey(['id_operateur_source', 'id_operateur_destination']);
         $this->forge->addForeignKey('id_operateur_source', 'Operateur', 'id_operateur', 'CASCADE', 'CASCADE');
         $this->forge->addForeignKey('id_operateur_destination', 'Operateur', 'id_operateur', 'CASCADE', 'CASCADE');
         $this->forge->createTable('Commission');

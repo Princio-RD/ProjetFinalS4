@@ -13,15 +13,10 @@ class Commission extends Seeder
         }
 
         $data = [
-            // Orange (1) vers les autres
             ['id_operateur_source' => 1, 'id_operateur_destination' => 2, 'pourcentage' => 2.50],
             ['id_operateur_source' => 1, 'id_operateur_destination' => 3, 'pourcentage' => 3.00],
-
-            // Telma (2) vers les autres
             ['id_operateur_source' => 2, 'id_operateur_destination' => 1, 'pourcentage' => 2.00],
             ['id_operateur_source' => 2, 'id_operateur_destination' => 3, 'pourcentage' => 2.50],
-
-            // Airtel (3) vers les autres
             ['id_operateur_source' => 3, 'id_operateur_destination' => 1, 'pourcentage' => 3.50],
             ['id_operateur_source' => 3, 'id_operateur_destination' => 2, 'pourcentage' => 3.00],
         ];
