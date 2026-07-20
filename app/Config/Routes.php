@@ -10,4 +10,9 @@ $routes->get('/login', 'AuthController::login');
 $routes->post('/auth/loginAuto', 'AuthController::loginAuto');
 $routes->get('/logout', 'AuthController::logout');
 $routes->get('/dashboard', 'DashboardController::index');
+$routes->get('/compte/(:num)/solde', 'OperationController::solde/$1');
+$routes->get('/compte/(:num)/depot', 'OperationController::depotForm/$1');
+$routes->post('/compte/(:num)/depot', 'OperationController::depot/$1');
+$routes->get('/compte/(:num)/retrait', 'OperationController::retraitForm/$1');
+$routes->post('/compte/(:num)/retrait', 'OperationController::retrait/$1');
 

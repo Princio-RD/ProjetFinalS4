@@ -14,7 +14,8 @@
             <tr>
                 <th>ID Compte</th>
                 <th>Opérateur</th>
-                <th>Solde (FCFA)</th>
+                <th>Solde (Ariary)</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -23,6 +24,11 @@
                     <td><?= esc($compte['id_compte']) ?></td>
                     <td><?= esc($compte['nom']) ?></td>
                     <td><?= number_format($compte['solde'], 2, ',', ' ') ?></td>
+                    <td>
+                        <a href="<?= base_url('compte/' . $compte['id_compte'] . '/solde') ?>">Solde</a> |
+                        <a href="<?= base_url('compte/' . $compte['id_compte'] . '/depot') ?>">Dépôt</a> |
+                        <a href="<?= base_url('compte/' . $compte['id_compte'] . '/retrait') ?>">Retrait</a>
+                    </td>
                 </tr>
             <?php endforeach; ?>
         </tbody>

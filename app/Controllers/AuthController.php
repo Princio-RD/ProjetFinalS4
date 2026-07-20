@@ -32,14 +32,10 @@ class AuthController extends BaseController
         if (!$client) {
             return redirect()->back()->with('error', 'Numéro de téléphone non trouvé : ' . $numero);
         }
-
-        
         $clientId = $client['id_client'] ?? 'NON TROUVÉ';
-        $debugMsg = 'Client: ' . print_r($client, true) . ' | id_client=' . $clientId;
-
         $comptes = $compteModel->where('id_client', $clientId)->findAll();
         if (empty($comptes)) {
-            return redirect()->back()->with('error', 'Aucun compte associé à ce client. ' . $debugMsg);
+            return redirect()->back()->with('error', 'Aucun compte associé à ce client.');
         }
 
         
