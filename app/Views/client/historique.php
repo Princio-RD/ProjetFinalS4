@@ -1,52 +1,89 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <title>Historique des transactions - Transfert d'argent</title>
-    <link rel="stylesheet" href="/style/main.css">
-</head>
-<body>
-    <h2>Historique des transactions - Compte n° <?= esc($compte['id_compte']) ?></h2>
+<?php $title = 'Historique des transactions'; ?>
+<?= $this->include('client/layouts/header') ?>
 
-    <?php if (session()->get('error')): ?>
-        <p style="color: red;"><?= esc(session()->get('error')) ?></p>
-    <?php endif; ?>
+<div class="mb-4">
+    <a href="<?= base_url('compte/' . $compte['id_compte'] . '/solde') ?>" class="btn btn-outline-secondary btn-sm">
+        <i class="bi bi-arrow-left"></i> Retour
+    </a>
+</div>
 
-    <?php if (empty($transactions)): ?>
-        <p>Aucune transaction enregistrée pour ce compte.</p>
-    <?php else: ?>
-        <table border="1" cellpadding="8" cellspacing="0">
-            <thead>
-                <tr>
-                    <th>Date</th>
-                    <th>Type</th>
-                    <th>Montant (Ariary)</th>
-                    <th>Frais (Ariary)</th>
-                    <th>Commission (Ariary)</th>
-                    <th>Compte source</th>
-                    <th>Compte destination</th>
-                    <th>Statut</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php foreach ($transactions as $t): ?>
-                    <tr>
-                        <td><?= esc($t['date_operation']) ?></td>
-                        <td><?= esc($t['libelle']) ?></td>
-                        <td><?= number_format($t['montant'], 2, ',', ' ') ?></td>
-                        <td><?= number_format($t['frais_applique'], 2, ',', ' ') ?></td>
-                        <td><?= number_format($t['commission_appliquee'] ?? 0, 2, ',', ' ') ?></td>
-                        <td><?= esc($t['id_compte_source']) ?></td>
-                        <td><?= esc($t['id_compte_destination'] ?? 'N/A') ?></td>
-                        <td><?= esc($t['statut']) ?></td>
-                    </tr>
-                <?php endforeach; ?>
-            </tbody>
-        </table>
-    <?php endif; ?>
+<div class="card border-0 shadow-sm rounded-4">
+    <div class="card-header bg-transparent border-0 pt-4">
+        <h5 class="fw-bold mb-0">
+            <i class="bi bi-clock-history text-primary"></i> 
+            Historique - Compte n° <?= esc($compte['id_compte']) ?>
+        </h5>
+        <p class="text-muted small mb-0">
+            <i class="bi bi-phone"></i> <?= esc($compte['numero_telephone']) ?> 
+            <span class="mx-2">|</span>
+            <i class="bi bi-building"></i> <?= esc($compte['nom'] ?? 'N/A') ?>
+        </p>
+    </div>
+    <div class="card-body">
+        <?php if (empty($transactions)): ?>
+            <div class="text-center py-5">
+                <i class="bi bi-inbox fs-1 text-muted d-block mb-3"></i>
+                <p class="text-muted"><i class="bi bi-info-circle"></i> Aucune transaction enregistrée pour ce compte.</p>
+            </div>
+        <?php else: ?>
+            <div class="table-responsive">
+                <table class="table table-custom">
+                    <thead>
+                        <tr>
+                            <th><i class="bi bi-calendar3"></i> Date</th>
+                            <th><i class="bi bi-tag"></i> Type</th>
+                            <th class="text-end"><i class="bi bi-coin"></i> Montant (Ar)</th>
+                            <th class="text-end"><i class="bi bi-receipt"></i> Frais (Ar)</th>
+                            <th class="text-end"><i class="bi bi-percent"></i> Commission (Ar)</th>
+                            <th class="text-center"><i class="bi bi-check-circle"></i> Statut</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach ($transactions as $t): ?>
+                        <tr>
+                            <td class="text-nowrap">
+                                <i class="bi bi-clock"></i> <?= date('d/m/Y H:i', strtotime($t['date_operation'])) ?>
+                            </td>
+                            <td>
+                                <span class="badge 
+                                    <?php 
+                                        $libelle = strtolower($t['libelle'] ?? '');
+                                        if ($libelle == 'dépôt' || $libelle == 'depot') echo 'bg-success';
+                                        elseif ($libelle == 'retrait') echo 'bg-danger';
+                                        elseif ($libelle == 'transfert') echo 'bg-info text-white';
+                                        else echo 'bg-secondary';
+                                    ?>">
+                                    <?php if ($libelle == 'dépôt' || $libelle == 'depot'): ?>
+                                        <i class="bi bi-plus-circle"></i>
+                                    <?php elseif ($libelle == 'retrait'): ?>
+                                        <i class="bi bi-arrow-down-circle"></i>
+                                    <?php elseif ($libelle == 'transfert'): ?>
+                                        <i class="bi bi-arrow-left-right"></i>
+                                    <?php endif; ?>
+                                    <?= esc($t['libelle'] ?? 'N/A') ?>
+                                </span>
+                            </td>
+                            <td class="text-end fw-bold"><?= number_format($t['montant'], 0, ',', ' ') ?></td>
+                            <td class="text-end"><?= number_format($t['frais_applique'] ?? 0, 0, ',', ' ') ?></td>
+                            <td class="text-end"><?= number_format($t['commission_appliquee'] ?? 0, 0, ',', ' ') ?></td>
+                            <td class="text-center">
+                                <span class="badge-status 
+                                    <?= strtolower($t['statut']) == 'réussi' ? 'success' : 'danger' ?>">
+                                    <?php if (strtolower($t['statut']) == 'réussi'): ?>
+                                        <i class="bi bi-check-circle"></i>
+                                    <?php else: ?>
+                                        <i class="bi bi-x-circle"></i>
+                                    <?php endif; ?>
+                                    <?= esc($t['statut']) ?>
+                                </span>
+                            </td>
+                        </tr>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
+            </div>
+        <?php endif; ?>
+    </div>
+</div>
 
-    <br>
-    <a href="<?= base_url('compte/' . $compte['id_compte'] . '/solde') ?>">Retour au solde</a> |
-    <a href="<?= base_url('dashboard') ?>">Retour au tableau de bord</a>
-</body>
-</html>
+<?= $this->include('client/layouts/footer') ?>

@@ -8,11 +8,13 @@ use App\Models\OperateurModel;
 
 use App\Controllers\BaseController;
 
-
 class AuthController extends BaseController
 {
     public function login()
     {
+        if (session()->get('isLoggedIn')) {
+            return redirect()->to('/dashboard');
+        }
         return view('client/login');
     }
 
@@ -34,23 +36,20 @@ class AuthController extends BaseController
         if (!$compte) {
             return redirect()->back()->with('error', 'Numéro de téléphone non trouvé : ' . $numero);
         }
-        $clientId = $compte['id_client'] ?? 'NON TROUVÉ';
-        $comptes = $compteModel->where('id_client', $clientId)->findAll();
-        if (empty($comptes)) {
-            return redirect()->back()->with('error', 'Aucun compte associé à ce client.');
-        }
-
         
-        foreach ($comptes as &$compteItem) {
-            $operateur = $operateurModel->find($compteItem['id_operateur']);
-            $compteItem['nom'] = $operateur['nom'] ?? 'Inconnu';
-        }
-        unset($compteItem);
+        $clientId = $compte['id_client'];
+        
+        $client = $clientModel->find($clientId);
+        $clientNom = $client['nom'] ?? 'Client';
+        
+        $operateur = $operateurModel->find($compte['id_operateur']);
+        $compte['nom'] = $operateur['nom'] ?? 'Inconnu';
 
         $session->set([
             'client_id' => $clientId,
+            'client_nom' => $clientNom,
             'numero_telephone' => $compte['numero_telephone'],
-            'comptes' => $comptes,
+            'compte' => $compte,
             'isLoggedIn' => true,
         ]);
 

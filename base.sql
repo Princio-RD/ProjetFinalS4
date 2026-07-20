@@ -69,33 +69,47 @@ CREATE TABLE Acte (
 -- =========================================================
 -- Données de base
 -- =========================================================
-
-INSERT INTO Operation (libelle) VALUES ('Dépôt'), ('Retrait'), ('Transfert');
+-- =========================================================
+-- Données de base
+-- =========================================================
 
 INSERT INTO Operateur (nom, prefixe) VALUES
 ('Orange', '032'),
 ('Telma', '034'),
 ('Airtel', '033');
 
+INSERT INTO Operation (libelle) VALUES 
+('Dépôt'), 
+('Retrait'), 
+('Transfert');
+
 INSERT INTO Client (nom) VALUES
 ('Jean'),
 ('Rakoto'),
 ('Rabe'),
 ('Karl'),
-('Marie');
+('Marie'),
+('Andry'),
+('Lala'),
+('Mamy'),
+('Tiana'),
+('Soa');
 
 INSERT INTO Compte (id_client, id_operateur, numero_telephone, solde) VALUES
-(1, 1, '0321562072', 50000.00),
-(1, 1, '0321562072', 25000.00),
-(2, 2, '0348101301', 100000.00),
-(2, 2, '0348101301', 15000.00),
-(3, 1, '0321256078', 75000.00),
-(4, 3, '0335026660', 30000.00),
-(4, 3, '0335026660', 12000.00),
-(5, 1, '0325877760', 90000.00);
+(1, 1, '0321562072', 75000.00),
+(2, 2, '0348101301', 120000.00),
+(2, 3, '0334567890', 25000.00),
+(3, 1, '0321256078', 45000.00),
+(4, 3, '0335026660', 80000.00),
+(4, 1, '0329876543', 15000.00),
+(5, 1, '0325877760', 95000.00),
+(6, 2, '0341234567', 30000.00),
+(7, 3, '0331112222', 55000.00),
+(8, 1, '0323334444', 68000.00),
+(9, 2, '0345556666', 42000.00),
+(10, 3, '0337778888', 88000.00);
 
 INSERT INTO Tarif (id_type_operation, montant_min, montant_max, frais) VALUES
--- retrait
 (2, 100, 1000, 50),
 (2, 1001, 5000, 50),
 (2, 5001, 10000, 100),
@@ -106,8 +120,6 @@ INSERT INTO Tarif (id_type_operation, montant_min, montant_max, frais) VALUES
 (2, 250001, 500000, 1500),
 (2, 500001, 1000000, 2500),
 (2, 1000001, 2000000, 3000),
-
--- transfert
 (3, 100, 1000, 50),
 (3, 1001, 5000, 50),
 (3, 5001, 10000, 100),
@@ -119,23 +131,45 @@ INSERT INTO Tarif (id_type_operation, montant_min, montant_max, frais) VALUES
 (3, 500001, 1000000, 2500),
 (3, 1000001, 2000000, 3000);
 
+INSERT INTO Commission (id_operateur_source, id_operateur_destination, pourcentage) VALUES
+-- orange
+(1, 2, 2.50), -- orange--> telma
+(1, 3, 3.00), -- orange -->airtel
+
+-- telma
+(2, 1, 2.00), -- telma --> orange
+(2, 3, 2.50), -- telma --> airtel
+
+-- airtel
+(3, 1, 3.50), -- airtel --> orange
+(3, 2, 3.00); -- airtel --> telma
+
 INSERT INTO Acte (id_compte_source, id_compte_destination, id_type_operation, montant, frais_applique, commission_appliquee, statut) VALUES
 (1, NULL, 1, 50000.00, 0, 0, 'Réussi'),
-(3, NULL, 2, 10000.00, 100, 0, 'Réussi'),
-(1, 2, 3, 25000.00, 200, 625.00, 'Réussi'),
-(5, NULL, 2, 5000.00, 50, 0, 'Réussi'),
-(4, 3, 3, 15000.00, 150, 525.00, 'Réussi');
-
-
-INSERT INTO Commission (id_operateur_source, id_operateur_destination, pourcentage) VALUES
--- Orange (1) vers les autres
-(1, 2, 2.50),  -- Orange -> Telma
-(1, 3, 3.00),  -- Orange -> Airtel
-
--- Telma (2) vers les autres
-(2, 1, 2.00),  -- Telma -> Orange
-(2, 3, 2.50),  -- Telma -> Airtel
-
--- Airtel (3) vers les autres
-(3, 1, 3.50),  -- Airtel -> Orange
-(3, 2, 3.00);  -- Airtel -> Telma
+(3, NULL, 1, 25000.00, 0, 0, 'Réussi'),
+(5, NULL, 1, 10000.00, 0, 0, 'Réussi'),
+(7, NULL, 1, 30000.00, 0, 0, 'Réussi'),
+(9, NULL, 1, 15000.00, 0, 0, 'Réussi'),
+(11, NULL, 1, 20000.00, 0, 0, 'Réussi'),
+(2, NULL, 2, 10000.00, 100, 0, 'Réussi'),
+(4, NULL, 2, 5000.00, 50, 0, 'Réussi'),
+(6, NULL, 2, 8000.00, 100, 0, 'Réussi'),
+(8, NULL, 2, 12000.00, 200, 0, 'Réussi'),
+(10, NULL, 2, 7000.00, 100, 0, 'Réussi'),
+(12, NULL, 2, 15000.00, 200, 0, 'Réussi'),
+(1, 2, 3, 15000.00, 200, 0, 'Réussi'),
+(3, 4, 3, 10000.00, 100, 0, 'Réussi'),
+(5, 6, 3, 20000.00, 200, 0, 'Réussi'),
+(7, 8, 3, 5000.00, 50, 0, 'Réussi'),
+(9, 10, 3, 25000.00, 200, 0, 'Réussi'),
+(1, 3, 3, 25000.00, 200, 625.00, 'Réussi'),
+(1, 5, 3, 30000.00, 400, 900.00, 'Réussi'),
+(3, 5, 3, 20000.00, 200, 400.00, 'Réussi'),
+(5, 7, 3, 15000.00, 150, 525.00, 'Réussi'),
+(7, 9, 3, 12000.00, 120, 360.00, 'Réussi'),
+(9, 11, 3, 18000.00, 180, 450.00, 'Réussi'),
+(1, 2, 3, 5000.00, 50, 0, 'Réussi'),
+(1, 4, 3, 8000.00, 100, 0, 'Réussi'),
+(3, 6, 3, 12000.00, 120, 0, 'Réussi'),
+(5, 8, 3, 15000.00, 150, 0, 'Réussi'),
+(7, 10, 3, 10000.00, 100, 0, 'Réussi');

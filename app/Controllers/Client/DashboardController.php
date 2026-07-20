@@ -13,15 +13,16 @@ class DashboardController extends BaseController
             return redirect()->to('/login');
         }
 
-        $compteModel = new CompteModel();
-        $comptes = $compteModel->getComptesWithOperateurByClient(session()->get('client_id'));
+        $compte = session()->get('compte');
+        
+        if (!$compte) {
+            $compteModel = new CompteModel();
+            $compte = $compteModel->where('numero_telephone', session()->get('numero_telephone'))->first();
+            session()->set('compte', $compte);
+        }
 
         $data = [
-            'client' => [
-                'id_client' => session()->get('client_id'),
-                'numero_telephone' => session()->get('numero_telephone'),
-            ],
-            'comptes' => $comptes,
+            'compte' => $compte,
         ];
 
         return view('client/dashboard', $data);
