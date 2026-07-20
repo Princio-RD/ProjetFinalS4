@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Historique des transactions - Transfert d'argent</title>
+    <link rel="stylesheet" href="/style/main.css">
 </head>
 <body>
     <h2>Historique des transactions - Compte n° <?= esc($compte['id_compte']) ?></h2>

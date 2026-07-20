@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Tableau de bord - Transfert d'argent</title>
+    <link rel="stylesheet" href="/style/main.css">
 </head>
 <body>
     <h2>Bienvenue, client n° <?= esc($client['id_client']) ?></h2>

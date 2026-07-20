@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Connexion - Transfert d'argent</title>
+    <link rel="stylesheet" href="/style/main.css">
 </head>
 <body>
     <h2>Connexion Client</h2>
