@@ -1,4 +1,3 @@
-<!-- app/Views/Admin/edit.php -->
 <!DOCTYPE html>
 <html>
 <head>
@@ -24,7 +23,6 @@
         <p style="color:red;"><?= session()->getFlashdata('error') ?></p>
     <?php endif; ?>
 
-    <!-- Formulaire de modification -->
     <h3>Modifier l'opérateur #<?= $operateur['id_operateur'] ?></h3>
     <form action="/admin/operateur/update/<?= $operateur['id_operateur'] ?>" method="post">
         <?= csrf_field() ?>
@@ -44,7 +42,6 @@
 
     <hr>
 
-    <!-- Liste des opérateurs -->
     <h3>Liste des préfixes</h3>
     <table border="1" cellpadding="5">
         <tr>

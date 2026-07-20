@@ -1,4 +1,3 @@
-<!-- app/Views/admin/login.php -->
 <!DOCTYPE html>
 <html>
 <head>
