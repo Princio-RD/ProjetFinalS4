@@ -39,8 +39,10 @@ $routes->group('admin', function ($routes) {
     $routes->get('/', 'Admin\Dashboard::index');
     
     // Gestion des préfixes
-    $routes->get('operateur', 'Admin\Operateur::index');
+   $routes->get('operateur', 'Admin\Operateur::index');
     $routes->post('operateur/store', 'Admin\Operateur::store');
+    $routes->get('operateur/edit/(:num)', 'Admin\Operateur::edit/$1');      
+    $routes->post('operateur/update/(:num)', 'Admin\Operateur::update/$1'); 
     $routes->get('operateur/delete/(:num)', 'Admin\Operateur::delete/$1');
     
     // Gestion des opérations et barèmes
