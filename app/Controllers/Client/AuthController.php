@@ -1,10 +1,12 @@
 <?php
 
-namespace App\Controllers;
+namespace App\Controllers\Client;
 
 use App\Models\ClientModel;
 use App\Models\CompteModel;
 use App\Models\OperateurModel;
+
+use App\Controllers\BaseController;
 
 
 class AuthController extends BaseController
