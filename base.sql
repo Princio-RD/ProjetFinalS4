@@ -1,3 +1,6 @@
+-- =========================================================
+-- Base de données : Système de transfert d'argent
+-- =========================================================
 
 CREATE TABLE Operateur (
     id_operateur INT AUTO_INCREMENT PRIMARY KEY,
@@ -5,12 +8,10 @@ CREATE TABLE Operateur (
     prefixe VARCHAR(3) NOT NULL UNIQUE
 );
 
-
 CREATE TABLE Operation (
     id_type_operation INT AUTO_INCREMENT PRIMARY KEY,
     libelle VARCHAR(30) NOT NULL UNIQUE
 );
-
 
 CREATE TABLE Tarif (
     id_bareme INT AUTO_INCREMENT PRIMARY KEY,
@@ -21,13 +22,11 @@ CREATE TABLE Tarif (
     FOREIGN KEY (id_type_operation) REFERENCES Operation(id_type_operation)
 );
 
-
 CREATE TABLE Client (
     id_client INT AUTO_INCREMENT PRIMARY KEY,
     numero_telephone VARCHAR(15) NOT NULL UNIQUE,
     date_creation DATETIME DEFAULT CURRENT_TIMESTAMP
 );
-
 
 CREATE TABLE Compte (
     id_compte INT AUTO_INCREMENT PRIMARY KEY,
@@ -37,7 +36,6 @@ CREATE TABLE Compte (
     FOREIGN KEY (id_client) REFERENCES Client(id_client),
     FOREIGN KEY (id_operateur) REFERENCES Operateur(id_operateur)
 );
-
 
 CREATE TABLE Acte (
     id_acte INT AUTO_INCREMENT PRIMARY KEY,
@@ -53,12 +51,37 @@ CREATE TABLE Acte (
     FOREIGN KEY (id_type_operation) REFERENCES Operation(id_type_operation)
 );
 
+-- =========================================================
+-- Données de base
+-- =========================================================
+
 INSERT INTO Operation (libelle) VALUES ('Dépôt'), ('Retrait'), ('Transfert');
 
+INSERT INTO Operateur (nom, prefixe) VALUES
+('Orange', '032'),
+('Telma', '034'),
+('Airtel', '033');
+
+INSERT INTO Client (numero_telephone) VALUES
+('0331562072'),
+('0348101301'),
+('0321256078'),
+('0335026660'),
+('0325877760');
+
+INSERT INTO Compte (id_client, id_operateur, solde) VALUES
+(1, 1, 50000.00),
+(1, 2, 25000.00),
+(2, 1, 100000.00),
+(2, 3, 15000.00),
+(3, 2, 75000.00),
+(4, 1, 30000.00),
+(4, 3, 12000.00),
+(5, 2, 90000.00);
+
 -- =========================================================
--- Exemple de barème de frais (à adapter selon type d'opération)
+-- Exemple de barème de frais pour les retraits
 -- =========================================================
--- Remplacer id_type_operation par l'id réel du type concerné (ex: 2 = Retrait)
 INSERT INTO Tarif (id_type_operation, montant_min, montant_max, frais) VALUES
 (2, 100, 1000, 50),
 (2, 1001, 5000, 50),
@@ -70,3 +93,13 @@ INSERT INTO Tarif (id_type_operation, montant_min, montant_max, frais) VALUES
 (2, 250001, 500000, 1500),
 (2, 500001, 1000000, 2500),
 (2, 1000001, 2000000, 3000);
+
+-- =========================================================
+-- Exemple d'actes (transactions)
+-- =========================================================
+INSERT INTO Acte (id_compte_source, id_compte_destination, id_type_operation, montant, frais_applique, statut) VALUES
+(1, NULL, 1, 50000.00, 0, 'Réussi'),
+(3, NULL, 2, 10000.00, 100, 'Réussi'),
+(1, 2, 3, 25000.00, 200, 'Réussi'),
+(5, NULL, 2, 5000.00, 50, 'Réussi'),
+(4, 3, 3, 15000.00, 150, 'Réussi');

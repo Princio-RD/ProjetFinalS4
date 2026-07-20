@@ -56,15 +56,15 @@ class Acte extends Migration
                 'default'    => 'Réussi',
             ],
         ]);
-        $this->forge->addKey('id_transaction', true);
+        $this->forge->addKey('id_acte', true);
         $this->forge->addForeignKey('id_compte_source', 'Compte', 'id_compte', 'CASCADE', 'CASCADE');
         $this->forge->addForeignKey('id_compte_destination', 'Compte', 'id_compte', 'CASCADE', 'CASCADE');
         $this->forge->addForeignKey('id_type_operation', 'Operation', 'id_type_operation', 'CASCADE', 'CASCADE');
-        $this->forge->createTable('Transaction');
+        $this->forge->createTable('Acte');
     }
 
     public function down()
     {
-        $this->forge->dropTable('Transaction', true);
+        $this->forge->dropTable('Acte', true);
     }
 }
