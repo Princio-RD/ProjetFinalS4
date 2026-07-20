@@ -21,7 +21,7 @@
             <?php foreach ($comptes as $compte): ?>
                 <tr>
                     <td><?= esc($compte['id_compte']) ?></td>
-                    <td><?= esc($compte['id_operateur']) ?></td>
+                    <td><?= esc($compte['nom']) ?></td>
                     <td><?= number_format($compte['solde'], 2, ',', ' ') ?></td>
                 </tr>
             <?php endforeach; ?>

@@ -4,6 +4,8 @@ namespace App\Controllers;
 
 use App\Models\ClientModel;
 use App\Models\CompteModel;
+use App\Models\OperateurModel;
+
 
 class AuthController extends BaseController
 {
@@ -17,6 +19,7 @@ class AuthController extends BaseController
         $session = session();
         $clientModel = new ClientModel();
         $compteModel = new CompteModel();
+        $operateurModel = new OperateurModel();
 
         $numero = $this->request->getPost('numero_telephone');
 
@@ -30,15 +33,21 @@ class AuthController extends BaseController
             return redirect()->back()->with('error', 'Numéro de téléphone non trouvé : ' . $numero);
         }
 
-        // Debug : afficher le contenu du client
+        
         $clientId = $client['id_client'] ?? 'NON TROUVÉ';
         $debugMsg = 'Client: ' . print_r($client, true) . ' | id_client=' . $clientId;
 
         $comptes = $compteModel->where('id_client', $clientId)->findAll();
-
         if (empty($comptes)) {
             return redirect()->back()->with('error', 'Aucun compte associé à ce client. ' . $debugMsg);
         }
+
+        
+        foreach ($comptes as &$compte) {
+            $operateur = $operateurModel->find($compte['id_operateur']);
+            $compte['nom'] = $operateur['nom'] ?? 'Inconnu';
+        }
+        unset($compte);
 
         $session->set([
             'client_id' => $clientId,
