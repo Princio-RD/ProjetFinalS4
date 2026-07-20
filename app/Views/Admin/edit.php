@@ -1,12 +1,12 @@
-<!-- app/Views/admin/operateur.php -->
+<!-- app/Views/Admin/edit.php -->
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Gestion Préfixes</title>
+    <title>Modifier un préfixe</title>
 </head>
 <body>
-    <h2>Configuration des Préfixes</h2>
+    <h2>Modifier un préfixe</h2>
     
     <p>
         <a href="/admin">Dashboard</a> | 
@@ -19,15 +19,32 @@
     <?php if(session()->getFlashdata('success')): ?>
         <p style="color:green;"><?= session()->getFlashdata('success') ?></p>
     <?php endif; ?>
+    
+    <?php if(session()->getFlashdata('error')): ?>
+        <p style="color:red;"><?= session()->getFlashdata('error') ?></p>
+    <?php endif; ?>
 
-    <h3>Ajouter un préfixe</h3>
-    <form action="/admin/operateur/store" method="post">
+    <!-- Formulaire de modification -->
+    <h3>Modifier l'opérateur #<?= $operateur['id_operateur'] ?></h3>
+    <form action="/admin/operateur/update/<?= $operateur['id_operateur'] ?>" method="post">
         <?= csrf_field() ?>
-        Nom: <input type="text" name="nom" required>
-        Préfixe: <input type="text" name="prefixe" required>
-        <button type="submit">Ajouter</button>
+        <p>
+            <label>Nom :</label><br>
+            <input type="text" name="nom" value="<?= $operateur['nom'] ?>" required>
+        </p>
+        <p>
+            <label>Préfixe :</label><br>
+            <input type="text" name="prefixe" value="<?= $operateur['prefixe'] ?>" required>
+        </p>
+        <p>
+            <button type="submit">Mettre à jour</button>
+            <a href="/admin/operateur">Annuler</a>
+        </p>
     </form>
 
+    <hr>
+
+    <!-- Liste des opérateurs -->
     <h3>Liste des préfixes</h3>
     <table border="1" cellpadding="5">
         <tr>
@@ -43,7 +60,8 @@
             <td><strong><?= $op['prefixe'] ?></strong></td>
             <td>
                 <a href="/admin/operateur/edit/<?= $op['id_operateur'] ?>">Modifier</a> |
-                <a href="/admin/operateur/delete/<?= $op['id_operateur'] ?>" onclick="return confirm('Supprimer ?')">Supprimer</a>
+                <a href="/admin/operateur/delete/<?= $op['id_operateur'] ?>" 
+                   onclick="return confirm('Supprimer ?')">Supprimer</a>
             </td>
         </tr>
         <?php endforeach; ?>
