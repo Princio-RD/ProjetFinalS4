@@ -8,6 +8,10 @@ class Operateur extends Seeder
 {
     public function run()
     {
+        if ($this->db->table('Operateur')->countAllResults() > 0) {
+            return;
+        }
+
         $data = [
             ['nom' => 'Orange', 'prefixe' => '032'],
             ['nom' => 'Telma', 'prefixe' => '034'],

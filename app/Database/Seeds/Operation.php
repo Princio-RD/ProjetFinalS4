@@ -8,6 +8,10 @@ class Operation extends Seeder
 {
     public function run()
     {
+        if ($this->db->table('Operation')->countAllResults() > 0) {
+            return;
+        }
+
         $data = [
             ['libelle' => 'Dépôt'],
             ['libelle' => 'Retrait'],
