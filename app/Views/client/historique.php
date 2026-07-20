@@ -21,6 +21,7 @@
                     <th>Type</th>
                     <th>Montant (Ariary)</th>
                     <th>Frais (Ariary)</th>
+                    <th>Commission (Ariary)</th>
                     <th>Compte source</th>
                     <th>Compte destination</th>
                     <th>Statut</th>
@@ -33,6 +34,7 @@
                         <td><?= esc($t['libelle']) ?></td>
                         <td><?= number_format($t['montant'], 2, ',', ' ') ?></td>
                         <td><?= number_format($t['frais_applique'], 2, ',', ' ') ?></td>
+                        <td><?= number_format($t['commission_appliquee'] ?? 0, 2, ',', ' ') ?></td>
                         <td><?= esc($t['id_compte_source']) ?></td>
                         <td><?= esc($t['id_compte_destination'] ?? 'N/A') ?></td>
                         <td><?= esc($t['statut']) ?></td>

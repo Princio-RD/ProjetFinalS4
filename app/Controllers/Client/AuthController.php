@@ -29,27 +29,27 @@ class AuthController extends BaseController
             return redirect()->back()->with('error', 'Veuillez entrer un numéro de téléphone.');
         }
 
-        $client = $clientModel->where('numero_telephone', $numero)->first();
+        $compte = $compteModel->where('numero_telephone', $numero)->first();
 
-        if (!$client) {
+        if (!$compte) {
             return redirect()->back()->with('error', 'Numéro de téléphone non trouvé : ' . $numero);
         }
-        $clientId = $client['id_client'] ?? 'NON TROUVÉ';
+        $clientId = $compte['id_client'] ?? 'NON TROUVÉ';
         $comptes = $compteModel->where('id_client', $clientId)->findAll();
         if (empty($comptes)) {
             return redirect()->back()->with('error', 'Aucun compte associé à ce client.');
         }
 
         
-        foreach ($comptes as &$compte) {
-            $operateur = $operateurModel->find($compte['id_operateur']);
-            $compte['nom'] = $operateur['nom'] ?? 'Inconnu';
+        foreach ($comptes as &$compteItem) {
+            $operateur = $operateurModel->find($compteItem['id_operateur']);
+            $compteItem['nom'] = $operateur['nom'] ?? 'Inconnu';
         }
-        unset($compte);
+        unset($compteItem);
 
         $session->set([
             'client_id' => $clientId,
-            'numero_telephone' => $client['numero_telephone'],
+            'numero_telephone' => $compte['numero_telephone'],
             'comptes' => $comptes,
             'isLoggedIn' => true,
         ]);
