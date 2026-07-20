@@ -34,7 +34,7 @@
                         <td><?= number_format($t['montant'], 2, ',', ' ') ?></td>
                         <td><?= number_format($t['frais_applique'], 2, ',', ' ') ?></td>
                         <td><?= esc($t['id_compte_source']) ?></td>
-                        <td><?= $t['id_compte_destination'] ? esc($t['id_compte_destination']) : '-' ?></td>
+                        <td><?= esc($t['id_compte_destination'] ?? 'N/A') ?></td>
                         <td><?= esc($t['statut']) ?></td>
                     </tr>
                 <?php endforeach; ?>
