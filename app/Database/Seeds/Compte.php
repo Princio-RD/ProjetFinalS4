@@ -8,6 +8,10 @@ class Compte extends Seeder
 {
     public function run()
     {
+        if ($this->db->table('Compte')->countAllResults() > 0) {
+            return;
+        }
+
         $data = [
             ['id_client' => 1, 'id_operateur' => 1, 'solde' => 50000.00],
             ['id_client' => 1, 'id_operateur' => 2, 'solde' => 25000.00],

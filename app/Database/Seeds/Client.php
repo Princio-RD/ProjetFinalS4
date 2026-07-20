@@ -8,6 +8,10 @@ class Client extends Seeder
 {
     public function run()
     {
+        if ($this->db->table('Client')->countAllResults() > 0) {
+            return;
+        }
+
         $data = [
             ['numero_telephone' => '0331562072'],
             ['numero_telephone' => '0348101301'],

@@ -8,6 +8,10 @@ class Tarif extends Seeder
 {
     public function run()
     {
+        if ($this->db->table('Tarif')->countAllResults() > 0) {
+            return;
+        }
+
         $data = [
             ['id_type_operation' => 1, 'montant_min' => 100, 'montant_max' => 1000, 'frais' => 50],
             ['id_type_operation' => 1, 'montant_min' => 1001, 'montant_max' => 5000, 'frais' => 50],
