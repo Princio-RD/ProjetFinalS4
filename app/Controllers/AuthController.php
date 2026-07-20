@@ -32,6 +32,10 @@ class AuthController extends BaseController
         if (!$client) {
             return redirect()->back()->with('error', 'Numéro de téléphone non trouvé : ' . $numero);
         }
+<<<<<<< HEAD
+=======
+
+>>>>>>> dev
         $clientId = $client['id_client'] ?? 'NON TROUVÉ';
         $comptes = $compteModel->where('id_client', $clientId)->findAll();
         if (empty($comptes)) {

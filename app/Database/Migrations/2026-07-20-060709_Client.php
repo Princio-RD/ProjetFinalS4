@@ -15,6 +15,11 @@ class Client extends Migration
                 'unsigned'       => true,
                 'auto_increment' => true,
             ],
+            'nom' => [
+                'type' => 'VARCHAR',
+                'constraint'=>'15',
+                'null'=>false,
+            ],
             'numero_telephone' => [
                 'type'       => 'VARCHAR',
                 'constraint' => '15',

@@ -193,6 +193,7 @@ DEBUG - 2026-07-20 08:08:51 --> Session: Class initialized using 'CodeIgniter\Se
 DEBUG - 2026-07-20 08:08:55 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
 DEBUG - 2026-07-20 08:08:55 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
 DEBUG - 2026-07-20 08:27:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+<<<<<<< HEAD
 DEBUG - 2026-07-20 08:27:53 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
 CRITICAL - 2026-07-20 08:27:53 --> ErrorException: Array to string conversion
 [Method: POST, Route: auth/loginAuto]
@@ -365,3 +366,52 @@ DEBUG - 2026-07-20 09:25:36 --> Session: Class initialized using 'CodeIgniter\Se
 DEBUG - 2026-07-20 09:26:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
 DEBUG - 2026-07-20 09:26:42 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
 DEBUG - 2026-07-20 09:26:55 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+=======
+DEBUG - 2026-07-20 08:27:54 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-07-20 08:27:54 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-07-20 08:28:05 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-07-20 08:28:05 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-07-20 08:42:11 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-07-20 08:42:14 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-07-20 08:42:14 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-07-20 08:42:44 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2026-07-20 08:51:28 --> ErrorException: Undefined variable $rates
+[Method: CLI, Route: serve]
+in APPPATH\Config\Routes.php on line 30.
+ 1 APPPATH\Config\Routes.php(30): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $rates', 'P:\\Github\\ProjetFinalS4\\app\\Config\\Routes.php', 30)
+ 2 SYSTEMPATH\Router\RouteCollection.php(339): require('P:\\Github\\ProjetFinalS4\\app\\Config\\Routes.php')
+ 3 SYSTEMPATH\CLI\Console.php(41): CodeIgniter\Router\RouteCollection->loadRoutes()
+ 4 SYSTEMPATH\Boot.php(442): CodeIgniter\CLI\Console->run()
+ 5 SYSTEMPATH\Boot.php(166): CodeIgniter\Boot::runCommand(Object(CodeIgniter\CLI\Console))
+ 6 ROOTPATH\spark(87): CodeIgniter\Boot::bootSpark(Object(Config\Paths))
+CRITICAL - 2026-07-20 08:51:39 --> ErrorException: Undefined variable $rates
+[Method: CLI, Route: serve]
+in APPPATH\Config\Routes.php on line 30.
+ 1 APPPATH\Config\Routes.php(30): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $rates', 'P:\\Github\\ProjetFinalS4\\app\\Config\\Routes.php', 30)
+ 2 SYSTEMPATH\Router\RouteCollection.php(339): require('P:\\Github\\ProjetFinalS4\\app\\Config\\Routes.php')
+ 3 SYSTEMPATH\CLI\Console.php(41): CodeIgniter\Router\RouteCollection->loadRoutes()
+ 4 SYSTEMPATH\Boot.php(442): CodeIgniter\CLI\Console->run()
+ 5 SYSTEMPATH\Boot.php(166): CodeIgniter\Boot::runCommand(Object(CodeIgniter\CLI\Console))
+ 6 ROOTPATH\spark(87): CodeIgniter\Boot::bootSpark(Object(Config\Paths))
+CRITICAL - 2026-07-20 08:51:50 --> ErrorException: Undefined variable $rates
+[Method: CLI, Route: serve]
+in APPPATH\Config\Routes.php on line 30.
+ 1 APPPATH\Config\Routes.php(30): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $rates', 'P:\\Github\\ProjetFinalS4\\app\\Config\\Routes.php', 30)
+ 2 SYSTEMPATH\Router\RouteCollection.php(339): require('P:\\Github\\ProjetFinalS4\\app\\Config\\Routes.php')
+ 3 SYSTEMPATH\CLI\Console.php(41): CodeIgniter\Router\RouteCollection->loadRoutes()
+ 4 SYSTEMPATH\Boot.php(442): CodeIgniter\CLI\Console->run()
+ 5 SYSTEMPATH\Boot.php(166): CodeIgniter\Boot::runCommand(Object(CodeIgniter\CLI\Console))
+ 6 ROOTPATH\spark(87): CodeIgniter\Boot::bootSpark(Object(Config\Paths))
+DEBUG - 2026-07-20 08:55:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-07-20 08:55:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-07-20 09:06:40 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-07-20 09:09:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-07-20 09:17:10 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-07-20 09:17:11 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-07-20 09:17:11 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-07-20 09:17:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-07-20 09:17:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-07-20 09:18:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-07-20 09:18:21 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-07-20 09:18:21 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+>>>>>>> dev
