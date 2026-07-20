@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use App\Models\ClientModel;
 use App\Models\CompteModel;
 use App\Models\OperationModel;
 use App\Models\TarifModel;
@@ -9,6 +10,7 @@ use App\Models\TransactionModel;
 
 class OperationController extends BaseController
 {
+    protected $clientModel;
     protected $compteModel;
     protected $operationModel;
     protected $tarifModel;
@@ -23,6 +25,7 @@ class OperationController extends BaseController
 
     public function __construct()
     {
+        $this->clientModel = new ClientModel();
         $this->compteModel = new CompteModel();
         $this->operationModel = new OperationModel();
         $this->tarifModel = new TarifModel();
@@ -198,20 +201,31 @@ class OperationController extends BaseController
             return $this->redirect;
         }
 
-        $idDestination = (int) $this->request->getPost('id_compte_destination');
-        $montant       = (float) $this->request->getPost('montant');
+        $telephoneDestination = $this->request->getPost('telephone_destination');
+        $montant             = (float) $this->request->getPost('montant');
 
         if ($montant <= 0) {
             return redirect()->back()->with('error', 'Le montant doit être supérieur à 0.');
         }
 
-        if ($idDestination === $idCompte) {
-            return redirect()->back()->with('error', 'Le compte destinataire doit être différent du compte source.');
+        if (empty($telephoneDestination)) {
+            return redirect()->back()->with('error', 'Le numéro de téléphone du destinataire est requis.');
         }
 
-        $compteDestination = $this->compteModel->find($idDestination);
+        $clientDestination = $this->clientModel->where('numero_telephone', $telephoneDestination)->first();
+        if (!$clientDestination) {
+            return redirect()->back()->with('error', 'Aucun client trouvé avec ce numéro de téléphone.');
+        }
+
+        $compteDestination = $this->compteModel->where('id_client', $clientDestination['id_client'])->first();
         if (!$compteDestination) {
-            return redirect()->back()->with('error', 'Le compte destinataire est introuvable.');
+            return redirect()->back()->with('error', 'Le client destinataire n\'a aucun compte actif.');
+        }
+
+        $idDestination = (int) $compteDestination['id_compte'];
+
+        if ($idDestination === $idCompte) {
+            return redirect()->back()->with('error', 'Le compte destinataire doit être différent du compte source.');
         }
 
         $typeTransfert = $this->operationModel->where('libelle', 'Transfert')->first();

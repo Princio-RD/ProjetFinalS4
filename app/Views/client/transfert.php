@@ -18,8 +18,8 @@
     <p><em>Des frais de transfert sont appliqués selon le barème en vigueur (déduits du solde).</em></p>
 
     <form method="post" action="<?= base_url('compte/' . $compte['id_compte'] . '/transfert') ?>">
-        <label for="id_compte_destination">Compte destinataire (ID) :</label><br>
-        <input type="number" name="id_compte_destination" id="id_compte_destination" min="1" required>
+        <label for="telephone_destination">Numéro de téléphone du destinataire :</label><br>
+        <input type="tel" name="telephone_destination" id="telephone_destination" placeholder="Ex: 0331562072" required>
         <br><br>
 
         <label for="montant">Montant à transférer (Ariary) :</label><br>
