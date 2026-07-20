@@ -1,579 +1,194 @@
 DEBUG - 2026-07-20 07:09:32 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
 DEBUG - 2026-07-20 07:10:52 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-ERROR - 2026-07-20 07:22:16 --> Error connecting to the database: Exception: Unable to open database: unable to open database file in P:\Github\ProjetFinalS4\system\Database\SQLite3\Connection.php:111
-Stack trace:
-#0 P:\Github\ProjetFinalS4\system\Database\SQLite3\Connection.php(111): SQLite3->__construct('P:\\Github\\Proje...')
-#1 P:\Github\ProjetFinalS4\system\Database\BaseConnection.php(555): CodeIgniter\Database\SQLite3\Connection->connect(false)
-#2 P:\Github\ProjetFinalS4\system\Database\SQLite3\Connection.php(74): CodeIgniter\Database\BaseConnection->initialize()
-#3 P:\Github\ProjetFinalS4\system\Database\BaseConnection.php(795): CodeIgniter\Database\SQLite3\Connection->initialize()
-#4 P:\Github\ProjetFinalS4\system\Database\BaseConnection.php(1706): CodeIgniter\Database\BaseConnection->query('SELECT "NAME" F...')
-#5 P:\Github\ProjetFinalS4\system\Database\BaseConnection.php(1726): CodeIgniter\Database\BaseConnection->listTables()
-#6 P:\Github\ProjetFinalS4\system\Database\MigrationRunner.php(821): CodeIgniter\Database\BaseConnection->tableExists('migrations')
-#7 P:\Github\ProjetFinalS4\system\Database\MigrationRunner.php(173): CodeIgniter\Database\MigrationRunner->ensureTable()
-#8 P:\Github\ProjetFinalS4\system\Commands\Database\Migrate.php(89): CodeIgniter\Database\MigrationRunner->latest(NULL)
-#9 P:\Github\ProjetFinalS4\system\CLI\SignalTrait.php(245): CodeIgniter\Commands\Database\Migrate::{closure:CodeIgniter\Commands\Database\Migrate::run():88}()
-#10 P:\Github\ProjetFinalS4\system\Commands\Database\Migrate.php(88): CodeIgniter\Commands\Database\Migrate->withSignalsBlocked(Object(Closure))
-#11 P:\Github\ProjetFinalS4\system\CLI\Commands.php(74): CodeIgniter\Commands\Database\Migrate->run(Array)
-#12 P:\Github\ProjetFinalS4\system\CLI\Console.php(47): CodeIgniter\CLI\Commands->run('migrate', Array)
-#13 P:\Github\ProjetFinalS4\system\Boot.php(442): CodeIgniter\CLI\Console->run()
-#14 P:\Github\ProjetFinalS4\system\Boot.php(166): CodeIgniter\Boot::runCommand(Object(CodeIgniter\CLI\Console))
-#15 P:\Github\ProjetFinalS4\spark(87): CodeIgniter\Boot::bootSpark(Object(Config\Paths))
-#16 {main}
-
-Next CodeIgniter\Database\Exceptions\DatabaseException: SQLite3 error: Unable to open database: unable to open database file in P:\Github\ProjetFinalS4\system\Database\SQLite3\Connection.php:118
-Stack trace:
-#0 P:\Github\ProjetFinalS4\system\Database\BaseConnection.php(555): CodeIgniter\Database\SQLite3\Connection->connect(false)
-#1 P:\Github\ProjetFinalS4\system\Database\SQLite3\Connection.php(74): CodeIgniter\Database\BaseConnection->initialize()
-#2 P:\Github\ProjetFinalS4\system\Database\BaseConnection.php(795): CodeIgniter\Database\SQLite3\Connection->initialize()
-#3 P:\Github\ProjetFinalS4\system\Database\BaseConnection.php(1706): CodeIgniter\Database\BaseConnection->query('SELECT "NAME" F...')
-#4 P:\Github\ProjetFinalS4\system\Database\BaseConnection.php(1726): CodeIgniter\Database\BaseConnection->listTables()
-#5 P:\Github\ProjetFinalS4\system\Database\MigrationRunner.php(821): CodeIgniter\Database\BaseConnection->tableExists('migrations')
-#6 P:\Github\ProjetFinalS4\system\Database\MigrationRunner.php(173): CodeIgniter\Database\MigrationRunner->ensureTable()
-#7 P:\Github\ProjetFinalS4\system\Commands\Database\Migrate.php(89): CodeIgniter\Database\MigrationRunner->latest(NULL)
-#8 P:\Github\ProjetFinalS4\system\CLI\SignalTrait.php(245): CodeIgniter\Commands\Database\Migrate::{closure:CodeIgniter\Commands\Database\Migrate::run():88}()
-#9 P:\Github\ProjetFinalS4\system\Commands\Database\Migrate.php(88): CodeIgniter\Commands\Database\Migrate->withSignalsBlocked(Object(Closure))
-#10 P:\Github\ProjetFinalS4\system\CLI\Commands.php(74): CodeIgniter\Commands\Database\Migrate->run(Array)
-#11 P:\Github\ProjetFinalS4\system\CLI\Console.php(47): CodeIgniter\CLI\Commands->run('migrate', Array)
-#12 P:\Github\ProjetFinalS4\system\Boot.php(442): CodeIgniter\CLI\Console->run()
-#13 P:\Github\ProjetFinalS4\system\Boot.php(166): CodeIgniter\Boot::runCommand(Object(CodeIgniter\CLI\Console))
-#14 P:\Github\ProjetFinalS4\spark(87): CodeIgniter\Boot::bootSpark(Object(Config\Paths))
-#15 {main}
-ERROR - 2026-07-20 07:23:55 --> Error connecting to the database: Exception: Unable to open database: unable to open database file in P:\Github\ProjetFinalS4\system\Database\SQLite3\Connection.php:111
-Stack trace:
-#0 P:\Github\ProjetFinalS4\system\Database\SQLite3\Connection.php(111): SQLite3->__construct('P:\\Github\\Proje...')
-#1 P:\Github\ProjetFinalS4\system\Database\BaseConnection.php(555): CodeIgniter\Database\SQLite3\Connection->connect(false)
-#2 P:\Github\ProjetFinalS4\system\Database\SQLite3\Connection.php(74): CodeIgniter\Database\BaseConnection->initialize()
-#3 P:\Github\ProjetFinalS4\system\Database\BaseConnection.php(795): CodeIgniter\Database\SQLite3\Connection->initialize()
-#4 P:\Github\ProjetFinalS4\system\Database\BaseConnection.php(1706): CodeIgniter\Database\BaseConnection->query('SELECT "NAME" F...')
-#5 P:\Github\ProjetFinalS4\system\Database\BaseConnection.php(1726): CodeIgniter\Database\BaseConnection->listTables()
-#6 P:\Github\ProjetFinalS4\system\Database\MigrationRunner.php(821): CodeIgniter\Database\BaseConnection->tableExists('migrations')
-#7 P:\Github\ProjetFinalS4\system\Database\MigrationRunner.php(173): CodeIgniter\Database\MigrationRunner->ensureTable()
-#8 P:\Github\ProjetFinalS4\system\Commands\Database\Migrate.php(89): CodeIgniter\Database\MigrationRunner->latest(NULL)
-#9 P:\Github\ProjetFinalS4\system\CLI\SignalTrait.php(245): CodeIgniter\Commands\Database\Migrate::{closure:CodeIgniter\Commands\Database\Migrate::run():88}()
-#10 P:\Github\ProjetFinalS4\system\Commands\Database\Migrate.php(88): CodeIgniter\Commands\Database\Migrate->withSignalsBlocked(Object(Closure))
-#11 P:\Github\ProjetFinalS4\system\CLI\Commands.php(74): CodeIgniter\Commands\Database\Migrate->run(Array)
-#12 P:\Github\ProjetFinalS4\system\CLI\Console.php(47): CodeIgniter\CLI\Commands->run('migrate', Array)
-#13 P:\Github\ProjetFinalS4\system\Boot.php(442): CodeIgniter\CLI\Console->run()
-#14 P:\Github\ProjetFinalS4\system\Boot.php(166): CodeIgniter\Boot::runCommand(Object(CodeIgniter\CLI\Console))
-#15 P:\Github\ProjetFinalS4\spark(87): CodeIgniter\Boot::bootSpark(Object(Config\Paths))
-#16 {main}
-
-Next CodeIgniter\Database\Exceptions\DatabaseException: SQLite3 error: Unable to open database: unable to open database file in P:\Github\ProjetFinalS4\system\Database\SQLite3\Connection.php:118
-Stack trace:
-#0 P:\Github\ProjetFinalS4\system\Database\BaseConnection.php(555): CodeIgniter\Database\SQLite3\Connection->connect(false)
-#1 P:\Github\ProjetFinalS4\system\Database\SQLite3\Connection.php(74): CodeIgniter\Database\BaseConnection->initialize()
-#2 P:\Github\ProjetFinalS4\system\Database\BaseConnection.php(795): CodeIgniter\Database\SQLite3\Connection->initialize()
-#3 P:\Github\ProjetFinalS4\system\Database\BaseConnection.php(1706): CodeIgniter\Database\BaseConnection->query('SELECT "NAME" F...')
-#4 P:\Github\ProjetFinalS4\system\Database\BaseConnection.php(1726): CodeIgniter\Database\BaseConnection->listTables()
-#5 P:\Github\ProjetFinalS4\system\Database\MigrationRunner.php(821): CodeIgniter\Database\BaseConnection->tableExists('migrations')
-#6 P:\Github\ProjetFinalS4\system\Database\MigrationRunner.php(173): CodeIgniter\Database\MigrationRunner->ensureTable()
-#7 P:\Github\ProjetFinalS4\system\Commands\Database\Migrate.php(89): CodeIgniter\Database\MigrationRunner->latest(NULL)
-#8 P:\Github\ProjetFinalS4\system\CLI\SignalTrait.php(245): CodeIgniter\Commands\Database\Migrate::{closure:CodeIgniter\Commands\Database\Migrate::run():88}()
-#9 P:\Github\ProjetFinalS4\system\Commands\Database\Migrate.php(88): CodeIgniter\Commands\Database\Migrate->withSignalsBlocked(Object(Closure))
-#10 P:\Github\ProjetFinalS4\system\CLI\Commands.php(74): CodeIgniter\Commands\Database\Migrate->run(Array)
-#11 P:\Github\ProjetFinalS4\system\CLI\Console.php(47): CodeIgniter\CLI\Commands->run('migrate', Array)
-#12 P:\Github\ProjetFinalS4\system\Boot.php(442): CodeIgniter\CLI\Console->run()
-#13 P:\Github\ProjetFinalS4\system\Boot.php(166): CodeIgniter\Boot::runCommand(Object(CodeIgniter\CLI\Console))
-#14 P:\Github\ProjetFinalS4\spark(87): CodeIgniter\Boot::bootSpark(Object(Config\Paths))
-#15 {main}
-ERROR - 2026-07-20 07:25:08 --> Error connecting to the database: Exception: Unable to open database: unable to open database file in P:\Github\ProjetFinalS4\system\Database\SQLite3\Connection.php:111
-Stack trace:
-#0 P:\Github\ProjetFinalS4\system\Database\SQLite3\Connection.php(111): SQLite3->__construct('P:\\Github\\Proje...')
-#1 P:\Github\ProjetFinalS4\system\Database\BaseConnection.php(555): CodeIgniter\Database\SQLite3\Connection->connect(false)
-#2 P:\Github\ProjetFinalS4\system\Database\SQLite3\Connection.php(74): CodeIgniter\Database\BaseConnection->initialize()
-#3 P:\Github\ProjetFinalS4\system\Database\BaseConnection.php(795): CodeIgniter\Database\SQLite3\Connection->initialize()
-#4 P:\Github\ProjetFinalS4\system\Database\BaseConnection.php(1706): CodeIgniter\Database\BaseConnection->query('SELECT "NAME" F...')
-#5 P:\Github\ProjetFinalS4\system\Database\BaseConnection.php(1726): CodeIgniter\Database\BaseConnection->listTables()
-#6 P:\Github\ProjetFinalS4\system\Database\MigrationRunner.php(821): CodeIgniter\Database\BaseConnection->tableExists('migrations')
-#7 P:\Github\ProjetFinalS4\system\Database\MigrationRunner.php(173): CodeIgniter\Database\MigrationRunner->ensureTable()
-#8 P:\Github\ProjetFinalS4\system\Commands\Database\Migrate.php(89): CodeIgniter\Database\MigrationRunner->latest(NULL)
-#9 P:\Github\ProjetFinalS4\system\CLI\SignalTrait.php(245): CodeIgniter\Commands\Database\Migrate::{closure:CodeIgniter\Commands\Database\Migrate::run():88}()
-#10 P:\Github\ProjetFinalS4\system\Commands\Database\Migrate.php(88): CodeIgniter\Commands\Database\Migrate->withSignalsBlocked(Object(Closure))
-#11 P:\Github\ProjetFinalS4\system\CLI\Commands.php(74): CodeIgniter\Commands\Database\Migrate->run(Array)
-#12 P:\Github\ProjetFinalS4\system\CLI\Console.php(47): CodeIgniter\CLI\Commands->run('migrate', Array)
-#13 P:\Github\ProjetFinalS4\system\Boot.php(442): CodeIgniter\CLI\Console->run()
-#14 P:\Github\ProjetFinalS4\system\Boot.php(166): CodeIgniter\Boot::runCommand(Object(CodeIgniter\CLI\Console))
-#15 P:\Github\ProjetFinalS4\spark(87): CodeIgniter\Boot::bootSpark(Object(Config\Paths))
-#16 {main}
-
-Next CodeIgniter\Database\Exceptions\DatabaseException: SQLite3 error: Unable to open database: unable to open database file in P:\Github\ProjetFinalS4\system\Database\SQLite3\Connection.php:118
-Stack trace:
-#0 P:\Github\ProjetFinalS4\system\Database\BaseConnection.php(555): CodeIgniter\Database\SQLite3\Connection->connect(false)
-#1 P:\Github\ProjetFinalS4\system\Database\SQLite3\Connection.php(74): CodeIgniter\Database\BaseConnection->initialize()
-#2 P:\Github\ProjetFinalS4\system\Database\BaseConnection.php(795): CodeIgniter\Database\SQLite3\Connection->initialize()
-#3 P:\Github\ProjetFinalS4\system\Database\BaseConnection.php(1706): CodeIgniter\Database\BaseConnection->query('SELECT "NAME" F...')
-#4 P:\Github\ProjetFinalS4\system\Database\BaseConnection.php(1726): CodeIgniter\Database\BaseConnection->listTables()
-#5 P:\Github\ProjetFinalS4\system\Database\MigrationRunner.php(821): CodeIgniter\Database\BaseConnection->tableExists('migrations')
-#6 P:\Github\ProjetFinalS4\system\Database\MigrationRunner.php(173): CodeIgniter\Database\MigrationRunner->ensureTable()
-#7 P:\Github\ProjetFinalS4\system\Commands\Database\Migrate.php(89): CodeIgniter\Database\MigrationRunner->latest(NULL)
-#8 P:\Github\ProjetFinalS4\system\CLI\SignalTrait.php(245): CodeIgniter\Commands\Database\Migrate::{closure:CodeIgniter\Commands\Database\Migrate::run():88}()
-#9 P:\Github\ProjetFinalS4\system\Commands\Database\Migrate.php(88): CodeIgniter\Commands\Database\Migrate->withSignalsBlocked(Object(Closure))
-#10 P:\Github\ProjetFinalS4\system\CLI\Commands.php(74): CodeIgniter\Commands\Database\Migrate->run(Array)
-#11 P:\Github\ProjetFinalS4\system\CLI\Console.php(47): CodeIgniter\CLI\Commands->run('migrate', Array)
-#12 P:\Github\ProjetFinalS4\system\Boot.php(442): CodeIgniter\CLI\Console->run()
-#13 P:\Github\ProjetFinalS4\system\Boot.php(166): CodeIgniter\Boot::runCommand(Object(CodeIgniter\CLI\Console))
-#14 P:\Github\ProjetFinalS4\spark(87): CodeIgniter\Boot::bootSpark(Object(Config\Paths))
-#15 {main}
-ERROR - 2026-07-20 07:27:54 --> Error connecting to the database: Exception: Unable to open database: unable to open database file in P:\Github\ProjetFinalS4\system\Database\SQLite3\Connection.php:111
-Stack trace:
-#0 P:\Github\ProjetFinalS4\system\Database\SQLite3\Connection.php(111): SQLite3->__construct('P:\\Github\\Proje...')
-#1 P:\Github\ProjetFinalS4\system\Database\BaseConnection.php(555): CodeIgniter\Database\SQLite3\Connection->connect(false)
-#2 P:\Github\ProjetFinalS4\system\Database\SQLite3\Connection.php(74): CodeIgniter\Database\BaseConnection->initialize()
-#3 P:\Github\ProjetFinalS4\system\Database\BaseConnection.php(795): CodeIgniter\Database\SQLite3\Connection->initialize()
-#4 P:\Github\ProjetFinalS4\system\Database\BaseConnection.php(1706): CodeIgniter\Database\BaseConnection->query('SELECT "NAME" F...')
-#5 P:\Github\ProjetFinalS4\system\Database\BaseConnection.php(1726): CodeIgniter\Database\BaseConnection->listTables()
-#6 P:\Github\ProjetFinalS4\system\Database\MigrationRunner.php(821): CodeIgniter\Database\BaseConnection->tableExists('migrations')
-#7 P:\Github\ProjetFinalS4\system\Database\MigrationRunner.php(173): CodeIgniter\Database\MigrationRunner->ensureTable()
-#8 P:\Github\ProjetFinalS4\system\Commands\Database\Migrate.php(89): CodeIgniter\Database\MigrationRunner->latest(NULL)
-#9 P:\Github\ProjetFinalS4\system\CLI\SignalTrait.php(245): CodeIgniter\Commands\Database\Migrate::{closure:CodeIgniter\Commands\Database\Migrate::run():88}()
-#10 P:\Github\ProjetFinalS4\system\Commands\Database\Migrate.php(88): CodeIgniter\Commands\Database\Migrate->withSignalsBlocked(Object(Closure))
-#11 P:\Github\ProjetFinalS4\system\CLI\Commands.php(74): CodeIgniter\Commands\Database\Migrate->run(Array)
-#12 P:\Github\ProjetFinalS4\system\CLI\Console.php(47): CodeIgniter\CLI\Commands->run('migrate', Array)
-#13 P:\Github\ProjetFinalS4\system\Boot.php(442): CodeIgniter\CLI\Console->run()
-#14 P:\Github\ProjetFinalS4\system\Boot.php(166): CodeIgniter\Boot::runCommand(Object(CodeIgniter\CLI\Console))
-#15 P:\Github\ProjetFinalS4\spark(87): CodeIgniter\Boot::bootSpark(Object(Config\Paths))
-#16 {main}
-
-Next CodeIgniter\Database\Exceptions\DatabaseException: SQLite3 error: Unable to open database: unable to open database file in P:\Github\ProjetFinalS4\system\Database\SQLite3\Connection.php:118
-Stack trace:
-#0 P:\Github\ProjetFinalS4\system\Database\BaseConnection.php(555): CodeIgniter\Database\SQLite3\Connection->connect(false)
-#1 P:\Github\ProjetFinalS4\system\Database\SQLite3\Connection.php(74): CodeIgniter\Database\BaseConnection->initialize()
-#2 P:\Github\ProjetFinalS4\system\Database\BaseConnection.php(795): CodeIgniter\Database\SQLite3\Connection->initialize()
-#3 P:\Github\ProjetFinalS4\system\Database\BaseConnection.php(1706): CodeIgniter\Database\BaseConnection->query('SELECT "NAME" F...')
-#4 P:\Github\ProjetFinalS4\system\Database\BaseConnection.php(1726): CodeIgniter\Database\BaseConnection->listTables()
-#5 P:\Github\ProjetFinalS4\system\Database\MigrationRunner.php(821): CodeIgniter\Database\BaseConnection->tableExists('migrations')
-#6 P:\Github\ProjetFinalS4\system\Database\MigrationRunner.php(173): CodeIgniter\Database\MigrationRunner->ensureTable()
-#7 P:\Github\ProjetFinalS4\system\Commands\Database\Migrate.php(89): CodeIgniter\Database\MigrationRunner->latest(NULL)
-#8 P:\Github\ProjetFinalS4\system\CLI\SignalTrait.php(245): CodeIgniter\Commands\Database\Migrate::{closure:CodeIgniter\Commands\Database\Migrate::run():88}()
-#9 P:\Github\ProjetFinalS4\system\Commands\Database\Migrate.php(88): CodeIgniter\Commands\Database\Migrate->withSignalsBlocked(Object(Closure))
-#10 P:\Github\ProjetFinalS4\system\CLI\Commands.php(74): CodeIgniter\Commands\Database\Migrate->run(Array)
-#11 P:\Github\ProjetFinalS4\system\CLI\Console.php(47): CodeIgniter\CLI\Commands->run('migrate', Array)
-#12 P:\Github\ProjetFinalS4\system\Boot.php(442): CodeIgniter\CLI\Console->run()
-#13 P:\Github\ProjetFinalS4\system\Boot.php(166): CodeIgniter\Boot::runCommand(Object(CodeIgniter\CLI\Console))
-#14 P:\Github\ProjetFinalS4\spark(87): CodeIgniter\Boot::bootSpark(Object(Config\Paths))
-#15 {main}
-ERROR - 2026-07-20 07:28:56 --> Error connecting to the database: Exception: Unable to open database: unable to open database file in P:\Github\ProjetFinalS4\system\Database\SQLite3\Connection.php:111
-Stack trace:
-#0 P:\Github\ProjetFinalS4\system\Database\SQLite3\Connection.php(111): SQLite3->__construct('P:\\Github\\Proje...')
-#1 P:\Github\ProjetFinalS4\system\Database\BaseConnection.php(555): CodeIgniter\Database\SQLite3\Connection->connect(false)
-#2 P:\Github\ProjetFinalS4\system\Database\SQLite3\Connection.php(74): CodeIgniter\Database\BaseConnection->initialize()
-#3 P:\Github\ProjetFinalS4\system\Database\BaseConnection.php(795): CodeIgniter\Database\SQLite3\Connection->initialize()
-#4 P:\Github\ProjetFinalS4\system\Database\BaseConnection.php(1706): CodeIgniter\Database\BaseConnection->query('SELECT "NAME" F...')
-#5 P:\Github\ProjetFinalS4\system\Database\BaseConnection.php(1726): CodeIgniter\Database\BaseConnection->listTables()
-#6 P:\Github\ProjetFinalS4\system\Database\MigrationRunner.php(821): CodeIgniter\Database\BaseConnection->tableExists('migrations')
-#7 P:\Github\ProjetFinalS4\system\Database\MigrationRunner.php(173): CodeIgniter\Database\MigrationRunner->ensureTable()
-#8 P:\Github\ProjetFinalS4\system\Commands\Database\Migrate.php(89): CodeIgniter\Database\MigrationRunner->latest(NULL)
-#9 P:\Github\ProjetFinalS4\system\CLI\SignalTrait.php(245): CodeIgniter\Commands\Database\Migrate::{closure:CodeIgniter\Commands\Database\Migrate::run():88}()
-#10 P:\Github\ProjetFinalS4\system\Commands\Database\Migrate.php(88): CodeIgniter\Commands\Database\Migrate->withSignalsBlocked(Object(Closure))
-#11 P:\Github\ProjetFinalS4\system\CLI\Commands.php(74): CodeIgniter\Commands\Database\Migrate->run(Array)
-#12 P:\Github\ProjetFinalS4\system\CLI\Console.php(47): CodeIgniter\CLI\Commands->run('migrate', Array)
-#13 P:\Github\ProjetFinalS4\system\Boot.php(442): CodeIgniter\CLI\Console->run()
-#14 P:\Github\ProjetFinalS4\system\Boot.php(166): CodeIgniter\Boot::runCommand(Object(CodeIgniter\CLI\Console))
-#15 P:\Github\ProjetFinalS4\spark(87): CodeIgniter\Boot::bootSpark(Object(Config\Paths))
-#16 {main}
-
-Next CodeIgniter\Database\Exceptions\DatabaseException: SQLite3 error: Unable to open database: unable to open database file in P:\Github\ProjetFinalS4\system\Database\SQLite3\Connection.php:118
-Stack trace:
-#0 P:\Github\ProjetFinalS4\system\Database\BaseConnection.php(555): CodeIgniter\Database\SQLite3\Connection->connect(false)
-#1 P:\Github\ProjetFinalS4\system\Database\SQLite3\Connection.php(74): CodeIgniter\Database\BaseConnection->initialize()
-#2 P:\Github\ProjetFinalS4\system\Database\BaseConnection.php(795): CodeIgniter\Database\SQLite3\Connection->initialize()
-#3 P:\Github\ProjetFinalS4\system\Database\BaseConnection.php(1706): CodeIgniter\Database\BaseConnection->query('SELECT "NAME" F...')
-#4 P:\Github\ProjetFinalS4\system\Database\BaseConnection.php(1726): CodeIgniter\Database\BaseConnection->listTables()
-#5 P:\Github\ProjetFinalS4\system\Database\MigrationRunner.php(821): CodeIgniter\Database\BaseConnection->tableExists('migrations')
-#6 P:\Github\ProjetFinalS4\system\Database\MigrationRunner.php(173): CodeIgniter\Database\MigrationRunner->ensureTable()
-#7 P:\Github\ProjetFinalS4\system\Commands\Database\Migrate.php(89): CodeIgniter\Database\MigrationRunner->latest(NULL)
-#8 P:\Github\ProjetFinalS4\system\CLI\SignalTrait.php(245): CodeIgniter\Commands\Database\Migrate::{closure:CodeIgniter\Commands\Database\Migrate::run():88}()
-#9 P:\Github\ProjetFinalS4\system\Commands\Database\Migrate.php(88): CodeIgniter\Commands\Database\Migrate->withSignalsBlocked(Object(Closure))
-#10 P:\Github\ProjetFinalS4\system\CLI\Commands.php(74): CodeIgniter\Commands\Database\Migrate->run(Array)
-#11 P:\Github\ProjetFinalS4\system\CLI\Console.php(47): CodeIgniter\CLI\Commands->run('migrate', Array)
-#12 P:\Github\ProjetFinalS4\system\Boot.php(442): CodeIgniter\CLI\Console->run()
-#13 P:\Github\ProjetFinalS4\system\Boot.php(166): CodeIgniter\Boot::runCommand(Object(CodeIgniter\CLI\Console))
-#14 P:\Github\ProjetFinalS4\spark(87): CodeIgniter\Boot::bootSpark(Object(Config\Paths))
-#15 {main}
-ERROR - 2026-07-20 07:33:44 --> Error connecting to the database: Exception: Unable to open database: unable to open database file in P:\Github\ProjetFinalS4\system\Database\SQLite3\Connection.php:111
-Stack trace:
-#0 P:\Github\ProjetFinalS4\system\Database\SQLite3\Connection.php(111): SQLite3->__construct('P:\\Github\\Proje...')
-#1 P:\Github\ProjetFinalS4\system\Database\BaseConnection.php(555): CodeIgniter\Database\SQLite3\Connection->connect(false)
-#2 P:\Github\ProjetFinalS4\system\Database\SQLite3\Connection.php(74): CodeIgniter\Database\BaseConnection->initialize()
-#3 P:\Github\ProjetFinalS4\system\Database\BaseConnection.php(795): CodeIgniter\Database\SQLite3\Connection->initialize()
-#4 P:\Github\ProjetFinalS4\system\Database\BaseConnection.php(1706): CodeIgniter\Database\BaseConnection->query('SELECT "NAME" F...')
-#5 P:\Github\ProjetFinalS4\system\Database\BaseConnection.php(1726): CodeIgniter\Database\BaseConnection->listTables()
-#6 P:\Github\ProjetFinalS4\system\Database\MigrationRunner.php(821): CodeIgniter\Database\BaseConnection->tableExists('migrations')
-#7 P:\Github\ProjetFinalS4\system\Database\MigrationRunner.php(173): CodeIgniter\Database\MigrationRunner->ensureTable()
-#8 P:\Github\ProjetFinalS4\system\Commands\Database\Migrate.php(89): CodeIgniter\Database\MigrationRunner->latest(NULL)
-#9 P:\Github\ProjetFinalS4\system\CLI\SignalTrait.php(245): CodeIgniter\Commands\Database\Migrate::{closure:CodeIgniter\Commands\Database\Migrate::run():88}()
-#10 P:\Github\ProjetFinalS4\system\Commands\Database\Migrate.php(88): CodeIgniter\Commands\Database\Migrate->withSignalsBlocked(Object(Closure))
-#11 P:\Github\ProjetFinalS4\system\CLI\Commands.php(74): CodeIgniter\Commands\Database\Migrate->run(Array)
-#12 P:\Github\ProjetFinalS4\system\CLI\Console.php(47): CodeIgniter\CLI\Commands->run('migrate', Array)
-#13 P:\Github\ProjetFinalS4\system\Boot.php(442): CodeIgniter\CLI\Console->run()
-#14 P:\Github\ProjetFinalS4\system\Boot.php(166): CodeIgniter\Boot::runCommand(Object(CodeIgniter\CLI\Console))
-#15 P:\Github\ProjetFinalS4\spark(87): CodeIgniter\Boot::bootSpark(Object(Config\Paths))
-#16 {main}
-
-Next CodeIgniter\Database\Exceptions\DatabaseException: SQLite3 error: Unable to open database: unable to open database file in P:\Github\ProjetFinalS4\system\Database\SQLite3\Connection.php:118
-Stack trace:
-#0 P:\Github\ProjetFinalS4\system\Database\BaseConnection.php(555): CodeIgniter\Database\SQLite3\Connection->connect(false)
-#1 P:\Github\ProjetFinalS4\system\Database\SQLite3\Connection.php(74): CodeIgniter\Database\BaseConnection->initialize()
-#2 P:\Github\ProjetFinalS4\system\Database\BaseConnection.php(795): CodeIgniter\Database\SQLite3\Connection->initialize()
-#3 P:\Github\ProjetFinalS4\system\Database\BaseConnection.php(1706): CodeIgniter\Database\BaseConnection->query('SELECT "NAME" F...')
-#4 P:\Github\ProjetFinalS4\system\Database\BaseConnection.php(1726): CodeIgniter\Database\BaseConnection->listTables()
-#5 P:\Github\ProjetFinalS4\system\Database\MigrationRunner.php(821): CodeIgniter\Database\BaseConnection->tableExists('migrations')
-#6 P:\Github\ProjetFinalS4\system\Database\MigrationRunner.php(173): CodeIgniter\Database\MigrationRunner->ensureTable()
-#7 P:\Github\ProjetFinalS4\system\Commands\Database\Migrate.php(89): CodeIgniter\Database\MigrationRunner->latest(NULL)
-#8 P:\Github\ProjetFinalS4\system\CLI\SignalTrait.php(245): CodeIgniter\Commands\Database\Migrate::{closure:CodeIgniter\Commands\Database\Migrate::run():88}()
-#9 P:\Github\ProjetFinalS4\system\Commands\Database\Migrate.php(88): CodeIgniter\Commands\Database\Migrate->withSignalsBlocked(Object(Closure))
-#10 P:\Github\ProjetFinalS4\system\CLI\Commands.php(74): CodeIgniter\Commands\Database\Migrate->run(Array)
-#11 P:\Github\ProjetFinalS4\system\CLI\Console.php(47): CodeIgniter\CLI\Commands->run('migrate', Array)
-#12 P:\Github\ProjetFinalS4\system\Boot.php(442): CodeIgniter\CLI\Console->run()
-#13 P:\Github\ProjetFinalS4\system\Boot.php(166): CodeIgniter\Boot::runCommand(Object(CodeIgniter\CLI\Console))
-#14 P:\Github\ProjetFinalS4\spark(87): CodeIgniter\Boot::bootSpark(Object(Config\Paths))
-#15 {main}
-ERROR - 2026-07-20 07:36:06 --> Error connecting to the database: Exception: Unable to open database: unable to open database file in P:\Github\ProjetFinalS4\system\Database\SQLite3\Connection.php:111
-Stack trace:
-#0 P:\Github\ProjetFinalS4\system\Database\SQLite3\Connection.php(111): SQLite3->__construct('P:\\Github\\Proje...')
-#1 P:\Github\ProjetFinalS4\system\Database\BaseConnection.php(555): CodeIgniter\Database\SQLite3\Connection->connect(false)
-#2 P:\Github\ProjetFinalS4\system\Database\SQLite3\Connection.php(74): CodeIgniter\Database\BaseConnection->initialize()
-#3 P:\Github\ProjetFinalS4\system\Database\BaseConnection.php(795): CodeIgniter\Database\SQLite3\Connection->initialize()
-#4 P:\Github\ProjetFinalS4\system\Database\BaseConnection.php(1706): CodeIgniter\Database\BaseConnection->query('SELECT "NAME" F...')
-#5 P:\Github\ProjetFinalS4\system\Database\BaseConnection.php(1726): CodeIgniter\Database\BaseConnection->listTables()
-#6 P:\Github\ProjetFinalS4\system\Database\MigrationRunner.php(821): CodeIgniter\Database\BaseConnection->tableExists('migrations')
-#7 P:\Github\ProjetFinalS4\system\Database\MigrationRunner.php(173): CodeIgniter\Database\MigrationRunner->ensureTable()
-#8 P:\Github\ProjetFinalS4\system\Commands\Database\Migrate.php(89): CodeIgniter\Database\MigrationRunner->latest(NULL)
-#9 P:\Github\ProjetFinalS4\system\CLI\SignalTrait.php(245): CodeIgniter\Commands\Database\Migrate::{closure:CodeIgniter\Commands\Database\Migrate::run():88}()
-#10 P:\Github\ProjetFinalS4\system\Commands\Database\Migrate.php(88): CodeIgniter\Commands\Database\Migrate->withSignalsBlocked(Object(Closure))
-#11 P:\Github\ProjetFinalS4\system\CLI\Commands.php(74): CodeIgniter\Commands\Database\Migrate->run(Array)
-#12 P:\Github\ProjetFinalS4\system\CLI\Console.php(47): CodeIgniter\CLI\Commands->run('migrate', Array)
-#13 P:\Github\ProjetFinalS4\system\Boot.php(442): CodeIgniter\CLI\Console->run()
-#14 P:\Github\ProjetFinalS4\system\Boot.php(166): CodeIgniter\Boot::runCommand(Object(CodeIgniter\CLI\Console))
-#15 P:\Github\ProjetFinalS4\spark(87): CodeIgniter\Boot::bootSpark(Object(Config\Paths))
-#16 {main}
-
-Next CodeIgniter\Database\Exceptions\DatabaseException: SQLite3 error: Unable to open database: unable to open database file in P:\Github\ProjetFinalS4\system\Database\SQLite3\Connection.php:118
-Stack trace:
-#0 P:\Github\ProjetFinalS4\system\Database\BaseConnection.php(555): CodeIgniter\Database\SQLite3\Connection->connect(false)
-#1 P:\Github\ProjetFinalS4\system\Database\SQLite3\Connection.php(74): CodeIgniter\Database\BaseConnection->initialize()
-#2 P:\Github\ProjetFinalS4\system\Database\BaseConnection.php(795): CodeIgniter\Database\SQLite3\Connection->initialize()
-#3 P:\Github\ProjetFinalS4\system\Database\BaseConnection.php(1706): CodeIgniter\Database\BaseConnection->query('SELECT "NAME" F...')
-#4 P:\Github\ProjetFinalS4\system\Database\BaseConnection.php(1726): CodeIgniter\Database\BaseConnection->listTables()
-#5 P:\Github\ProjetFinalS4\system\Database\MigrationRunner.php(821): CodeIgniter\Database\BaseConnection->tableExists('migrations')
-#6 P:\Github\ProjetFinalS4\system\Database\MigrationRunner.php(173): CodeIgniter\Database\MigrationRunner->ensureTable()
-#7 P:\Github\ProjetFinalS4\system\Commands\Database\Migrate.php(89): CodeIgniter\Database\MigrationRunner->latest(NULL)
-#8 P:\Github\ProjetFinalS4\system\CLI\SignalTrait.php(245): CodeIgniter\Commands\Database\Migrate::{closure:CodeIgniter\Commands\Database\Migrate::run():88}()
-#9 P:\Github\ProjetFinalS4\system\Commands\Database\Migrate.php(88): CodeIgniter\Commands\Database\Migrate->withSignalsBlocked(Object(Closure))
-#10 P:\Github\ProjetFinalS4\system\CLI\Commands.php(74): CodeIgniter\Commands\Database\Migrate->run(Array)
-#11 P:\Github\ProjetFinalS4\system\CLI\Console.php(47): CodeIgniter\CLI\Commands->run('migrate', Array)
-#12 P:\Github\ProjetFinalS4\system\Boot.php(442): CodeIgniter\CLI\Console->run()
-#13 P:\Github\ProjetFinalS4\system\Boot.php(166): CodeIgniter\Boot::runCommand(Object(CodeIgniter\CLI\Console))
-#14 P:\Github\ProjetFinalS4\spark(87): CodeIgniter\Boot::bootSpark(Object(Config\Paths))
-#15 {main}
-ERROR - 2026-07-20 07:36:43 --> Error connecting to the database: Exception: Unable to open database: unable to open database file in P:\Github\ProjetFinalS4\system\Database\SQLite3\Connection.php:111
-Stack trace:
-#0 P:\Github\ProjetFinalS4\system\Database\SQLite3\Connection.php(111): SQLite3->__construct('P:\\Github\\Proje...')
-#1 P:\Github\ProjetFinalS4\system\Database\BaseConnection.php(555): CodeIgniter\Database\SQLite3\Connection->connect(false)
-#2 P:\Github\ProjetFinalS4\system\Database\SQLite3\Connection.php(74): CodeIgniter\Database\BaseConnection->initialize()
-#3 P:\Github\ProjetFinalS4\system\Database\BaseConnection.php(795): CodeIgniter\Database\SQLite3\Connection->initialize()
-#4 P:\Github\ProjetFinalS4\system\Database\BaseConnection.php(1706): CodeIgniter\Database\BaseConnection->query('SELECT "NAME" F...')
-#5 P:\Github\ProjetFinalS4\system\Database\BaseConnection.php(1726): CodeIgniter\Database\BaseConnection->listTables()
-#6 P:\Github\ProjetFinalS4\system\Database\MigrationRunner.php(821): CodeIgniter\Database\BaseConnection->tableExists('migrations')
-#7 P:\Github\ProjetFinalS4\system\Database\MigrationRunner.php(173): CodeIgniter\Database\MigrationRunner->ensureTable()
-#8 P:\Github\ProjetFinalS4\system\Commands\Database\Migrate.php(89): CodeIgniter\Database\MigrationRunner->latest(NULL)
-#9 P:\Github\ProjetFinalS4\system\CLI\SignalTrait.php(245): CodeIgniter\Commands\Database\Migrate::{closure:CodeIgniter\Commands\Database\Migrate::run():88}()
-#10 P:\Github\ProjetFinalS4\system\Commands\Database\Migrate.php(88): CodeIgniter\Commands\Database\Migrate->withSignalsBlocked(Object(Closure))
-#11 P:\Github\ProjetFinalS4\system\CLI\Commands.php(74): CodeIgniter\Commands\Database\Migrate->run(Array)
-#12 P:\Github\ProjetFinalS4\system\CLI\Console.php(47): CodeIgniter\CLI\Commands->run('migrate', Array)
-#13 P:\Github\ProjetFinalS4\system\Boot.php(442): CodeIgniter\CLI\Console->run()
-#14 P:\Github\ProjetFinalS4\system\Boot.php(166): CodeIgniter\Boot::runCommand(Object(CodeIgniter\CLI\Console))
-#15 P:\Github\ProjetFinalS4\spark(87): CodeIgniter\Boot::bootSpark(Object(Config\Paths))
-#16 {main}
-
-Next CodeIgniter\Database\Exceptions\DatabaseException: SQLite3 error: Unable to open database: unable to open database file in P:\Github\ProjetFinalS4\system\Database\SQLite3\Connection.php:118
-Stack trace:
-#0 P:\Github\ProjetFinalS4\system\Database\BaseConnection.php(555): CodeIgniter\Database\SQLite3\Connection->connect(false)
-#1 P:\Github\ProjetFinalS4\system\Database\SQLite3\Connection.php(74): CodeIgniter\Database\BaseConnection->initialize()
-#2 P:\Github\ProjetFinalS4\system\Database\BaseConnection.php(795): CodeIgniter\Database\SQLite3\Connection->initialize()
-#3 P:\Github\ProjetFinalS4\system\Database\BaseConnection.php(1706): CodeIgniter\Database\BaseConnection->query('SELECT "NAME" F...')
-#4 P:\Github\ProjetFinalS4\system\Database\BaseConnection.php(1726): CodeIgniter\Database\BaseConnection->listTables()
-#5 P:\Github\ProjetFinalS4\system\Database\MigrationRunner.php(821): CodeIgniter\Database\BaseConnection->tableExists('migrations')
-#6 P:\Github\ProjetFinalS4\system\Database\MigrationRunner.php(173): CodeIgniter\Database\MigrationRunner->ensureTable()
-#7 P:\Github\ProjetFinalS4\system\Commands\Database\Migrate.php(89): CodeIgniter\Database\MigrationRunner->latest(NULL)
-#8 P:\Github\ProjetFinalS4\system\CLI\SignalTrait.php(245): CodeIgniter\Commands\Database\Migrate::{closure:CodeIgniter\Commands\Database\Migrate::run():88}()
-#9 P:\Github\ProjetFinalS4\system\Commands\Database\Migrate.php(88): CodeIgniter\Commands\Database\Migrate->withSignalsBlocked(Object(Closure))
-#10 P:\Github\ProjetFinalS4\system\CLI\Commands.php(74): CodeIgniter\Commands\Database\Migrate->run(Array)
-#11 P:\Github\ProjetFinalS4\system\CLI\Console.php(47): CodeIgniter\CLI\Commands->run('migrate', Array)
-#12 P:\Github\ProjetFinalS4\system\Boot.php(442): CodeIgniter\CLI\Console->run()
-#13 P:\Github\ProjetFinalS4\system\Boot.php(166): CodeIgniter\Boot::runCommand(Object(CodeIgniter\CLI\Console))
-#14 P:\Github\ProjetFinalS4\spark(87): CodeIgniter\Boot::bootSpark(Object(Config\Paths))
-#15 {main}
-ERROR - 2026-07-20 07:37:28 --> Error connecting to the database: Exception: Unable to open database: unable to open database file in P:\Github\ProjetFinalS4\system\Database\SQLite3\Connection.php:111
-Stack trace:
-#0 P:\Github\ProjetFinalS4\system\Database\SQLite3\Connection.php(111): SQLite3->__construct('P:\\Github\\Proje...')
-#1 P:\Github\ProjetFinalS4\system\Database\BaseConnection.php(555): CodeIgniter\Database\SQLite3\Connection->connect(false)
-#2 P:\Github\ProjetFinalS4\system\Database\SQLite3\Connection.php(74): CodeIgniter\Database\BaseConnection->initialize()
-#3 P:\Github\ProjetFinalS4\system\Database\BaseConnection.php(795): CodeIgniter\Database\SQLite3\Connection->initialize()
-#4 P:\Github\ProjetFinalS4\system\Database\BaseConnection.php(1706): CodeIgniter\Database\BaseConnection->query('SELECT "NAME" F...')
-#5 P:\Github\ProjetFinalS4\system\Database\BaseConnection.php(1726): CodeIgniter\Database\BaseConnection->listTables()
-#6 P:\Github\ProjetFinalS4\system\Database\MigrationRunner.php(821): CodeIgniter\Database\BaseConnection->tableExists('migrations')
-#7 P:\Github\ProjetFinalS4\system\Database\MigrationRunner.php(173): CodeIgniter\Database\MigrationRunner->ensureTable()
-#8 P:\Github\ProjetFinalS4\system\Commands\Database\Migrate.php(89): CodeIgniter\Database\MigrationRunner->latest(NULL)
-#9 P:\Github\ProjetFinalS4\system\CLI\SignalTrait.php(245): CodeIgniter\Commands\Database\Migrate::{closure:CodeIgniter\Commands\Database\Migrate::run():88}()
-#10 P:\Github\ProjetFinalS4\system\Commands\Database\Migrate.php(88): CodeIgniter\Commands\Database\Migrate->withSignalsBlocked(Object(Closure))
-#11 P:\Github\ProjetFinalS4\system\CLI\Commands.php(74): CodeIgniter\Commands\Database\Migrate->run(Array)
-#12 P:\Github\ProjetFinalS4\system\CLI\Console.php(47): CodeIgniter\CLI\Commands->run('migrate', Array)
-#13 P:\Github\ProjetFinalS4\system\Boot.php(442): CodeIgniter\CLI\Console->run()
-#14 P:\Github\ProjetFinalS4\system\Boot.php(166): CodeIgniter\Boot::runCommand(Object(CodeIgniter\CLI\Console))
-#15 P:\Github\ProjetFinalS4\spark(87): CodeIgniter\Boot::bootSpark(Object(Config\Paths))
-#16 {main}
-
-Next CodeIgniter\Database\Exceptions\DatabaseException: SQLite3 error: Unable to open database: unable to open database file in P:\Github\ProjetFinalS4\system\Database\SQLite3\Connection.php:118
-Stack trace:
-#0 P:\Github\ProjetFinalS4\system\Database\BaseConnection.php(555): CodeIgniter\Database\SQLite3\Connection->connect(false)
-#1 P:\Github\ProjetFinalS4\system\Database\SQLite3\Connection.php(74): CodeIgniter\Database\BaseConnection->initialize()
-#2 P:\Github\ProjetFinalS4\system\Database\BaseConnection.php(795): CodeIgniter\Database\SQLite3\Connection->initialize()
-#3 P:\Github\ProjetFinalS4\system\Database\BaseConnection.php(1706): CodeIgniter\Database\BaseConnection->query('SELECT "NAME" F...')
-#4 P:\Github\ProjetFinalS4\system\Database\BaseConnection.php(1726): CodeIgniter\Database\BaseConnection->listTables()
-#5 P:\Github\ProjetFinalS4\system\Database\MigrationRunner.php(821): CodeIgniter\Database\BaseConnection->tableExists('migrations')
-#6 P:\Github\ProjetFinalS4\system\Database\MigrationRunner.php(173): CodeIgniter\Database\MigrationRunner->ensureTable()
-#7 P:\Github\ProjetFinalS4\system\Commands\Database\Migrate.php(89): CodeIgniter\Database\MigrationRunner->latest(NULL)
-#8 P:\Github\ProjetFinalS4\system\CLI\SignalTrait.php(245): CodeIgniter\Commands\Database\Migrate::{closure:CodeIgniter\Commands\Database\Migrate::run():88}()
-#9 P:\Github\ProjetFinalS4\system\Commands\Database\Migrate.php(88): CodeIgniter\Commands\Database\Migrate->withSignalsBlocked(Object(Closure))
-#10 P:\Github\ProjetFinalS4\system\CLI\Commands.php(74): CodeIgniter\Commands\Database\Migrate->run(Array)
-#11 P:\Github\ProjetFinalS4\system\CLI\Console.php(47): CodeIgniter\CLI\Commands->run('migrate', Array)
-#12 P:\Github\ProjetFinalS4\system\Boot.php(442): CodeIgniter\CLI\Console->run()
-#13 P:\Github\ProjetFinalS4\system\Boot.php(166): CodeIgniter\Boot::runCommand(Object(CodeIgniter\CLI\Console))
-#14 P:\Github\ProjetFinalS4\spark(87): CodeIgniter\Boot::bootSpark(Object(Config\Paths))
-#15 {main}
-ERROR - 2026-07-20 07:41:22 --> Error connecting to the database: Exception: Unable to open database: unable to open database file in P:\Github\ProjetFinalS4\system\Database\SQLite3\Connection.php:111
-Stack trace:
-#0 P:\Github\ProjetFinalS4\system\Database\SQLite3\Connection.php(111): SQLite3->__construct('P:\\Github\\Proje...')
-#1 P:\Github\ProjetFinalS4\system\Database\BaseConnection.php(555): CodeIgniter\Database\SQLite3\Connection->connect(false)
-#2 P:\Github\ProjetFinalS4\system\Database\SQLite3\Connection.php(74): CodeIgniter\Database\BaseConnection->initialize()
-#3 P:\Github\ProjetFinalS4\system\Database\BaseConnection.php(795): CodeIgniter\Database\SQLite3\Connection->initialize()
-#4 P:\Github\ProjetFinalS4\system\Database\BaseConnection.php(1706): CodeIgniter\Database\BaseConnection->query('SELECT "NAME" F...')
-#5 P:\Github\ProjetFinalS4\system\Database\BaseConnection.php(1726): CodeIgniter\Database\BaseConnection->listTables()
-#6 P:\Github\ProjetFinalS4\system\Database\MigrationRunner.php(821): CodeIgniter\Database\BaseConnection->tableExists('migrations')
-#7 P:\Github\ProjetFinalS4\system\Database\MigrationRunner.php(173): CodeIgniter\Database\MigrationRunner->ensureTable()
-#8 P:\Github\ProjetFinalS4\system\Commands\Database\Migrate.php(89): CodeIgniter\Database\MigrationRunner->latest(NULL)
-#9 P:\Github\ProjetFinalS4\system\CLI\SignalTrait.php(245): CodeIgniter\Commands\Database\Migrate::{closure:CodeIgniter\Commands\Database\Migrate::run():88}()
-#10 P:\Github\ProjetFinalS4\system\Commands\Database\Migrate.php(88): CodeIgniter\Commands\Database\Migrate->withSignalsBlocked(Object(Closure))
-#11 P:\Github\ProjetFinalS4\system\CLI\Commands.php(74): CodeIgniter\Commands\Database\Migrate->run(Array)
-#12 P:\Github\ProjetFinalS4\system\CLI\Console.php(47): CodeIgniter\CLI\Commands->run('migrate', Array)
-#13 P:\Github\ProjetFinalS4\system\Boot.php(442): CodeIgniter\CLI\Console->run()
-#14 P:\Github\ProjetFinalS4\system\Boot.php(166): CodeIgniter\Boot::runCommand(Object(CodeIgniter\CLI\Console))
-#15 P:\Github\ProjetFinalS4\spark(87): CodeIgniter\Boot::bootSpark(Object(Config\Paths))
-#16 {main}
-
-Next CodeIgniter\Database\Exceptions\DatabaseException: SQLite3 error: Unable to open database: unable to open database file in P:\Github\ProjetFinalS4\system\Database\SQLite3\Connection.php:118
-Stack trace:
-#0 P:\Github\ProjetFinalS4\system\Database\BaseConnection.php(555): CodeIgniter\Database\SQLite3\Connection->connect(false)
-#1 P:\Github\ProjetFinalS4\system\Database\SQLite3\Connection.php(74): CodeIgniter\Database\BaseConnection->initialize()
-#2 P:\Github\ProjetFinalS4\system\Database\BaseConnection.php(795): CodeIgniter\Database\SQLite3\Connection->initialize()
-#3 P:\Github\ProjetFinalS4\system\Database\BaseConnection.php(1706): CodeIgniter\Database\BaseConnection->query('SELECT "NAME" F...')
-#4 P:\Github\ProjetFinalS4\system\Database\BaseConnection.php(1726): CodeIgniter\Database\BaseConnection->listTables()
-#5 P:\Github\ProjetFinalS4\system\Database\MigrationRunner.php(821): CodeIgniter\Database\BaseConnection->tableExists('migrations')
-#6 P:\Github\ProjetFinalS4\system\Database\MigrationRunner.php(173): CodeIgniter\Database\MigrationRunner->ensureTable()
-#7 P:\Github\ProjetFinalS4\system\Commands\Database\Migrate.php(89): CodeIgniter\Database\MigrationRunner->latest(NULL)
-#8 P:\Github\ProjetFinalS4\system\CLI\SignalTrait.php(245): CodeIgniter\Commands\Database\Migrate::{closure:CodeIgniter\Commands\Database\Migrate::run():88}()
-#9 P:\Github\ProjetFinalS4\system\Commands\Database\Migrate.php(88): CodeIgniter\Commands\Database\Migrate->withSignalsBlocked(Object(Closure))
-#10 P:\Github\ProjetFinalS4\system\CLI\Commands.php(74): CodeIgniter\Commands\Database\Migrate->run(Array)
-#11 P:\Github\ProjetFinalS4\system\CLI\Console.php(47): CodeIgniter\CLI\Commands->run('migrate', Array)
-#12 P:\Github\ProjetFinalS4\system\Boot.php(442): CodeIgniter\CLI\Console->run()
-#13 P:\Github\ProjetFinalS4\system\Boot.php(166): CodeIgniter\Boot::runCommand(Object(CodeIgniter\CLI\Console))
-#14 P:\Github\ProjetFinalS4\spark(87): CodeIgniter\Boot::bootSpark(Object(Config\Paths))
-#15 {main}
-ERROR - 2026-07-20 07:41:44 --> Error connecting to the database: Exception: Unable to open database: unable to open database file in P:\Github\ProjetFinalS4\system\Database\SQLite3\Connection.php:111
-Stack trace:
-#0 P:\Github\ProjetFinalS4\system\Database\SQLite3\Connection.php(111): SQLite3->__construct('P:\\Github\\Proje...')
-#1 P:\Github\ProjetFinalS4\system\Database\BaseConnection.php(555): CodeIgniter\Database\SQLite3\Connection->connect(false)
-#2 P:\Github\ProjetFinalS4\system\Database\SQLite3\Connection.php(74): CodeIgniter\Database\BaseConnection->initialize()
-#3 P:\Github\ProjetFinalS4\system\Database\BaseConnection.php(795): CodeIgniter\Database\SQLite3\Connection->initialize()
-#4 P:\Github\ProjetFinalS4\system\Database\BaseConnection.php(1706): CodeIgniter\Database\BaseConnection->query('SELECT "NAME" F...')
-#5 P:\Github\ProjetFinalS4\system\Database\BaseConnection.php(1726): CodeIgniter\Database\BaseConnection->listTables()
-#6 P:\Github\ProjetFinalS4\system\Database\MigrationRunner.php(821): CodeIgniter\Database\BaseConnection->tableExists('migrations')
-#7 P:\Github\ProjetFinalS4\system\Database\MigrationRunner.php(173): CodeIgniter\Database\MigrationRunner->ensureTable()
-#8 P:\Github\ProjetFinalS4\system\Commands\Database\Migrate.php(89): CodeIgniter\Database\MigrationRunner->latest(NULL)
-#9 P:\Github\ProjetFinalS4\system\CLI\SignalTrait.php(245): CodeIgniter\Commands\Database\Migrate::{closure:CodeIgniter\Commands\Database\Migrate::run():88}()
-#10 P:\Github\ProjetFinalS4\system\Commands\Database\Migrate.php(88): CodeIgniter\Commands\Database\Migrate->withSignalsBlocked(Object(Closure))
-#11 P:\Github\ProjetFinalS4\system\CLI\Commands.php(74): CodeIgniter\Commands\Database\Migrate->run(Array)
-#12 P:\Github\ProjetFinalS4\system\CLI\Console.php(47): CodeIgniter\CLI\Commands->run('migrate', Array)
-#13 P:\Github\ProjetFinalS4\system\Boot.php(442): CodeIgniter\CLI\Console->run()
-#14 P:\Github\ProjetFinalS4\system\Boot.php(166): CodeIgniter\Boot::runCommand(Object(CodeIgniter\CLI\Console))
-#15 P:\Github\ProjetFinalS4\spark(87): CodeIgniter\Boot::bootSpark(Object(Config\Paths))
-#16 {main}
-
-Next CodeIgniter\Database\Exceptions\DatabaseException: SQLite3 error: Unable to open database: unable to open database file in P:\Github\ProjetFinalS4\system\Database\SQLite3\Connection.php:118
-Stack trace:
-#0 P:\Github\ProjetFinalS4\system\Database\BaseConnection.php(555): CodeIgniter\Database\SQLite3\Connection->connect(false)
-#1 P:\Github\ProjetFinalS4\system\Database\SQLite3\Connection.php(74): CodeIgniter\Database\BaseConnection->initialize()
-#2 P:\Github\ProjetFinalS4\system\Database\BaseConnection.php(795): CodeIgniter\Database\SQLite3\Connection->initialize()
-#3 P:\Github\ProjetFinalS4\system\Database\BaseConnection.php(1706): CodeIgniter\Database\BaseConnection->query('SELECT "NAME" F...')
-#4 P:\Github\ProjetFinalS4\system\Database\BaseConnection.php(1726): CodeIgniter\Database\BaseConnection->listTables()
-#5 P:\Github\ProjetFinalS4\system\Database\MigrationRunner.php(821): CodeIgniter\Database\BaseConnection->tableExists('migrations')
-#6 P:\Github\ProjetFinalS4\system\Database\MigrationRunner.php(173): CodeIgniter\Database\MigrationRunner->ensureTable()
-#7 P:\Github\ProjetFinalS4\system\Commands\Database\Migrate.php(89): CodeIgniter\Database\MigrationRunner->latest(NULL)
-#8 P:\Github\ProjetFinalS4\system\CLI\SignalTrait.php(245): CodeIgniter\Commands\Database\Migrate::{closure:CodeIgniter\Commands\Database\Migrate::run():88}()
-#9 P:\Github\ProjetFinalS4\system\Commands\Database\Migrate.php(88): CodeIgniter\Commands\Database\Migrate->withSignalsBlocked(Object(Closure))
-#10 P:\Github\ProjetFinalS4\system\CLI\Commands.php(74): CodeIgniter\Commands\Database\Migrate->run(Array)
-#11 P:\Github\ProjetFinalS4\system\CLI\Console.php(47): CodeIgniter\CLI\Commands->run('migrate', Array)
-#12 P:\Github\ProjetFinalS4\system\Boot.php(442): CodeIgniter\CLI\Console->run()
-#13 P:\Github\ProjetFinalS4\system\Boot.php(166): CodeIgniter\Boot::runCommand(Object(CodeIgniter\CLI\Console))
-#14 P:\Github\ProjetFinalS4\spark(87): CodeIgniter\Boot::bootSpark(Object(Config\Paths))
-#15 {main}
-ERROR - 2026-07-20 07:42:43 --> Error connecting to the database: Exception: Unable to open database: unable to open database file in P:\Github\ProjetFinalS4\system\Database\SQLite3\Connection.php:111
-Stack trace:
-#0 P:\Github\ProjetFinalS4\system\Database\SQLite3\Connection.php(111): SQLite3->__construct('P:\\Github\\Proje...')
-#1 P:\Github\ProjetFinalS4\system\Database\BaseConnection.php(555): CodeIgniter\Database\SQLite3\Connection->connect(false)
-#2 P:\Github\ProjetFinalS4\system\Database\SQLite3\Connection.php(74): CodeIgniter\Database\BaseConnection->initialize()
-#3 P:\Github\ProjetFinalS4\system\Database\BaseConnection.php(795): CodeIgniter\Database\SQLite3\Connection->initialize()
-#4 P:\Github\ProjetFinalS4\system\Database\BaseConnection.php(1706): CodeIgniter\Database\BaseConnection->query('SELECT "NAME" F...')
-#5 P:\Github\ProjetFinalS4\system\Database\BaseConnection.php(1726): CodeIgniter\Database\BaseConnection->listTables()
-#6 P:\Github\ProjetFinalS4\system\Database\MigrationRunner.php(821): CodeIgniter\Database\BaseConnection->tableExists('migrations')
-#7 P:\Github\ProjetFinalS4\system\Database\MigrationRunner.php(173): CodeIgniter\Database\MigrationRunner->ensureTable()
-#8 P:\Github\ProjetFinalS4\system\Commands\Database\Migrate.php(89): CodeIgniter\Database\MigrationRunner->latest(NULL)
-#9 P:\Github\ProjetFinalS4\system\CLI\SignalTrait.php(245): CodeIgniter\Commands\Database\Migrate::{closure:CodeIgniter\Commands\Database\Migrate::run():88}()
-#10 P:\Github\ProjetFinalS4\system\Commands\Database\Migrate.php(88): CodeIgniter\Commands\Database\Migrate->withSignalsBlocked(Object(Closure))
-#11 P:\Github\ProjetFinalS4\system\CLI\Commands.php(74): CodeIgniter\Commands\Database\Migrate->run(Array)
-#12 P:\Github\ProjetFinalS4\system\CLI\Console.php(47): CodeIgniter\CLI\Commands->run('migrate', Array)
-#13 P:\Github\ProjetFinalS4\system\Boot.php(442): CodeIgniter\CLI\Console->run()
-#14 P:\Github\ProjetFinalS4\system\Boot.php(166): CodeIgniter\Boot::runCommand(Object(CodeIgniter\CLI\Console))
-#15 P:\Github\ProjetFinalS4\spark(87): CodeIgniter\Boot::bootSpark(Object(Config\Paths))
-#16 {main}
-
-Next CodeIgniter\Database\Exceptions\DatabaseException: SQLite3 error: Unable to open database: unable to open database file in P:\Github\ProjetFinalS4\system\Database\SQLite3\Connection.php:118
-Stack trace:
-#0 P:\Github\ProjetFinalS4\system\Database\BaseConnection.php(555): CodeIgniter\Database\SQLite3\Connection->connect(false)
-#1 P:\Github\ProjetFinalS4\system\Database\SQLite3\Connection.php(74): CodeIgniter\Database\BaseConnection->initialize()
-#2 P:\Github\ProjetFinalS4\system\Database\BaseConnection.php(795): CodeIgniter\Database\SQLite3\Connection->initialize()
-#3 P:\Github\ProjetFinalS4\system\Database\BaseConnection.php(1706): CodeIgniter\Database\BaseConnection->query('SELECT "NAME" F...')
-#4 P:\Github\ProjetFinalS4\system\Database\BaseConnection.php(1726): CodeIgniter\Database\BaseConnection->listTables()
-#5 P:\Github\ProjetFinalS4\system\Database\MigrationRunner.php(821): CodeIgniter\Database\BaseConnection->tableExists('migrations')
-#6 P:\Github\ProjetFinalS4\system\Database\MigrationRunner.php(173): CodeIgniter\Database\MigrationRunner->ensureTable()
-#7 P:\Github\ProjetFinalS4\system\Commands\Database\Migrate.php(89): CodeIgniter\Database\MigrationRunner->latest(NULL)
-#8 P:\Github\ProjetFinalS4\system\CLI\SignalTrait.php(245): CodeIgniter\Commands\Database\Migrate::{closure:CodeIgniter\Commands\Database\Migrate::run():88}()
-#9 P:\Github\ProjetFinalS4\system\Commands\Database\Migrate.php(88): CodeIgniter\Commands\Database\Migrate->withSignalsBlocked(Object(Closure))
-#10 P:\Github\ProjetFinalS4\system\CLI\Commands.php(74): CodeIgniter\Commands\Database\Migrate->run(Array)
-#11 P:\Github\ProjetFinalS4\system\CLI\Console.php(47): CodeIgniter\CLI\Commands->run('migrate', Array)
-#12 P:\Github\ProjetFinalS4\system\Boot.php(442): CodeIgniter\CLI\Console->run()
-#13 P:\Github\ProjetFinalS4\system\Boot.php(166): CodeIgniter\Boot::runCommand(Object(CodeIgniter\CLI\Console))
-#14 P:\Github\ProjetFinalS4\spark(87): CodeIgniter\Boot::bootSpark(Object(Config\Paths))
-#15 {main}
-ERROR - 2026-07-20 07:44:53 --> Error connecting to the database: Exception: Unable to open database: unable to open database file in P:\Github\ProjetFinalS4\system\Database\SQLite3\Connection.php:111
-Stack trace:
-#0 P:\Github\ProjetFinalS4\system\Database\SQLite3\Connection.php(111): SQLite3->__construct('P:\\Github\\Proje...')
-#1 P:\Github\ProjetFinalS4\system\Database\BaseConnection.php(555): CodeIgniter\Database\SQLite3\Connection->connect(false)
-#2 P:\Github\ProjetFinalS4\system\Database\SQLite3\Connection.php(74): CodeIgniter\Database\BaseConnection->initialize()
-#3 P:\Github\ProjetFinalS4\system\Database\BaseConnection.php(795): CodeIgniter\Database\SQLite3\Connection->initialize()
-#4 P:\Github\ProjetFinalS4\system\Database\BaseConnection.php(1706): CodeIgniter\Database\BaseConnection->query('SELECT "NAME" F...')
-#5 P:\Github\ProjetFinalS4\system\Database\BaseConnection.php(1726): CodeIgniter\Database\BaseConnection->listTables()
-#6 P:\Github\ProjetFinalS4\system\Database\MigrationRunner.php(821): CodeIgniter\Database\BaseConnection->tableExists('migrations')
-#7 P:\Github\ProjetFinalS4\system\Database\MigrationRunner.php(173): CodeIgniter\Database\MigrationRunner->ensureTable()
-#8 P:\Github\ProjetFinalS4\system\Commands\Database\Migrate.php(89): CodeIgniter\Database\MigrationRunner->latest(NULL)
-#9 P:\Github\ProjetFinalS4\system\CLI\SignalTrait.php(245): CodeIgniter\Commands\Database\Migrate::{closure:CodeIgniter\Commands\Database\Migrate::run():88}()
-#10 P:\Github\ProjetFinalS4\system\Commands\Database\Migrate.php(88): CodeIgniter\Commands\Database\Migrate->withSignalsBlocked(Object(Closure))
-#11 P:\Github\ProjetFinalS4\system\CLI\Commands.php(74): CodeIgniter\Commands\Database\Migrate->run(Array)
-#12 P:\Github\ProjetFinalS4\system\CLI\Console.php(47): CodeIgniter\CLI\Commands->run('migrate', Array)
-#13 P:\Github\ProjetFinalS4\system\Boot.php(442): CodeIgniter\CLI\Console->run()
-#14 P:\Github\ProjetFinalS4\system\Boot.php(166): CodeIgniter\Boot::runCommand(Object(CodeIgniter\CLI\Console))
-#15 P:\Github\ProjetFinalS4\spark(87): CodeIgniter\Boot::bootSpark(Object(Config\Paths))
-#16 {main}
-
-Next CodeIgniter\Database\Exceptions\DatabaseException: SQLite3 error: Unable to open database: unable to open database file in P:\Github\ProjetFinalS4\system\Database\SQLite3\Connection.php:118
-Stack trace:
-#0 P:\Github\ProjetFinalS4\system\Database\BaseConnection.php(555): CodeIgniter\Database\SQLite3\Connection->connect(false)
-#1 P:\Github\ProjetFinalS4\system\Database\SQLite3\Connection.php(74): CodeIgniter\Database\BaseConnection->initialize()
-#2 P:\Github\ProjetFinalS4\system\Database\BaseConnection.php(795): CodeIgniter\Database\SQLite3\Connection->initialize()
-#3 P:\Github\ProjetFinalS4\system\Database\BaseConnection.php(1706): CodeIgniter\Database\BaseConnection->query('SELECT "NAME" F...')
-#4 P:\Github\ProjetFinalS4\system\Database\BaseConnection.php(1726): CodeIgniter\Database\BaseConnection->listTables()
-#5 P:\Github\ProjetFinalS4\system\Database\MigrationRunner.php(821): CodeIgniter\Database\BaseConnection->tableExists('migrations')
-#6 P:\Github\ProjetFinalS4\system\Database\MigrationRunner.php(173): CodeIgniter\Database\MigrationRunner->ensureTable()
-#7 P:\Github\ProjetFinalS4\system\Commands\Database\Migrate.php(89): CodeIgniter\Database\MigrationRunner->latest(NULL)
-#8 P:\Github\ProjetFinalS4\system\CLI\SignalTrait.php(245): CodeIgniter\Commands\Database\Migrate::{closure:CodeIgniter\Commands\Database\Migrate::run():88}()
-#9 P:\Github\ProjetFinalS4\system\Commands\Database\Migrate.php(88): CodeIgniter\Commands\Database\Migrate->withSignalsBlocked(Object(Closure))
-#10 P:\Github\ProjetFinalS4\system\CLI\Commands.php(74): CodeIgniter\Commands\Database\Migrate->run(Array)
-#11 P:\Github\ProjetFinalS4\system\CLI\Console.php(47): CodeIgniter\CLI\Commands->run('migrate', Array)
-#12 P:\Github\ProjetFinalS4\system\Boot.php(442): CodeIgniter\CLI\Console->run()
-#13 P:\Github\ProjetFinalS4\system\Boot.php(166): CodeIgniter\Boot::runCommand(Object(CodeIgniter\CLI\Console))
-#14 P:\Github\ProjetFinalS4\spark(87): CodeIgniter\Boot::bootSpark(Object(Config\Paths))
-#15 {main}
-ERROR - 2026-07-20 07:46:02 --> Error connecting to the database: Exception: Unable to open database: unable to open database file in P:\Github\ProjetFinalS4\system\Database\SQLite3\Connection.php:111
-Stack trace:
-#0 P:\Github\ProjetFinalS4\system\Database\SQLite3\Connection.php(111): SQLite3->__construct('P:\\Github\\Proje...')
-#1 P:\Github\ProjetFinalS4\system\Database\BaseConnection.php(555): CodeIgniter\Database\SQLite3\Connection->connect(false)
-#2 P:\Github\ProjetFinalS4\system\Database\SQLite3\Connection.php(74): CodeIgniter\Database\BaseConnection->initialize()
-#3 P:\Github\ProjetFinalS4\system\Database\BaseConnection.php(795): CodeIgniter\Database\SQLite3\Connection->initialize()
-#4 P:\Github\ProjetFinalS4\system\Database\BaseConnection.php(1706): CodeIgniter\Database\BaseConnection->query('SELECT "NAME" F...')
-#5 P:\Github\ProjetFinalS4\system\Database\BaseConnection.php(1726): CodeIgniter\Database\BaseConnection->listTables()
-#6 P:\Github\ProjetFinalS4\system\Database\MigrationRunner.php(821): CodeIgniter\Database\BaseConnection->tableExists('migrations')
-#7 P:\Github\ProjetFinalS4\system\Database\MigrationRunner.php(173): CodeIgniter\Database\MigrationRunner->ensureTable()
-#8 P:\Github\ProjetFinalS4\system\Commands\Database\Migrate.php(89): CodeIgniter\Database\MigrationRunner->latest(NULL)
-#9 P:\Github\ProjetFinalS4\system\CLI\SignalTrait.php(245): CodeIgniter\Commands\Database\Migrate::{closure:CodeIgniter\Commands\Database\Migrate::run():88}()
-#10 P:\Github\ProjetFinalS4\system\Commands\Database\Migrate.php(88): CodeIgniter\Commands\Database\Migrate->withSignalsBlocked(Object(Closure))
-#11 P:\Github\ProjetFinalS4\system\CLI\Commands.php(74): CodeIgniter\Commands\Database\Migrate->run(Array)
-#12 P:\Github\ProjetFinalS4\system\CLI\Console.php(47): CodeIgniter\CLI\Commands->run('migrate', Array)
-#13 P:\Github\ProjetFinalS4\system\Boot.php(442): CodeIgniter\CLI\Console->run()
-#14 P:\Github\ProjetFinalS4\system\Boot.php(166): CodeIgniter\Boot::runCommand(Object(CodeIgniter\CLI\Console))
-#15 P:\Github\ProjetFinalS4\spark(87): CodeIgniter\Boot::bootSpark(Object(Config\Paths))
-#16 {main}
-
-Next CodeIgniter\Database\Exceptions\DatabaseException: SQLite3 error: Unable to open database: unable to open database file in P:\Github\ProjetFinalS4\system\Database\SQLite3\Connection.php:118
-Stack trace:
-#0 P:\Github\ProjetFinalS4\system\Database\BaseConnection.php(555): CodeIgniter\Database\SQLite3\Connection->connect(false)
-#1 P:\Github\ProjetFinalS4\system\Database\SQLite3\Connection.php(74): CodeIgniter\Database\BaseConnection->initialize()
-#2 P:\Github\ProjetFinalS4\system\Database\BaseConnection.php(795): CodeIgniter\Database\SQLite3\Connection->initialize()
-#3 P:\Github\ProjetFinalS4\system\Database\BaseConnection.php(1706): CodeIgniter\Database\BaseConnection->query('SELECT "NAME" F...')
-#4 P:\Github\ProjetFinalS4\system\Database\BaseConnection.php(1726): CodeIgniter\Database\BaseConnection->listTables()
-#5 P:\Github\ProjetFinalS4\system\Database\MigrationRunner.php(821): CodeIgniter\Database\BaseConnection->tableExists('migrations')
-#6 P:\Github\ProjetFinalS4\system\Database\MigrationRunner.php(173): CodeIgniter\Database\MigrationRunner->ensureTable()
-#7 P:\Github\ProjetFinalS4\system\Commands\Database\Migrate.php(89): CodeIgniter\Database\MigrationRunner->latest(NULL)
-#8 P:\Github\ProjetFinalS4\system\CLI\SignalTrait.php(245): CodeIgniter\Commands\Database\Migrate::{closure:CodeIgniter\Commands\Database\Migrate::run():88}()
-#9 P:\Github\ProjetFinalS4\system\Commands\Database\Migrate.php(88): CodeIgniter\Commands\Database\Migrate->withSignalsBlocked(Object(Closure))
-#10 P:\Github\ProjetFinalS4\system\CLI\Commands.php(74): CodeIgniter\Commands\Database\Migrate->run(Array)
-#11 P:\Github\ProjetFinalS4\system\CLI\Console.php(47): CodeIgniter\CLI\Commands->run('migrate', Array)
-#12 P:\Github\ProjetFinalS4\system\Boot.php(442): CodeIgniter\CLI\Console->run()
-#13 P:\Github\ProjetFinalS4\system\Boot.php(166): CodeIgniter\Boot::runCommand(Object(CodeIgniter\CLI\Console))
-#14 P:\Github\ProjetFinalS4\spark(87): CodeIgniter\Boot::bootSpark(Object(Config\Paths))
-#15 {main}
-ERROR - 2026-07-20 07:46:51 --> Error connecting to the database: Exception: Unable to open database: unable to open database file in P:\Github\ProjetFinalS4\system\Database\SQLite3\Connection.php:111
-Stack trace:
-#0 P:\Github\ProjetFinalS4\system\Database\SQLite3\Connection.php(111): SQLite3->__construct('P:\\Github\\Proje...')
-#1 P:\Github\ProjetFinalS4\system\Database\BaseConnection.php(555): CodeIgniter\Database\SQLite3\Connection->connect(false)
-#2 P:\Github\ProjetFinalS4\system\Database\SQLite3\Connection.php(74): CodeIgniter\Database\BaseConnection->initialize()
-#3 P:\Github\ProjetFinalS4\system\Database\BaseConnection.php(795): CodeIgniter\Database\SQLite3\Connection->initialize()
-#4 P:\Github\ProjetFinalS4\system\Database\BaseConnection.php(1706): CodeIgniter\Database\BaseConnection->query('SELECT "NAME" F...')
-#5 P:\Github\ProjetFinalS4\system\Database\BaseConnection.php(1726): CodeIgniter\Database\BaseConnection->listTables()
-#6 P:\Github\ProjetFinalS4\system\Database\MigrationRunner.php(821): CodeIgniter\Database\BaseConnection->tableExists('migrations')
-#7 P:\Github\ProjetFinalS4\system\Database\MigrationRunner.php(173): CodeIgniter\Database\MigrationRunner->ensureTable()
-#8 P:\Github\ProjetFinalS4\system\Commands\Database\Migrate.php(89): CodeIgniter\Database\MigrationRunner->latest(NULL)
-#9 P:\Github\ProjetFinalS4\system\CLI\SignalTrait.php(245): CodeIgniter\Commands\Database\Migrate::{closure:CodeIgniter\Commands\Database\Migrate::run():88}()
-#10 P:\Github\ProjetFinalS4\system\Commands\Database\Migrate.php(88): CodeIgniter\Commands\Database\Migrate->withSignalsBlocked(Object(Closure))
-#11 P:\Github\ProjetFinalS4\system\CLI\Commands.php(74): CodeIgniter\Commands\Database\Migrate->run(Array)
-#12 P:\Github\ProjetFinalS4\system\CLI\Console.php(47): CodeIgniter\CLI\Commands->run('migrate', Array)
-#13 P:\Github\ProjetFinalS4\system\Boot.php(442): CodeIgniter\CLI\Console->run()
-#14 P:\Github\ProjetFinalS4\system\Boot.php(166): CodeIgniter\Boot::runCommand(Object(CodeIgniter\CLI\Console))
-#15 P:\Github\ProjetFinalS4\spark(87): CodeIgniter\Boot::bootSpark(Object(Config\Paths))
-#16 {main}
-
-Next CodeIgniter\Database\Exceptions\DatabaseException: SQLite3 error: Unable to open database: unable to open database file in P:\Github\ProjetFinalS4\system\Database\SQLite3\Connection.php:118
-Stack trace:
-#0 P:\Github\ProjetFinalS4\system\Database\BaseConnection.php(555): CodeIgniter\Database\SQLite3\Connection->connect(false)
-#1 P:\Github\ProjetFinalS4\system\Database\SQLite3\Connection.php(74): CodeIgniter\Database\BaseConnection->initialize()
-#2 P:\Github\ProjetFinalS4\system\Database\BaseConnection.php(795): CodeIgniter\Database\SQLite3\Connection->initialize()
-#3 P:\Github\ProjetFinalS4\system\Database\BaseConnection.php(1706): CodeIgniter\Database\BaseConnection->query('SELECT "NAME" F...')
-#4 P:\Github\ProjetFinalS4\system\Database\BaseConnection.php(1726): CodeIgniter\Database\BaseConnection->listTables()
-#5 P:\Github\ProjetFinalS4\system\Database\MigrationRunner.php(821): CodeIgniter\Database\BaseConnection->tableExists('migrations')
-#6 P:\Github\ProjetFinalS4\system\Database\MigrationRunner.php(173): CodeIgniter\Database\MigrationRunner->ensureTable()
-#7 P:\Github\ProjetFinalS4\system\Commands\Database\Migrate.php(89): CodeIgniter\Database\MigrationRunner->latest(NULL)
-#8 P:\Github\ProjetFinalS4\system\CLI\SignalTrait.php(245): CodeIgniter\Commands\Database\Migrate::{closure:CodeIgniter\Commands\Database\Migrate::run():88}()
-#9 P:\Github\ProjetFinalS4\system\Commands\Database\Migrate.php(88): CodeIgniter\Commands\Database\Migrate->withSignalsBlocked(Object(Closure))
-#10 P:\Github\ProjetFinalS4\system\CLI\Commands.php(74): CodeIgniter\Commands\Database\Migrate->run(Array)
-#11 P:\Github\ProjetFinalS4\system\CLI\Console.php(47): CodeIgniter\CLI\Commands->run('migrate', Array)
-#12 P:\Github\ProjetFinalS4\system\Boot.php(442): CodeIgniter\CLI\Console->run()
-#13 P:\Github\ProjetFinalS4\system\Boot.php(166): CodeIgniter\Boot::runCommand(Object(CodeIgniter\CLI\Console))
-#14 P:\Github\ProjetFinalS4\spark(87): CodeIgniter\Boot::bootSpark(Object(Config\Paths))
-#15 {main}
-DEBUG - 2026-07-20 07:54:46 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-DEBUG - 2026-07-20 07:56:19 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-DEBUG - 2026-07-20 07:56:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-DEBUG - 2026-07-20 07:56:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-DEBUG - 2026-07-20 08:02:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-DEBUG - 2026-07-20 08:02:33 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-DEBUG - 2026-07-20 08:02:34 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-07-20 07:16:18 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-07-20 07:16:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-07-20 07:16:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-07-20 07:18:27 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-07-20 07:18:48 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-07-20 07:18:48 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-07-20 07:19:09 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-07-20 07:19:10 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-07-20 07:19:48 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-07-20 07:19:48 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-07-20 07:20:17 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-07-20 07:20:17 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-07-20 07:21:02 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-07-20 07:21:02 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-07-20 07:21:03 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-07-20 07:21:08 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-07-20 07:21:08 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-07-20 07:21:51 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-07-20 07:21:51 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-07-20 07:22:45 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-07-20 07:22:45 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-07-20 07:26:17 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-07-20 07:26:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-07-20 07:26:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-07-20 07:26:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-07-20 07:26:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-07-20 07:28:07 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-07-20 07:28:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-07-20 07:29:02 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-07-20 07:29:02 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-07-20 07:29:51 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-07-20 07:29:51 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-07-20 07:31:13 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-07-20 07:31:16 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-07-20 07:31:16 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2026-07-20 07:34:27 --> UNIQUE constraint failed: Operateur.prefixe
+in SYSTEMPATH\Database\SQLite3\Connection.php on line 163.
+ 1 SYSTEMPATH\Database\SQLite3\Connection.php(163): SQLite3->exec()
+ 2 SYSTEMPATH\Database\BaseConnection.php(910): CodeIgniter\Database\SQLite3\Connection->execute()
+ 3 SYSTEMPATH\Database\BaseConnection.php(827): CodeIgniter\Database\BaseConnection->simpleQuery()
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1841): CodeIgniter\Database\BaseConnection->query()
+ 5 SYSTEMPATH\Database\BaseBuilder.php(2230): CodeIgniter\Database\BaseBuilder->batchExecute()
+ 6 APPPATH\Database\Seeds\Operateur.php(17): CodeIgniter\Database\BaseBuilder->insertBatch()
+ 7 SYSTEMPATH\Database\Seeder.php(155): App\Database\Seeds\Operateur->run()
+ 8 APPPATH\Database\Seeds\DatabaseSeeder.php(12): CodeIgniter\Database\Seeder->call()
+ 9 SYSTEMPATH\Database\Seeder.php(155): App\Database\Seeds\DatabaseSeeder->run()
+10 SYSTEMPATH\Commands\Database\Seed.php(79): CodeIgniter\Database\Seeder->call()
+11 SYSTEMPATH\CLI\Commands.php(74): CodeIgniter\Commands\Database\Seed->run()
+12 SYSTEMPATH\CLI\Console.php(47): CodeIgniter\CLI\Commands->run()
+13 SYSTEMPATH\Boot.php(442): CodeIgniter\CLI\Console->run()
+14 SYSTEMPATH\Boot.php(166): CodeIgniter\Boot::runCommand()
+15 ROOTPATH\spark(87): CodeIgniter\Boot::bootSpark()
+ERROR - 2026-07-20 07:35:13 --> UNIQUE constraint failed: Operateur.prefixe
+in SYSTEMPATH\Database\SQLite3\Connection.php on line 163.
+ 1 SYSTEMPATH\Database\SQLite3\Connection.php(163): SQLite3->exec()
+ 2 SYSTEMPATH\Database\BaseConnection.php(910): CodeIgniter\Database\SQLite3\Connection->execute()
+ 3 SYSTEMPATH\Database\BaseConnection.php(827): CodeIgniter\Database\BaseConnection->simpleQuery()
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1841): CodeIgniter\Database\BaseConnection->query()
+ 5 SYSTEMPATH\Database\BaseBuilder.php(2230): CodeIgniter\Database\BaseBuilder->batchExecute()
+ 6 APPPATH\Database\Seeds\Operateur.php(17): CodeIgniter\Database\BaseBuilder->insertBatch()
+ 7 SYSTEMPATH\Database\Seeder.php(155): App\Database\Seeds\Operateur->run()
+ 8 APPPATH\Database\Seeds\DatabaseSeeder.php(12): CodeIgniter\Database\Seeder->call()
+ 9 SYSTEMPATH\Database\Seeder.php(155): App\Database\Seeds\DatabaseSeeder->run()
+10 SYSTEMPATH\Commands\Database\Seed.php(79): CodeIgniter\Database\Seeder->call()
+11 SYSTEMPATH\CLI\Commands.php(74): CodeIgniter\Commands\Database\Seed->run()
+12 SYSTEMPATH\CLI\Console.php(47): CodeIgniter\CLI\Commands->run()
+13 SYSTEMPATH\Boot.php(442): CodeIgniter\CLI\Console->run()
+14 SYSTEMPATH\Boot.php(166): CodeIgniter\Boot::runCommand()
+15 ROOTPATH\spark(87): CodeIgniter\Boot::bootSpark()
+DEBUG - 2026-07-20 07:35:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-07-20 07:35:24 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-07-20 07:35:24 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2026-07-20 07:36:46 --> FOREIGN KEY constraint failed
+in SYSTEMPATH\Database\SQLite3\Connection.php on line 163.
+ 1 SYSTEMPATH\Database\SQLite3\Connection.php(163): SQLite3->exec()
+ 2 SYSTEMPATH\Database\BaseConnection.php(910): CodeIgniter\Database\SQLite3\Connection->execute()
+ 3 SYSTEMPATH\Database\BaseConnection.php(827): CodeIgniter\Database\BaseConnection->simpleQuery()
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1841): CodeIgniter\Database\BaseConnection->query()
+ 5 SYSTEMPATH\Database\BaseBuilder.php(2230): CodeIgniter\Database\BaseBuilder->batchExecute()
+ 6 APPPATH\Database\Seeds\Tarif.php(24): CodeIgniter\Database\BaseBuilder->insertBatch()
+ 7 SYSTEMPATH\Database\Seeder.php(155): App\Database\Seeds\Tarif->run()
+ 8 APPPATH\Database\Seeds\DatabaseSeeder.php(22): CodeIgniter\Database\Seeder->call()
+ 9 SYSTEMPATH\Database\Seeder.php(155): App\Database\Seeds\DatabaseSeeder->run()
+10 SYSTEMPATH\Commands\Database\Seed.php(79): CodeIgniter\Database\Seeder->call()
+11 SYSTEMPATH\CLI\Commands.php(74): CodeIgniter\Commands\Database\Seed->run()
+12 SYSTEMPATH\CLI\Console.php(47): CodeIgniter\CLI\Commands->run()
+13 SYSTEMPATH\Boot.php(442): CodeIgniter\CLI\Console->run()
+14 SYSTEMPATH\Boot.php(166): CodeIgniter\Boot::runCommand()
+15 ROOTPATH\spark(87): CodeIgniter\Boot::bootSpark()
+DEBUG - 2026-07-20 07:37:02 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-07-20 07:37:06 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-07-20 07:37:06 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2026-07-20 07:37:42 --> FOREIGN KEY constraint failed
+in SYSTEMPATH\Database\SQLite3\Connection.php on line 163.
+ 1 SYSTEMPATH\Database\SQLite3\Connection.php(163): SQLite3->exec()
+ 2 SYSTEMPATH\Database\BaseConnection.php(910): CodeIgniter\Database\SQLite3\Connection->execute()
+ 3 SYSTEMPATH\Database\BaseConnection.php(827): CodeIgniter\Database\BaseConnection->simpleQuery()
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1841): CodeIgniter\Database\BaseConnection->query()
+ 5 SYSTEMPATH\Database\BaseBuilder.php(2230): CodeIgniter\Database\BaseBuilder->batchExecute()
+ 6 APPPATH\Database\Seeds\Tarif.php(24): CodeIgniter\Database\BaseBuilder->insertBatch()
+ 7 SYSTEMPATH\Database\Seeder.php(155): App\Database\Seeds\Tarif->run()
+ 8 APPPATH\Database\Seeds\DatabaseSeeder.php(22): CodeIgniter\Database\Seeder->call()
+ 9 SYSTEMPATH\Database\Seeder.php(155): App\Database\Seeds\DatabaseSeeder->run()
+10 SYSTEMPATH\Commands\Database\Seed.php(79): CodeIgniter\Database\Seeder->call()
+11 SYSTEMPATH\CLI\Commands.php(74): CodeIgniter\Commands\Database\Seed->run()
+12 SYSTEMPATH\CLI\Console.php(47): CodeIgniter\CLI\Commands->run()
+13 SYSTEMPATH\Boot.php(442): CodeIgniter\CLI\Console->run()
+14 SYSTEMPATH\Boot.php(166): CodeIgniter\Boot::runCommand()
+15 ROOTPATH\spark(87): CodeIgniter\Boot::bootSpark()
+DEBUG - 2026-07-20 07:37:51 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-07-20 07:37:56 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-07-20 07:37:56 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-07-20 07:40:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-07-20 07:40:24 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-07-20 07:40:24 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-07-20 07:40:28 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-07-20 07:40:28 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-07-20 07:40:34 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-07-20 07:40:34 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-07-20 07:41:52 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-07-20 07:41:58 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-07-20 07:41:58 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2026-07-20 07:43:34 --> no such table: SQLITE_SEQUENCE
+in SYSTEMPATH\Database\SQLite3\Connection.php on line 163.
+ 1 SYSTEMPATH\Database\SQLite3\Connection.php(163): SQLite3->exec()
+ 2 SYSTEMPATH\Database\BaseConnection.php(910): CodeIgniter\Database\SQLite3\Connection->execute()
+ 3 SYSTEMPATH\Database\BaseConnection.php(827): CodeIgniter\Database\BaseConnection->simpleQuery()
+ 4 APPPATH\Database\Seeds\DatabaseSeeder.php(23): CodeIgniter\Database\BaseConnection->query()
+ 5 SYSTEMPATH\Database\Seeder.php(155): App\Database\Seeds\DatabaseSeeder->run()
+ 6 SYSTEMPATH\Commands\Database\Seed.php(79): CodeIgniter\Database\Seeder->call()
+ 7 SYSTEMPATH\CLI\Commands.php(74): CodeIgniter\Commands\Database\Seed->run()
+ 8 SYSTEMPATH\CLI\Console.php(47): CodeIgniter\CLI\Commands->run()
+ 9 SYSTEMPATH\Boot.php(442): CodeIgniter\CLI\Console->run()
+10 SYSTEMPATH\Boot.php(166): CodeIgniter\Boot::runCommand()
+11 ROOTPATH\spark(87): CodeIgniter\Boot::bootSpark()
+DEBUG - 2026-07-20 07:43:47 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-07-20 07:43:51 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-07-20 07:43:51 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2026-07-20 07:44:16 --> no such table: SQLITE_SEQUENCE
+in SYSTEMPATH\Database\SQLite3\Connection.php on line 163.
+ 1 SYSTEMPATH\Database\SQLite3\Connection.php(163): SQLite3->exec()
+ 2 SYSTEMPATH\Database\BaseConnection.php(910): CodeIgniter\Database\SQLite3\Connection->execute()
+ 3 SYSTEMPATH\Database\BaseConnection.php(827): CodeIgniter\Database\BaseConnection->simpleQuery()
+ 4 APPPATH\Database\Seeds\DatabaseSeeder.php(22): CodeIgniter\Database\BaseConnection->query()
+ 5 SYSTEMPATH\Database\Seeder.php(155): App\Database\Seeds\DatabaseSeeder->run()
+ 6 SYSTEMPATH\Commands\Database\Seed.php(79): CodeIgniter\Database\Seeder->call()
+ 7 SYSTEMPATH\CLI\Commands.php(74): CodeIgniter\Commands\Database\Seed->run()
+ 8 SYSTEMPATH\CLI\Console.php(47): CodeIgniter\CLI\Commands->run()
+ 9 SYSTEMPATH\Boot.php(442): CodeIgniter\CLI\Console->run()
+10 SYSTEMPATH\Boot.php(166): CodeIgniter\Boot::runCommand()
+11 ROOTPATH\spark(87): CodeIgniter\Boot::bootSpark()
+ERROR - 2026-07-20 07:45:27 --> no such table: SQLITE_SEQUENCE
+in SYSTEMPATH\Database\SQLite3\Connection.php on line 163.
+ 1 SYSTEMPATH\Database\SQLite3\Connection.php(163): SQLite3->exec()
+ 2 SYSTEMPATH\Database\BaseConnection.php(910): CodeIgniter\Database\SQLite3\Connection->execute()
+ 3 SYSTEMPATH\Database\BaseConnection.php(827): CodeIgniter\Database\BaseConnection->simpleQuery()
+ 4 APPPATH\Database\Seeds\DatabaseSeeder.php(22): CodeIgniter\Database\BaseConnection->query()
+ 5 SYSTEMPATH\Database\Seeder.php(155): App\Database\Seeds\DatabaseSeeder->run()
+ 6 SYSTEMPATH\Commands\Database\Seed.php(79): CodeIgniter\Database\Seeder->call()
+ 7 SYSTEMPATH\CLI\Commands.php(74): CodeIgniter\Commands\Database\Seed->run()
+ 8 SYSTEMPATH\CLI\Console.php(47): CodeIgniter\CLI\Commands->run()
+ 9 SYSTEMPATH\Boot.php(442): CodeIgniter\CLI\Console->run()
+10 SYSTEMPATH\Boot.php(166): CodeIgniter\Boot::runCommand()
+11 ROOTPATH\spark(87): CodeIgniter\Boot::bootSpark()
+DEBUG - 2026-07-20 07:45:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-07-20 07:45:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-07-20 07:45:42 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-07-20 07:48:45 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-07-20 07:48:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-07-20 07:48:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-07-20 07:57:07 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-07-20 07:57:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-07-20 07:57:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-07-20 07:57:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-07-20 07:57:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-07-20 07:57:26 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-07-20 07:57:33 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-07-20 07:57:33 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-07-20 07:57:52 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-07-20 07:57:52 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-07-20 07:59:27 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-07-20 07:59:32 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-07-20 07:59:33 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-07-20 08:00:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-07-20 08:01:03 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-07-20 08:01:04 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-07-20 08:02:39 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-07-20 08:02:42 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-07-20 08:02:42 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-07-20 08:08:51 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-07-20 08:08:55 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-07-20 08:08:55 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.

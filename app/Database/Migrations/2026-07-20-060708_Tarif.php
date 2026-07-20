@@ -10,13 +10,13 @@ class Tarif extends Migration
     {
         $this->forge->addField([
             'id_bareme' => [
-                'type'           => 'INT',
+                'type'           => 'INTEGER',
                 'constraint'     => 11,
                 'unsigned'       => true,
                 'auto_increment' => true,
             ],
             'id_type_operation' => [
-                'type'       => 'INT',
+                'type'       => 'INTEGER',
                 'constraint' => 11,
                 'unsigned'   => true,
                 'null'       => false,

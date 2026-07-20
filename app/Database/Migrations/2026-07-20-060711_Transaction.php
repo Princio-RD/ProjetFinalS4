@@ -4,12 +4,12 @@ namespace App\Database\Migrations;
 
 use CodeIgniter\Database\Migration;
 
-class Acte extends Migration
+class Transaction extends Migration
 {
     public function up()
     {
         $this->forge->addField([
-            'id_acte' => [
+            'id_transaction' => [
                 'type'           => 'INTEGER',
                 'constraint'     => 11,
                 'unsigned'       => true,
@@ -56,15 +56,15 @@ class Acte extends Migration
                 'default'    => 'Réussi',
             ],
         ]);
-        $this->forge->addKey('id_acte', true);
+        $this->forge->addKey('id_transaction', true);
         $this->forge->addForeignKey('id_compte_source', 'Compte', 'id_compte', 'CASCADE', 'CASCADE');
         $this->forge->addForeignKey('id_compte_destination', 'Compte', 'id_compte', 'CASCADE', 'CASCADE');
         $this->forge->addForeignKey('id_type_operation', 'Operation', 'id_type_operation', 'CASCADE', 'CASCADE');
-        $this->forge->createTable('Acte');
+        $this->forge->createTable('Transaction');
     }
 
     public function down()
     {
-        $this->forge->dropTable('Acte', true);
+        $this->forge->dropTable('Transaction', true);
     }
 }

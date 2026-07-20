@@ -27,17 +27,21 @@ class AuthController extends BaseController
         $client = $clientModel->where('numero_telephone', $numero)->first();
 
         if (!$client) {
-            return redirect()->back()->with('error', 'Numéro de téléphone non trouvé.');
+            return redirect()->back()->with('error', 'Numéro de téléphone non trouvé : ' . $numero);
         }
 
-        $comptes = $compteModel->where('id_client', $client['id_client'])->findAll();
+        // Debug : afficher le contenu du client
+        $clientId = $client['id_client'] ?? 'NON TROUVÉ';
+        $debugMsg = 'Client: ' . print_r($client, true) . ' | id_client=' . $clientId;
+
+        $comptes = $compteModel->where('id_client', $clientId)->findAll();
 
         if (empty($comptes)) {
-            return redirect()->back()->with('error', 'Aucun compte associé à ce client.');
+            return redirect()->back()->with('error', 'Aucun compte associé à ce client. ' . $debugMsg);
         }
 
         $session->set([
-            'client_id' => $client['id_client'],
+            'client_id' => $clientId,
             'numero_telephone' => $client['numero_telephone'],
             'comptes' => $comptes,
             'isLoggedIn' => true,
