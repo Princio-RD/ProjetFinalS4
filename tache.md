@@ -1,166 +1,124 @@
-# MobileMoney
+# Taches.md - Projet Mobile Money
 
-Examen S4 mobile money
-
-# TODO - Version 1
-
-## 0. Setup commun @Both
-
-- [ ] Config `.env` (DB, base_url)
-- [ ] `app/Config/Database.php` vérifié
-- [ ] `app/Config/Routes.php` : structure de base + groupes de routes
-- [ ] `BaseController` commun (helpers, réponses JSON si API)
-- [ ] Migrations générées pour **toutes** les tables (une par table, dans l'ordre des FK) :
-      - [ ] `CreateClient`
-      - [ ] `CreateOperateur`
-      - [ ] `CreatePrefixe`
-      - [ ] `CreateNumero`
-      - [ ] `CreateOperation`
-      - [ ] `CreateTarif`
-      - [ ] `CreateMouvement`
-- [ ] `php spark migrate` testé sur environnement local
-- [ ] Vérifier index / contraintes (FK, CHECK) dans les migrations (`$this->forge->addForeignKey(...)`)
+## Equipe
+- Iavo : Module Operateur / Prefixe / Operation / Tarif
+- Princio : Module Client / Compte / Acte
 
 ---
 
-## 1. Module Opérateur / Préfixe / Opération / Tarif @Manoina
+## Setup Initial @Both
 
-### Database
-- [ ] Migration `Operateur` (id, libelle)
-- [ ] Migration `Prefixe` (id, id_operateur FK, prefixe UNIQUE)
-- [ ] Migration `Operation` (id, libelle)
-- [ ] Migration `Tarif` (id, id_operateur FK, id_operation FK, montant_min, montant_max, montant_frais)
-- [ ] Seeder `OperationSeeder` (depot, retrait, transfert)
-- [ ] Seeder `OperateurSeeder` + `PrefixeSeeder` (opérateurs + préfixes de test)
-- [ ] Seeder `TarifSeeder` (barème de test par tranche)
+### Configuration
+- [x] Configurer .env (SQLite, base_url)
+- [x] Verifier app/Config/Database.php
+- [x] Configurer app/Config/Routes.php
+- [x] Creer base.sql avec toutes les tables
+- [x] Tester la connexion SQLite
 
-### Modèle
-- [ ] `OperateurModel` (CRUD standard)
-- [ ] `PrefixeModel` (méthode `findOperateurByPrefixe($prefixe)`)
-- [ ] `OperationModel` (CRUD standard, lecture seule côté front normalement)
-- [ ] `TarifModel`
-      - [ ] `getTranchesByOperateurOperation($idOperateur, $idOperation)`
-      - [ ] `findTarifApplicable($idOperateur, $idOperation, $montant)`
-      - [ ] Validation métier : détection de chevauchement de tranches avant insert/update
+### Migrations
+- [x] CreateOperateurTable - id_operateur, nom, prefixe
+- [x] CreateOperationTable - id_type_operation, libelle
+- [x] CreateTarifTable - id_bareme, id_type_operation, montant_min, montant_max, frais
+- [x] CreateClientTable - id_client, numero_telephone, date_creation
+- [x] CreateCompteTable - id_compte, id_client, id_operateur, solde
+- [x] CreateActeTable - id_acte, id_compte_source, id_compte_destination, id_type_operation, montant, frais_applique, date_operation, statut
 
-### Controller
-- [ ] `OperateurController` : `index`, `new`, `create`, `edit`, `update`, `delete`
-- [ ] `PrefixeController` : CRUD (lié à un opérateur)
-- [ ] `OperationController` : `index` (lecture), gestion libellés si besoin
-- [ ] `TarifController` :
-      - [ ] `index` (liste des tranches par opérateur/opération)
-      - [ ] `create` / `store` (avec validation anti-chevauchement)
-      - [ ] `edit` / `update`
-      - [ ] `delete`
-- [ ] `RapportController` :
-      - [ ] `gains()` → somme `montant_frais` groupée par opérateur/opération/période
-      - [ ] `comptesClients()` → liste `Numero` + solde, recherche
-
-### Views
-- [ ] `operateur/index.php`, `operateur/form.php`
-- [ ] `prefixe/index.php`, `prefixe/form.php`
-- [ ] `operation/index.php`
-- [ ] `tarif/index.php` (tableau des tranches), `tarif/form.php`
-- [ ] `rapport/gains.php`
-- [ ] `rapport/comptes.php`
-
-### Routes
-- [ ] `resource('operateur', ['controller' => 'OperateurController'])`
-- [ ] `resource('prefixe', ['controller' => 'PrefixeController'])`
-- [ ] `resource('operation', ['controller' => 'OperationController'])`
-- [ ] `resource('tarif', ['controller' => 'TarifController'])`
-- [ ] `GET rapport/gains` → `RapportController::gains`
-- [ ] `GET rapport/comptes` → `RapportController::comptesClients`
+### Seeders
+- [x] OperationSeeder - Depot, Retrait, Transfert
+- [x] OperateurSeeder - Orange, Telma, Airtel
+- [x] TarifSeeder - Baremess de frais (retrait et transfert)
+- [x] ClientSeeder - Clients de test
+- [x] CompteSeeder - Comptes de test
+- [x] ActeSeeder - Transactions de test
 
 ---
 
-## 2. Module Client / Numero / Mouvement @Tsiresy
+## Module Operateur / Prefixe / Operation / Tarif @Princio
 
-### Database
-- [ ] Migration `Client` (id, nom, created_at)
-- [ ] Migration `Numero` (id, id_client FK, id_operateur FK, numero UNIQUE, solde, created_at)
-- [ ] Migration `Mouvement` (id, id_operation FK, id_numero_source FK nullable, id_numero_destination FK nullable, montant, montant_frais, id_tarif FK, date_transaction)
+### Modeles
+- [x] OperateurModel.php - CRUD operateurs
+- [x] OperationModel.php - CRUD operations
+- [x] TarifModel.php - CRUD baremes
 
-### Modèle
-- [ ] `ClientModel` (CRUD standard)
-- [ ] `NumeroModel`
-      - [ ] `findByNumero($numero)`
-      - [ ] `creerAvecClient($numero, $idOperateur, $nomClient)` (login auto)
-      - [ ] `updateSolde($idNumero, $nouveauSolde)`
-- [ ] `MouvementModel`
-      - [ ] `getHistorique($idNumero)`
-      - [ ] `create(...)`
+### Controleurs Admin
+- [x] Admin/Auth.php - Login admin
+- [x] Admin/Dashboard.php - Dashboard admin
+- [x] Admin/Operateur.php - Gestion des prefixes
+- [x] Admin/Operation.php - Gestion operations et baremes
 
-### Controller
-- [ ] `AuthController`
-      - [ ] `login()` : saisie numéro
-      - [ ] détection opérateur via `PrefixeModel`
-      - [ ] création automatique Client + Numero si première connexion
-      - [ ] gestion session
-- [ ] `CompteController`
-      - [ ] `solde()` : afficher `Numero.solde`
-      - [ ] `historique()` : liste des `Mouvement` filtrés par numéro
-- [ ] `TransactionController`
-      - [ ] `depot()` (form + traitement)
-      - [ ] `retrait()` (form + traitement, vérifier solde)
-      - [ ] `transfert()` (form + traitement, vérifier solde)
-            - [ ] Autoriser la sélection d'un numéro destination **quel que soit son opérateur** (inter-opérateurs autorisé)
-            - [ ] Déterminer le tarif applicable en fonction de l'opérateur **source** (à confirmer, cf. section Décisions)
+### Vues Admin
+- [x] admin/login.php - Page connexion
+- [x] admin/dashboard.php - Dashboard avec :
+  - [x] Situation des comptes clients
+  - [x] Gains par frais (retrait et transfert)
+  - [x] Liste des clients avec comptes
+  - [x] Comptes par operateur
+- [x] admin/operateur.php - Gestion des prefixes
+- [x] admin/operation.php - Gestion operations et baremes
 
-### Views
-- [ ] `auth/login.php`
-- [ ] `compte/solde.php`
-- [ ] `compte/historique.php`
-- [ ] `transaction/depot.php`
-- [ ] `transaction/retrait.php`
-- [ ] `transaction/transfert.php` (champ numéro destination libre, sans restriction d'opérateur)
-
-### Routes
-- [ ] `GET|POST login` → `AuthController::login`
-- [ ] `GET compte/solde` → `CompteController::solde`
-- [ ] `GET compte/historique` → `CompteController::historique`
-- [ ] `GET|POST transaction/depot` → `TransactionController::depot`
-- [ ] `GET|POST transaction/retrait` → `TransactionController::retrait`
-- [ ] `GET|POST transaction/transfert` → `TransactionController::transfert`
-- [ ] Filtre/middleware `auth` sur toutes les routes `compte/*` et `transaction/*`
+### Routes Admin
+- [x] GET /admin/login -> Admin\Auth::login
+- [x] POST /admin/auth -> Admin\Auth::authenticate
+- [x] GET /admin/logout -> Admin\Auth::logout
+- [x] GET /admin -> Admin\Dashboard::index
+- [x] GET /admin/operateur -> Admin\Operateur::index
+- [x] POST /admin/operateur/store -> Admin\Operateur::store
+- [x] GET /admin/operateur/delete/(:num) -> Admin\Operateur::delete
+- [x] GET /admin/operation -> Admin\Operation::index
+- [x] POST /admin/operation/store -> Admin\Operation::storeOperation
+- [x] POST /admin/operation/tarif -> Admin\Operation::storeTarif
+- [x] GET /admin/operation/tarif/delete/(:num) -> Admin\Operation::deleteTarif
 
 ---
 
-## 3. Logique métier / Services @Both
+## Module Client / Compte / Acte @Iavo
 
-*(indépendant des controllers, à mettre dans `app/Libraries/` ou `app/Services/`)*
+### Modeles
+- [x] ClientModel.php - CRUD clients
+- [x] CompteModel.php - CRUD comptes
+- [x] ActeModel.php - CRUD transactions
 
-- [ ] `TarifService::calculerFrais($idOperateur, $idOperation, $montant)` → lookup `TarifModel`
-- [ ] `MouvementService::executer($idOperation, $source, $destination, $montant)`
-      - [ ] Gérer le cas transfert **inter-opérateurs** (source et destination peuvent avoir un `id_operateur` différent)
-      - [ ] Calcul du frais via `TarifService` (basé sur l'opérateur source, à valider)
-      - [ ] Transaction DB (`$db->transStart()` / `transComplete()`)
-      - [ ] Mise à jour atomique du/des solde(s) — débit sur `Numero` source, crédit sur `Numero` destination (peu importe l'opérateur)
-      - [ ] Insertion dans `Mouvement`
-- [ ] Exceptions custom :
-      - [ ] `SoldeInsuffisantException`
-      - [ ] `TarifIntrouvableException`
-      - [ ] `NumeroInconnuException`
-- [ ] Tests unitaires (`tests/unit/`) :
-      - [ ] `TarifServiceTest` (calcul par tranche, bornes min/max)
-      - [ ] `MouvementServiceTest` :
-            - [ ] dépôt
-            - [ ] retrait
-            - [ ] transfert même opérateur
-            - [ ] transfert inter-opérateurs
-            - [ ] solde insuffisant
+### Controleurs Client
+- [x] AuthController.php - Login client
+- [x] DashboardController.php - Dashboard client
+
+### Vues Client
+- [x] client/login.php - Page connexion
+- [x] client/dashboard.php - Dashboard client
+
+### Routes Client
+- [x] GET /login -> AuthController::login
+- [x] POST /auth/loginAuto -> AuthController::loginAuto
+- [x] GET /logout -> AuthController::logout
+- [x] GET /dashboard -> DashboardController::index
 
 ---
 
-## Décisions prises
+## Fonctionnalites Client @Iavo
 
-- [x] **Un transfert peut se faire entre deux opérateurs différents** (pas de restriction "même opérateur"). Impact :
-      - `TransactionController::transfert` : suppression de la vérification d'opérateur identique
-      - `MouvementService::executer` : gérer explicitement le cas source/destination sur des opérateurs différents
-      - `TarifService` : clarifier sur quel opérateur se base le calcul du frais (source, destination, ou règle spécifique) → **à préciser techniquement avant implémentation**
+### Operations
+- [x] Voir le solde
+- [x] Faire un depot
+- [x] Faire un retrait
+- [x] Faire un transfert
+- [x] Voir l'historique
 
-## Questions encore à trancher avant dev @Both
+---
 
-- [ ] Le dépôt "vient d'où" ? (agent, guichet, source externe) — à modéliser en V2 si besoin
-- [ ] Faut-il un statut sur `Mouvement` (réussi/échoué) ou tout est synchrone en V1 ?
-- [ ] Pour un transfert inter-opérateurs, le tarif appliqué dépend de quel opérateur (source, destination, ou table de correspondance dédiée) ?
+## Identifiants par defaut
+
+| Role | Identifiant | Mot de passe |
+|------|-------------|--------------|
+| Admin | local | okeybrada |
+| Client | Numero telephone | Auto-login |
+
+---
+
+
+## Checklist finale v1
+
+- [x] Toutes les routes fonctionnent
+- [x] base.sql complet
+- [ ] Taches.md rempli
+- [x] Tag v1 cree
+- [ ] Push sur GitHub
