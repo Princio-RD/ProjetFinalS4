@@ -9,7 +9,6 @@ use CodeIgniter\Router\RouteCollection;
 // ============================================================
 // Routes Client
 // ============================================================
-$routes->get('/v', 'Home::index');
 $routes->get('/', 'AuthController::login');
 $routes->post('/auth/loginAuto', 'AuthController::loginAuto');
 $routes->get('/logout', 'AuthController::logout');

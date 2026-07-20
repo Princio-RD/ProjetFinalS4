@@ -13,11 +13,11 @@ class Client extends Seeder
         }
 
         $data = [
-            ['numero_telephone' => '0331562072'],
-            ['numero_telephone' => '0348101301'],
-            ['numero_telephone' => '0321256078'],
-            ['numero_telephone' => '0335026660'],
-            ['numero_telephone' => '0325877760'],
+            ['nom' => 'Jean','numero_telephone' => '0331562072'],
+            ['nom' => 'Marie','numero_telephone' => '0348101301'],
+            ['nom' => 'Pierre','numero_telephone' => '0321256078'],
+            ['nom' => 'Sophie','numero_telephone' => '0335026660'],
+            ['nom' => 'Luc','numero_telephone' => '0325877760'],
         ];
 
         $this->db->table('Client')->insertBatch($data);
