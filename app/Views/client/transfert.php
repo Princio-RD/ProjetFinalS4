@@ -14,7 +14,7 @@
         <p style="color: green;"><?= esc(session()->get('success')) ?></p>
     <?php endif; ?>
 
-    <p>Solde disponible : <?= number_format($compte['solde'], 2, ',', ' ') ?> FCFA</p>
+    <p>Solde disponible : <?= number_format($compte['solde'], 2, ',', ' ') ?> Ariary</p>
     <p><em>Des frais de transfert sont appliqués selon le barème en vigueur (déduits du solde).</em></p>
 
     <form method="post" action="<?= base_url('compte/' . $compte['id_compte'] . '/transfert') ?>">

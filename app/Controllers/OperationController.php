@@ -6,7 +6,7 @@ use App\Models\ClientModel;
 use App\Models\CompteModel;
 use App\Models\OperationModel;
 use App\Models\TarifModel;
-use App\Models\TransactionModel;
+use App\Models\ActeModel;
 
 class OperationController extends BaseController
 {
@@ -14,7 +14,7 @@ class OperationController extends BaseController
     protected $compteModel;
     protected $operationModel;
     protected $tarifModel;
-    protected $transactionModel;
+    protected $acteModel;
 
     /**
      
@@ -29,7 +29,7 @@ class OperationController extends BaseController
         $this->compteModel = new CompteModel();
         $this->operationModel = new OperationModel();
         $this->tarifModel = new TarifModel();
-        $this->transactionModel = new TransactionModel();
+        $this->acteModel = new ActeModel();
     }
 
  
@@ -100,7 +100,7 @@ class OperationController extends BaseController
             'solde' => $compte['solde'] + $montant,
         ]);
 
-        $this->transactionModel->insert([
+        $this->acteModel->insert([
             'id_compte_source'      => $idCompte,
             'id_compte_destination' => null,
             'id_type_operation'     => $typeDepot['id_type_operation'],
@@ -116,7 +116,7 @@ class OperationController extends BaseController
         }
 
         return redirect()->to('/compte/' . $idCompte . '/solde')
-            ->with('success', 'Dépôt de ' . number_format($montant, 2, ',', ' ') . ' FCFA effectué avec succès.');
+            ->with('success', 'Dépôt de ' . number_format($montant, 2, ',', ' ') . ' Ariary effectué avec succès.');
     }
 
     public function retraitForm($idCompte)
@@ -151,7 +151,7 @@ class OperationController extends BaseController
         $totalDebite = $montant + $frais;
 
         if ($totalDebite > $compte['solde']) {
-            return redirect()->back()->with('error', 'Solde insuffisant pour ce retrait (montant + frais de ' . number_format($frais, 2, ',', ' ') . ' FCFA).');
+            return redirect()->back()->with('error', 'Solde insuffisant pour ce retrait (montant + frais de ' . number_format($frais, 2, ',', ' ') . ' Ariary).');
         }
 
         $db = $this->compteModel->db;
@@ -161,7 +161,7 @@ class OperationController extends BaseController
             'solde' => $compte['solde'] - $totalDebite,
         ]);
 
-        $this->transactionModel->insert([
+        $this->acteModel->insert([
             'id_compte_source'      => $idCompte,
             'id_compte_destination' => null,
             'id_type_operation'     => $typeRetrait['id_type_operation'],
@@ -176,9 +176,9 @@ class OperationController extends BaseController
             return redirect()->back()->with('error', 'Échec du retrait. Veuillez réessayer.');
         }
 
-        $msg = 'Retrait de ' . number_format($montant, 2, ',', ' ') . ' FCFA effectué avec succès.';
+        $msg = 'Retrait de ' . number_format($montant, 2, ',', ' ') . ' Ariary effectué avec succès.';
         if ($frais > 0) {
-            $msg .= ' Frais appliqués : ' . number_format($frais, 2, ',', ' ') . ' FCFA.';
+            $msg .= ' Frais appliqués : ' . number_format($frais, 2, ',', ' ') . ' Ariary.';
         }
 
         return redirect()->to('/compte/' . $idCompte . '/solde')->with('success', $msg);
@@ -237,7 +237,7 @@ class OperationController extends BaseController
         $totalDebite = $montant + $frais;
 
         if ($totalDebite > $compte['solde']) {
-            return redirect()->back()->with('error', 'Solde insuffisant pour ce transfert (montant + frais de ' . number_format($frais, 2, ',', ' ') . ' FCFA).');
+            return redirect()->back()->with('error', 'Solde insuffisant pour ce transfert (montant + frais de ' . number_format($frais, 2, ',', ' ') . ' Ariary).');
         }
 
         $db = $this->compteModel->db;
@@ -251,7 +251,7 @@ class OperationController extends BaseController
             'solde' => $compteDestination['solde'] + $montant,
         ]);
 
-        $this->transactionModel->insert([
+        $this->acteModel->insert([
             'id_compte_source'      => $idCompte,
             'id_compte_destination' => $idDestination,
             'id_type_operation'     => $typeTransfert['id_type_operation'],
@@ -266,9 +266,9 @@ class OperationController extends BaseController
             return redirect()->back()->with('error', 'Échec du transfert. Veuillez réessayer.');
         }
 
-        $msg = 'Transfert de ' . number_format($montant, 2, ',', ' ') . ' FCFA vers le compte n° ' . $idDestination . ' effectué avec succès.';
+        $msg = 'Transfert de ' . number_format($montant, 2, ',', ' ') . ' Ariary vers le compte n° ' . $idDestination . ' effectué avec succès.';
         if ($frais > 0) {
-            $msg .= ' Frais appliqués : ' . number_format($frais, 2, ',', ' ') . ' FCFA.';
+            $msg .= ' Frais appliqués : ' . number_format($frais, 2, ',', ' ') . ' Ariary.';
         }
 
         return redirect()->to('/compte/' . $idCompte . '/solde')->with('success', $msg);
@@ -281,9 +281,9 @@ class OperationController extends BaseController
             return $this->redirect;
         }
 
-        $transactions = $this->transactionModel
-            ->select('Transaction.*, Operation.libelle')
-            ->join('Operation', 'Operation.id_type_operation = Transaction.id_type_operation', 'left')
+        $transactions = $this->acteModel
+            ->select('Acte.*, Operation.libelle')
+            ->join('Operation', 'Operation.id_type_operation = Acte.id_type_operation', 'left')
             ->groupStart()
             ->where('id_compte_source', $idCompte)
             ->orWhere('id_compte_destination', $idCompte)

@@ -19,8 +19,8 @@
                 <tr>
                     <th>Date</th>
                     <th>Type</th>
-                    <th>Montant (FCFA)</th>
-                    <th>Frais (FCFA)</th>
+                    <th>Montant (Ariary)</th>
+                    <th>Frais (Ariary)</th>
                     <th>Compte source</th>
                     <th>Compte destination</th>
                     <th>Statut</th>

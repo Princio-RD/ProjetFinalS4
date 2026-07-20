@@ -11,11 +11,11 @@
         <p style="color: red;"><?= esc(session()->get('error')) ?></p>
     <?php endif; ?>
 
-    <p>Solde disponible : <?= number_format($compte['solde'], 2, ',', ' ') ?> FCFA</p>
+    <p>Solde disponible : <?= number_format($compte['solde'], 2, ',', ' ') ?> Ariary</p>
     <p><em>Des frais de retrait sont appliqués selon le barème en vigueur (déduits du solde).</em></p>
 
     <form method="post" action="<?= base_url('compte/' . $compte['id_compte'] . '/retrait') ?>">
-        <label for="montant">Montant à retirer (FCFA) :</label><br>
+        <label for="montant">Montant à retirer (Ariary) :</label><br>
         <input type="number" name="montant" id="montant" step="0.01" min="0.01" required>
         <br><br>
         <button type="submit">Confirmer le retrait</button>
