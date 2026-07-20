@@ -166,7 +166,7 @@
                         <tr>
                             <td><span class="badge bg-secondary">#<?= esc($item['client']['id_client']) ?></span></td>
                             <td><strong><?= esc($item['client']['nom']) ?></strong></td>
-                            <td><?= esc($item['client']['numero_telephone']) ?></td>
+                            <td><?= esc($item['client']['numero_telephone'] ?? '') ?></td>
                             <td><?= date('d/m/Y H:i', strtotime($item['client']['date_creation'])) ?></td>
                             <td class="text-center"><span class="badge bg-dark"><?= $item['nombre_comptes'] ?></span></td>
                             <td class="text-end"><strong class="text-primary"><?= number_format($item['solde_total'], 0, ',', ' ') ?></strong></td>

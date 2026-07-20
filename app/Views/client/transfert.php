@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Transfert - Transfert d'argent</title>
+    <link rel="stylesheet" href="/style/main.css">
 </head>
 <body>
     <h2>Transfert depuis le compte n° <?= esc($compte['id_compte']) ?></h2>
