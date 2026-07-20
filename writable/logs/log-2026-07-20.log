@@ -193,6 +193,180 @@ DEBUG - 2026-07-20 08:08:51 --> Session: Class initialized using 'CodeIgniter\Se
 DEBUG - 2026-07-20 08:08:55 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
 DEBUG - 2026-07-20 08:08:55 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
 DEBUG - 2026-07-20 08:27:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+<<<<<<< HEAD
+DEBUG - 2026-07-20 08:27:53 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2026-07-20 08:27:53 --> ErrorException: Array to string conversion
+[Method: POST, Route: auth/loginAuto]
+in SYSTEMPATH\Database\Query.php on line 281.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler()
+ 2 SYSTEMPATH\Database\Query.php(281): implode()
+ 3 SYSTEMPATH\Database\Query.php(265): CodeIgniter\Database\Query->matchNamedBinds()
+ 4 SYSTEMPATH\Database\Query.php(152): CodeIgniter\Database\Query->compileBinds()
+ 5 SYSTEMPATH\Database\BaseConnection.php(827): CodeIgniter\Database\Query->getQuery()
+ 6 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
+ 7 SYSTEMPATH\Model.php(253): CodeIgniter\Database\BaseBuilder->get()
+ 8 SYSTEMPATH\BaseModel.php(676): CodeIgniter\Model->doFindAll()
+ 9 APPPATH\Controllers\AuthController.php(41): CodeIgniter\BaseModel->findAll()
+10 SYSTEMPATH\CodeIgniter.php(951): App\Controllers\AuthController->loginAuto()
+11 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController()
+12 SYSTEMPATH\CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+13 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+14 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+15 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb()
+16 SYSTEMPATH\rewrite.php(44): require_once('D:\\Animation\\ProjetFinalS4\\public\\index.php')
+DEBUG - 2026-07-20 08:29:31 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-07-20 08:29:36 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2026-07-20 08:29:36 --> ErrorException: Array to string conversion
+[Method: POST, Route: auth/loginAuto]
+in SYSTEMPATH\Database\Query.php on line 281.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler()
+ 2 SYSTEMPATH\Database\Query.php(281): implode()
+ 3 SYSTEMPATH\Database\Query.php(265): CodeIgniter\Database\Query->matchNamedBinds()
+ 4 SYSTEMPATH\Database\Query.php(152): CodeIgniter\Database\Query->compileBinds()
+ 5 SYSTEMPATH\Database\BaseConnection.php(827): CodeIgniter\Database\Query->getQuery()
+ 6 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
+ 7 SYSTEMPATH\Model.php(253): CodeIgniter\Database\BaseBuilder->get()
+ 8 SYSTEMPATH\BaseModel.php(676): CodeIgniter\Model->doFindAll()
+ 9 APPPATH\Controllers\AuthController.php(41): CodeIgniter\BaseModel->findAll()
+10 SYSTEMPATH\CodeIgniter.php(951): App\Controllers\AuthController->loginAuto()
+11 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController()
+12 SYSTEMPATH\CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+13 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+14 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+15 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb()
+16 SYSTEMPATH\rewrite.php(44): require_once('D:\\Animation\\ProjetFinalS4\\public\\index.php')
+DEBUG - 2026-07-20 08:30:31 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-07-20 08:30:33 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2026-07-20 08:30:33 --> ErrorException: Array to string conversion
+[Method: POST, Route: auth/loginAuto]
+in SYSTEMPATH\Database\Query.php on line 281.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler()
+ 2 SYSTEMPATH\Database\Query.php(281): implode()
+ 3 SYSTEMPATH\Database\Query.php(265): CodeIgniter\Database\Query->matchNamedBinds()
+ 4 SYSTEMPATH\Database\Query.php(152): CodeIgniter\Database\Query->compileBinds()
+ 5 SYSTEMPATH\Database\BaseConnection.php(827): CodeIgniter\Database\Query->getQuery()
+ 6 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
+ 7 SYSTEMPATH\Model.php(253): CodeIgniter\Database\BaseBuilder->get()
+ 8 SYSTEMPATH\BaseModel.php(676): CodeIgniter\Model->doFindAll()
+ 9 APPPATH\Controllers\AuthController.php(41): CodeIgniter\BaseModel->findAll()
+10 SYSTEMPATH\CodeIgniter.php(951): App\Controllers\AuthController->loginAuto()
+11 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController()
+12 SYSTEMPATH\CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+13 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+14 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+15 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb()
+16 SYSTEMPATH\rewrite.php(44): require_once('D:\\Animation\\ProjetFinalS4\\public\\index.php')
+DEBUG - 2026-07-20 08:31:44 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-07-20 08:31:48 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2026-07-20 08:31:48 --> ErrorException: Array to string conversion
+[Method: POST, Route: auth/loginAuto]
+in SYSTEMPATH\Database\Query.php on line 281.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler()
+ 2 SYSTEMPATH\Database\Query.php(281): implode()
+ 3 SYSTEMPATH\Database\Query.php(265): CodeIgniter\Database\Query->matchNamedBinds()
+ 4 SYSTEMPATH\Database\Query.php(152): CodeIgniter\Database\Query->compileBinds()
+ 5 SYSTEMPATH\Database\BaseConnection.php(827): CodeIgniter\Database\Query->getQuery()
+ 6 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
+ 7 SYSTEMPATH\Model.php(253): CodeIgniter\Database\BaseBuilder->get()
+ 8 SYSTEMPATH\BaseModel.php(676): CodeIgniter\Model->doFindAll()
+ 9 APPPATH\Controllers\AuthController.php(41): CodeIgniter\BaseModel->findAll()
+10 SYSTEMPATH\CodeIgniter.php(951): App\Controllers\AuthController->loginAuto()
+11 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController()
+12 SYSTEMPATH\CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+13 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+14 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+15 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb()
+16 SYSTEMPATH\rewrite.php(44): require_once('D:\\Animation\\ProjetFinalS4\\public\\index.php')
+DEBUG - 2026-07-20 08:31:52 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2026-07-20 08:31:52 --> ErrorException: Array to string conversion
+[Method: POST, Route: auth/loginAuto]
+in SYSTEMPATH\Database\Query.php on line 281.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler()
+ 2 SYSTEMPATH\Database\Query.php(281): implode()
+ 3 SYSTEMPATH\Database\Query.php(265): CodeIgniter\Database\Query->matchNamedBinds()
+ 4 SYSTEMPATH\Database\Query.php(152): CodeIgniter\Database\Query->compileBinds()
+ 5 SYSTEMPATH\Database\BaseConnection.php(827): CodeIgniter\Database\Query->getQuery()
+ 6 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
+ 7 SYSTEMPATH\Model.php(253): CodeIgniter\Database\BaseBuilder->get()
+ 8 SYSTEMPATH\BaseModel.php(676): CodeIgniter\Model->doFindAll()
+ 9 APPPATH\Controllers\AuthController.php(41): CodeIgniter\BaseModel->findAll()
+10 SYSTEMPATH\CodeIgniter.php(951): App\Controllers\AuthController->loginAuto()
+11 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController()
+12 SYSTEMPATH\CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+13 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+14 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+15 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb()
+16 SYSTEMPATH\rewrite.php(44): require_once('D:\\Animation\\ProjetFinalS4\\public\\index.php')
+DEBUG - 2026-07-20 08:33:16 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-07-20 08:33:19 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2026-07-20 08:33:19 --> ErrorException: Array to string conversion
+[Method: POST, Route: auth/loginAuto]
+in SYSTEMPATH\Database\Query.php on line 281.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler()
+ 2 SYSTEMPATH\Database\Query.php(281): implode()
+ 3 SYSTEMPATH\Database\Query.php(265): CodeIgniter\Database\Query->matchNamedBinds()
+ 4 SYSTEMPATH\Database\Query.php(152): CodeIgniter\Database\Query->compileBinds()
+ 5 SYSTEMPATH\Database\BaseConnection.php(827): CodeIgniter\Database\Query->getQuery()
+ 6 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
+ 7 SYSTEMPATH\Model.php(253): CodeIgniter\Database\BaseBuilder->get()
+ 8 SYSTEMPATH\BaseModel.php(676): CodeIgniter\Model->doFindAll()
+ 9 APPPATH\Controllers\AuthController.php(41): CodeIgniter\BaseModel->findAll()
+10 SYSTEMPATH\CodeIgniter.php(951): App\Controllers\AuthController->loginAuto()
+11 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController()
+12 SYSTEMPATH\CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+13 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+14 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+15 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb()
+16 SYSTEMPATH\rewrite.php(44): require_once('D:\\Animation\\ProjetFinalS4\\public\\index.php')
+DEBUG - 2026-07-20 08:40:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-07-20 08:40:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-07-20 08:40:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-07-20 08:48:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-07-20 08:48:18 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-07-20 08:48:19 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-07-20 08:48:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-07-20 08:48:25 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-07-20 08:48:30 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-07-20 08:49:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-07-20 08:49:54 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-07-20 08:49:55 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-07-20 08:49:57 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-07-20 08:50:06 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-07-20 08:50:12 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-07-20 08:50:14 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-07-20 08:50:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-07-20 08:50:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-07-20 08:50:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-07-20 08:50:51 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-07-20 08:50:52 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-07-20 08:50:57 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-07-20 08:50:57 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-07-20 09:01:34 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-07-20 09:01:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-07-20 09:01:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-07-20 09:01:40 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-07-20 09:01:43 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-07-20 09:01:45 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-07-20 09:02:02 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-07-20 09:02:02 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-07-20 09:02:19 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-07-20 09:02:28 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-07-20 09:02:28 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-07-20 09:04:54 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-07-20 09:04:58 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-07-20 09:04:58 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-07-20 09:25:14 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-07-20 09:25:19 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-07-20 09:25:19 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-07-20 09:25:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-07-20 09:25:26 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-07-20 09:25:31 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-07-20 09:25:31 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-07-20 09:25:36 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-07-20 09:26:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-07-20 09:26:42 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-07-20 09:26:55 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+=======
 DEBUG - 2026-07-20 08:27:54 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
 DEBUG - 2026-07-20 08:27:54 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
 DEBUG - 2026-07-20 08:28:05 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
@@ -240,3 +414,4 @@ DEBUG - 2026-07-20 09:17:22 --> Session: Class initialized using 'CodeIgniter\Se
 DEBUG - 2026-07-20 09:18:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
 DEBUG - 2026-07-20 09:18:21 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
 DEBUG - 2026-07-20 09:18:21 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+>>>>>>> dev

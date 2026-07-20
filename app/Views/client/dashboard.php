@@ -14,15 +14,23 @@
             <tr>
                 <th>ID Compte</th>
                 <th>Opérateur</th>
-                <th>Solde (FCFA)</th>
+                <th>Solde (Ariary)</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
             <?php foreach ($comptes as $compte): ?>
                 <tr>
                     <td><?= esc($compte['id_compte']) ?></td>
-                    <td><?= esc($compte['id_operateur']) ?></td>
+                    <td><?= esc($compte['nom']) ?></td>
                     <td><?= number_format($compte['solde'], 2, ',', ' ') ?></td>
+                    <td>
+                        <a href="<?= base_url('compte/' . $compte['id_compte'] . '/solde') ?>">Solde</a> |
+                        <a href="<?= base_url('compte/' . $compte['id_compte'] . '/depot') ?>">Dépôt</a> |
+                        <a href="<?= base_url('compte/' . $compte['id_compte'] . '/retrait') ?>">Retrait</a> |
+                        <a href="<?= base_url('compte/' . $compte['id_compte'] . '/transfert') ?>">Transfert</a> |
+                        <a href="<?= base_url('compte/' . $compte['id_compte'] . '/historique') ?>">Historique</a>
+                    </td>
                 </tr>
             <?php endforeach; ?>
         </tbody>

@@ -107,9 +107,7 @@ INSERT INTO Tarif (id_type_operation, montant_min, montant_max, frais) VALUES
 (3, 500001, 1000000, 2500),
 (3, 1000001, 2000000, 3000);
 
--- =========================================================
--- Exemple d'actes (transactions)
--- =========================================================
+
 INSERT INTO Acte (id_compte_source, id_compte_destination, id_type_operation, montant, frais_applique, statut) VALUES
 (1, NULL, 1, 50000.00, 0, 'Réussi'),
 (3, NULL, 2, 10000.00, 100, 'Réussi'),
