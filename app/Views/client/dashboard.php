@@ -37,6 +37,6 @@
     </table>
 
     <br>
-    <a href="<?= base_url('logout') ?>">Se déconnecter</a>
+    <a href="<?= base_url('/') ?>">Se déconnecter</a>
 </body>
 </html>
