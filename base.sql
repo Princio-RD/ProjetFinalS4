@@ -39,8 +39,8 @@ CREATE TABLE Compte (
 );
 
 
-CREATE TABLE Transaction (
-    id_transaction INT AUTO_INCREMENT PRIMARY KEY,
+CREATE TABLE Acte (
+    id_acte INT AUTO_INCREMENT PRIMARY KEY,
     id_compte_source INT NOT NULL,
     id_compte_destination INT NULL,
     id_type_operation INT NOT NULL,

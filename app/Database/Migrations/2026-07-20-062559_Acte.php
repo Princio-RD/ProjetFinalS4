@@ -4,12 +4,12 @@ namespace App\Database\Migrations;
 
 use CodeIgniter\Database\Migration;
 
-class Transaction extends Migration
+class Acte extends Migration
 {
     public function up()
     {
         $this->forge->addField([
-            'id_transaction' => [
+            'id_acte' => [
                 'type'           => 'INT',
                 'constraint'     => 11,
                 'unsigned'       => true,
