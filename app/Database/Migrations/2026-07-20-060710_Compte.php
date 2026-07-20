@@ -10,19 +10,19 @@ class Compte extends Migration
     {
         $this->forge->addField([
             'id_compte' => [
-                'type'           => 'INT',
+                'type'           => 'INTEGER',
                 'constraint'     => 11,
                 'unsigned'       => true,
                 'auto_increment' => true,
             ],
             'id_client' => [
-                'type'       => 'INT',
+                'type'       => 'INTEGER',
                 'constraint' => 11,
                 'unsigned'   => true,
                 'null'       => false,
             ],
             'id_operateur' => [
-                'type'       => 'INT',
+                'type'       => 'INTEGER',
                 'constraint' => 11,
                 'unsigned'   => true,
                 'null'       => false,

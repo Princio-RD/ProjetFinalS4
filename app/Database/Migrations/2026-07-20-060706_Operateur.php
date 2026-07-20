@@ -10,7 +10,7 @@ class Operateur extends Migration
     {
         $this->forge->addField([
             'id_operateur' => [
-                'type'           => 'INT',
+                'type'           => 'INTEGER',
                 'constraint'     => 11,
                 'unsigned'       => true,
                 'auto_increment' => true,

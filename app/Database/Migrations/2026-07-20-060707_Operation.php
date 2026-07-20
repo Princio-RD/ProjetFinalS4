@@ -10,7 +10,7 @@ class Operation extends Migration
     {
         $this->forge->addField([
             'id_type_operation' => [
-                'type'           => 'INT',
+                'type'           => 'INTEGER',
                 'constraint'     => 11,
                 'unsigned'       => true,
                 'auto_increment' => true,
