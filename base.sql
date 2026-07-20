@@ -6,19 +6,19 @@ CREATE TABLE Operateur (
 );
 
 
-CREATE TABLE TypeOperation (
+CREATE TABLE Operation (
     id_type_operation INT AUTO_INCREMENT PRIMARY KEY,
     libelle VARCHAR(30) NOT NULL UNIQUE
 );
 
 
-CREATE TABLE BaremeFrais (
+CREATE TABLE Tarif (
     id_bareme INT AUTO_INCREMENT PRIMARY KEY,
     id_type_operation INT NOT NULL,
     montant_min DECIMAL(15,2) NOT NULL,
     montant_max DECIMAL(15,2) NOT NULL,
     frais DECIMAL(15,2) NOT NULL,
-    FOREIGN KEY (id_type_operation) REFERENCES TypeOperation(id_type_operation)
+    FOREIGN KEY (id_type_operation) REFERENCES Operation(id_type_operation)
 );
 
 
@@ -39,8 +39,8 @@ CREATE TABLE Compte (
 );
 
 
-CREATE TABLE Transaction (
-    id_transaction INT AUTO_INCREMENT PRIMARY KEY,
+CREATE TABLE Acte (
+    id_acte INT AUTO_INCREMENT PRIMARY KEY,
     id_compte_source INT NOT NULL,
     id_compte_destination INT NULL,
     id_type_operation INT NOT NULL,
@@ -50,16 +50,16 @@ CREATE TABLE Transaction (
     statut VARCHAR(20) NOT NULL DEFAULT 'Réussi',
     FOREIGN KEY (id_compte_source) REFERENCES Compte(id_compte),
     FOREIGN KEY (id_compte_destination) REFERENCES Compte(id_compte),
-    FOREIGN KEY (id_type_operation) REFERENCES TypeOperation(id_type_operation)
+    FOREIGN KEY (id_type_operation) REFERENCES Operation(id_type_operation)
 );
 
-INSERT INTO TypeOperation (libelle) VALUES ('Dépôt'), ('Retrait'), ('Transfert');
+INSERT INTO Operation (libelle) VALUES ('Dépôt'), ('Retrait'), ('Transfert');
 
 -- =========================================================
 -- Exemple de barème de frais (à adapter selon type d'opération)
 -- =========================================================
 -- Remplacer id_type_operation par l'id réel du type concerné (ex: 2 = Retrait)
-INSERT INTO BaremeFrais (id_type_operation, montant_min, montant_max, frais) VALUES
+INSERT INTO Tarif (id_type_operation, montant_min, montant_max, frais) VALUES
 (2, 100, 1000, 50),
 (2, 1001, 5000, 50),
 (2, 5001, 10000, 100),
