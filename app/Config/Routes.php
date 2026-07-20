@@ -8,6 +8,7 @@ use CodeIgniter\Router\RouteCollection;
 
 // Routes Client
 $routes->get('/', 'Client\AuthController::login');
+$routes->get('/login', 'Client\AuthController::login');
 $routes->post('/auth/loginAuto', 'Client\AuthController::loginAuto');
 $routes->get('/logout', 'Client\AuthController::logout');
 $routes->get('/dashboard', 'Client\DashboardController::index');

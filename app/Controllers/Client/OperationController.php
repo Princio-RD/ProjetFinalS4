@@ -3,7 +3,6 @@
 namespace App\Controllers\Client;
 
 use App\Controllers\BaseController;
-
 use App\Models\ClientModel;
 use App\Models\CompteModel;
 use App\Models\OperationModel;
@@ -20,11 +19,6 @@ class OperationController extends BaseController
     protected $acteModel;
     protected $commissionModel;
 
-    /**
-     
-     *
-     * @var \CodeIgniter\HTTP\RedirectResponse|null
-     */
     protected $redirect = null;
 
     public function __construct()
@@ -37,7 +31,6 @@ class OperationController extends BaseController
         $this->commissionModel = new CommissionModel();
     }
 
- 
     private function verifierCompte(int $idCompte): ?array
     {
         if (!session()->get('isLoggedIn')) {
@@ -64,7 +57,7 @@ class OperationController extends BaseController
 
         $data = [
             'compte' => $compte,
-            'solde'  => number_format($compte['solde'], 2, ',', ' '),
+            'solde'  => number_format($compte['solde'], 0, ',', ' '),
         ];
 
         return view('client/solde', $data);
@@ -111,6 +104,7 @@ class OperationController extends BaseController
             'id_type_operation'     => $typeDepot['id_type_operation'],
             'montant'               => $montant,
             'frais_applique'        => 0,
+            'commission_appliquee'  => 0,
             'statut'                => 'Réussi',
         ]);
 
@@ -121,7 +115,7 @@ class OperationController extends BaseController
         }
 
         return redirect()->to('/compte/' . $idCompte . '/solde')
-            ->with('success', 'Dépôt de ' . number_format($montant, 2, ',', ' ') . ' Ariary effectué avec succès.');
+            ->with('success', 'Dépôt de ' . number_format($montant, 0, ',', ' ') . ' Ariary effectué avec succès.');
     }
 
     public function retraitForm($idCompte)
@@ -156,7 +150,7 @@ class OperationController extends BaseController
         $totalDebite = $montant + $frais;
 
         if ($totalDebite > $compte['solde']) {
-            return redirect()->back()->with('error', 'Solde insuffisant pour ce retrait (montant + frais de ' . number_format($frais, 2, ',', ' ') . ' Ariary).');
+            return redirect()->back()->with('error', 'Solde insuffisant pour ce retrait (montant + frais de ' . number_format($frais, 0, ',', ' ') . ' Ariary).');
         }
 
         $db = $this->compteModel->db;
@@ -172,6 +166,7 @@ class OperationController extends BaseController
             'id_type_operation'     => $typeRetrait['id_type_operation'],
             'montant'               => $montant,
             'frais_applique'        => $frais,
+            'commission_appliquee'  => 0,
             'statut'                => 'Réussi',
         ]);
 
@@ -181,9 +176,9 @@ class OperationController extends BaseController
             return redirect()->back()->with('error', 'Échec du retrait. Veuillez réessayer.');
         }
 
-        $msg = 'Retrait de ' . number_format($montant, 2, ',', ' ') . ' Ariary effectué avec succès.';
+        $msg = 'Retrait de ' . number_format($montant, 0, ',', ' ') . ' Ariary effectué avec succès.';
         if ($frais > 0) {
-            $msg .= ' Frais appliqués : ' . number_format($frais, 2, ',', ' ') . ' Ariary.';
+            $msg .= ' Frais appliqués : ' . number_format($frais, 0, ',', ' ') . ' Ariary.';
         }
 
         return redirect()->to('/compte/' . $idCompte . '/solde')->with('success', $msg);
@@ -304,10 +299,10 @@ class OperationController extends BaseController
             return redirect()->back()->with('error', 'Échec du transfert.');
         }
 
-        $msg = 'Transfert de ' . number_format($totalMontantTransfere, 2, ',', ' ') . ' Ar effectué.';
-        $msg .= ' Frais: ' . number_format($totalFraisTransfert + $totalFraisRetrait, 2, ',', ' ') . ' Ar';
+        $msg = 'Transfert de ' . number_format($totalMontantTransfere, 0, ',', ' ') . ' Ar effectué.';
+        $msg .= ' Frais: ' . number_format($totalFraisTransfert + $totalFraisRetrait, 0, ',', ' ') . ' Ar';
         if ($totalCommission > 0) {
-            $msg .= ', Commission: ' . number_format($totalCommission, 2, ',', ' ') . ' Ar';
+            $msg .= ', Commission: ' . number_format($totalCommission, 0, ',', ' ') . ' Ar';
         }
         
         return redirect()->to('/compte/' . $idCompte . '/solde')->with('success', $msg);
