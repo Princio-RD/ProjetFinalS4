@@ -209,17 +209,15 @@ class OperationController extends BaseController
         $telephones = $this->request->getPost('telephone_destination');
         $montants   = $this->request->getPost('montant');
 
-        if (empty($telephones) || empty($montants)) {
-            return redirect()->back()->with('error', 'Veuillez ajouter au moins un destinataire avec un montant.');
-        }
-
-        if (count($telephones) !== count($montants)) {
-            return redirect()->back()->with('error', 'Données invalides. Veuillez réessayer.');
+        if (empty($telephones) || empty($montants) || count($telephones) !== count($montants)) {
+            return redirect()->back()->with('error', 'Données invalides.');
         }
 
         $typeTransfert = $this->operationModel->where('libelle', 'Transfert')->first();
-        if (!$typeTransfert) {
-            return redirect()->back()->with('error', 'Type d\'opération « Transfert » introuvable.');
+        $typeRetrait = $this->operationModel->where('libelle', 'Retrait')->first();
+        
+        if (!$typeTransfert || !$typeRetrait) {
+            return redirect()->back()->with('error', 'Type d\'opération introuvable.');
         }
 
         $db = $this->compteModel->db;
@@ -228,6 +226,8 @@ class OperationController extends BaseController
         $totalDebite = 0;
         $totalCommission = 0;
         $totalMontantTransfere = 0;
+        $totalFraisTransfert = 0;
+        $totalFraisRetrait = 0;
         $transferts = [];
         $soldesDestinations = [];
 
@@ -237,97 +237,81 @@ class OperationController extends BaseController
 
             if (empty($telephone) || $montant <= 0) {
                 $db->transRollback();
-                return redirect()->back()->with('error', 'Tous les champs doivent être remplis et les montants supérieurs à 0.');
+                return redirect()->back()->with('error', 'Données invalides.');
             }
 
             $compteDestination = $this->compteModel->where('numero_telephone', $telephone)->first();
-            if (!$compteDestination) {
+            if (!$compteDestination || $compteDestination['id_compte'] == $idCompte) {
                 $db->transRollback();
-                return redirect()->back()->with('error', 'Aucun client trouvé avec le numéro ' . esc($telephone) . '.');
-            }
-
-            $clientDestination = $this->clientModel->find($compteDestination['id_client']);
-            if (!$compteDestination) {
-                $db->transRollback();
-                return redirect()->back()->with('error', 'Le client destinataire ' . esc($telephone) . ' n\'a aucun compte actif.');
+                return redirect()->back()->with('error', 'Destinataire invalide.');
             }
 
             $idDestination = (int) $compteDestination['id_compte'];
-
-            if ($idDestination === $idCompte) {
-                $db->transRollback();
-                return redirect()->back()->with('error', 'Le compte destinataire doit être différent du compte source pour le numéro ' . esc($telephone) . '.');
-            }
-
-            $frais = $this->tarifModel->calculerFrais($typeTransfert['id_type_operation'], $montant);
-
-            // Commission si opérateurs différents
+            
+            // Calculs
+            $fraisTransfert = $this->tarifModel->calculerFrais($typeTransfert['id_type_operation'], $montant);
+            $fraisRetrait = $this->tarifModel->calculerFrais($typeRetrait['id_type_operation'], $montant);
+            
             $commission = 0;
             if ($compte['id_operateur'] != $compteDestination['id_operateur']) {
-                $pourcentage = $this->commissionModel->getCommission(
-                    $compte['id_operateur'],
-                    $compteDestination['id_operateur']
-                );
-                $commission = $montant * ($pourcentage / 100);
+                $pourcentage = $this->commissionModel->getCommission($compte['id_operateur'], $compteDestination['id_operateur']);
+                $commission = $fraisTransfert * ($pourcentage / 100);
             }
 
-            $totalDebite += $montant + $frais + $commission;
+            $totalDebite += $montant + $fraisTransfert + $fraisRetrait + $commission;
             $totalCommission += $commission;
             $totalMontantTransfere += $montant;
+            $totalFraisTransfert += $fraisTransfert;
+            $totalFraisRetrait += $fraisRetrait;
 
-            // Utiliser le solde déjà mis à jour si plusieurs transferts vers le même compte
             $soldeActuelDest = $soldesDestinations[$idDestination] ?? $compteDestination['solde'];
-
             $transferts[] = [
                 'idDestination' => $idDestination,
-                'montant'       => $montant,
-                'frais'         => $frais,
-                'commission'    => $commission,
-                'soldeDest'     => $soldeActuelDest,
+                'montant' => $montant,
+                'fraisTransfert' => $fraisTransfert,
+                'fraisRetrait' => $fraisRetrait,
+                'commission' => $commission,
+                'soldeDest' => $soldeActuelDest,
             ];
-
             $soldesDestinations[$idDestination] = $soldeActuelDest + $montant;
         }
 
         if ($totalDebite > $compte['solde']) {
             $db->transRollback();
-            return redirect()->back()->with('error', 'Solde insuffisant pour ce transfert (total débité : ' . number_format($totalDebite, 2, ',', ' ') . ' Ariary).');
+            return redirect()->back()->with('error', 'Solde insuffisant.');
         }
 
-        $this->compteModel->update($idCompte, [
-            'solde' => $compte['solde'] - $totalDebite,
-        ]);
+        // Mise à jour compte source
+        $this->compteModel->update($idCompte, ['solde' => $compte['solde'] - $totalDebite]);
 
-        foreach ($transferts as $transfert) {
-            $this->compteModel->update($transfert['idDestination'], [
-                'solde' => $transfert['soldeDest'] + $transfert['montant'],
-            ]);
-
+        // Insertion des actes
+        foreach ($transferts as $t) {
+            $this->compteModel->update($t['idDestination'], ['solde' => $t['soldeDest'] + $t['montant']]);
             $this->acteModel->insert([
-                'id_compte_source'      => $idCompte,
-                'id_compte_destination' => $transfert['idDestination'],
-                'id_type_operation'     => $typeTransfert['id_type_operation'],
-                'montant'               => $transfert['montant'],
-                'frais_applique'        => $transfert['frais'],
-                'commission_appliquee'  => $transfert['commission'],
-                'statut'                => 'Réussi',
+                'id_compte_source' => $idCompte,
+                'id_compte_destination' => $t['idDestination'],
+                'id_type_operation' => $typeTransfert['id_type_operation'],
+                'montant' => $t['montant'],
+                'frais_applique' => $t['fraisTransfert'] + $t['fraisRetrait'],
+                'commission_appliquee' => $t['commission'],
+                'statut' => 'Réussi',
             ]);
         }
 
         $db->transComplete();
 
         if ($db->transStatus() === false) {
-            return redirect()->back()->with('error', 'Échec du transfert. Veuillez réessayer.');
+            return redirect()->back()->with('error', 'Échec du transfert.');
         }
 
-        $msg = 'Transfert de ' . number_format($totalMontantTransfere, 2, ',', ' ') . ' Ariary vers ' . count($transferts) . ' compte(s) effectué avec succès.';
+        $msg = 'Transfert de ' . number_format($totalMontantTransfere, 2, ',', ' ') . ' Ar effectué.';
+        $msg .= ' Frais: ' . number_format($totalFraisTransfert + $totalFraisRetrait, 2, ',', ' ') . ' Ar';
         if ($totalCommission > 0) {
-            $msg .= ' Commission appliquée : ' . number_format($totalCommission, 2, ',', ' ') . ' Ariary.';
+            $msg .= ', Commission: ' . number_format($totalCommission, 2, ',', ' ') . ' Ar';
         }
+        
         return redirect()->to('/compte/' . $idCompte . '/solde')->with('success', $msg);
     }
-
-   
 
     public function historique($idCompte)
     {
