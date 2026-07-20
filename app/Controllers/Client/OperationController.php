@@ -308,7 +308,7 @@ class OperationController extends BaseController
         }
 
         $transactions = $this->acteModel
-            ->select('Acte.*, Operation.libelle')
+            ->select('Acte.*, Operation.libelle, Acte.id_acte as numero_transaction')
             ->join('Operation', 'Operation.id_type_operation = Acte.id_type_operation', 'left')
             ->groupStart()
             ->where('id_compte_source', $idCompte)

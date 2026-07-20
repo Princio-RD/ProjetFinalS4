@@ -21,15 +21,6 @@ CREATE TABLE Tarif (
     FOREIGN KEY (id_type_operation) REFERENCES Operation(id_type_operation)
 );
 
-CREATE TABLE IF NOT EXISTS Commission(
-    id_commission INTEGER PRIMARY KEY AUTOINCREMENT,
-    id_operateur_receve INTEGER NOT NULL,
-    id_operateur_send INTEGER NOT NULL,
-    pourcentage DECIMAL(15,2) NOT NULL,
-    FOREIGN KEY (id_operateur_receve) REFERENCES Operateur(id_operateur),
-    FOREIGN KEY (id_operateur_send) REFERENCES Operateur(id_operateur)
-);
-
 -- Table Client
 CREATE TABLE Client (
     id_client INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -123,8 +114,3 @@ INSERT INTO Acte (id_compte_source, id_compte_destination, id_type_operation, mo
 (1, 2, 3, 25000.00, 200, 'Réussi'),
 (5, NULL, 2, 5000.00, 50, 'Réussi'),
 (4, 3, 3, 15000.00, 150, 'Réussi');
-
-INSERT INTO Commission (id_operateur, pourcentage) VALUES
-(1, 0.50),
-(2, 0.45),
-(3, 0.30);
