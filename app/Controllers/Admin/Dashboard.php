@@ -208,11 +208,17 @@ class Dashboard extends BaseController
                 $solde_total_client += $c['solde'];
             }
 
+            $numero_telephone = '';
+            if (!empty($comptes_client)) {
+                $numero_telephone = $comptes_client[0]['numero_telephone'] ?? '';
+            }
+
             $result[] = [
                 'client' => $client,
                 'comptes' => $comptes_client,
                 'solde_total' => $solde_total_client,
-                'nombre_comptes' => count($comptes_client)
+                'nombre_comptes' => count($comptes_client),
+                'numero_telephone' => $numero_telephone,
             ];
         }
 

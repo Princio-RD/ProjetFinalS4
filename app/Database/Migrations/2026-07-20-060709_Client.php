@@ -20,12 +20,6 @@ class Client extends Migration
                 'constraint'=>'15',
                 'null'=>false,
             ],
-            'numero_telephone' => [
-                'type'       => 'VARCHAR',
-                'constraint' => '15',
-                'null'       => false,
-                'unique'     => true,
-            ],
             'date_creation' => [
                 'type'    => 'DATETIME',
                 'null'    => false,

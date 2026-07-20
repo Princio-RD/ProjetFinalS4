@@ -14,6 +14,7 @@ class ActeModel extends Model
         'id_type_operation',
         'montant',
         'frais_applique',
+        'commission_appliquee',
         'statut'
     ];
     protected $useTimestamps = true;
