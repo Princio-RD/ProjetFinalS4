@@ -21,13 +21,15 @@ CREATE TABLE Tarif (
     FOREIGN KEY (id_type_operation) REFERENCES Operation(id_type_operation)
 );
 
-CREATE TABLE IF NOT EXISTS Commission(
+-- Table Commission
+CREATE TABLE Commission (
     id_commission INTEGER PRIMARY KEY AUTOINCREMENT,
-    id_operateur_receve INTEGER NOT NULL,
-    id_operateur_send INTEGER NOT NULL,
-    pourcentage DECIMAL(15,2) NOT NULL,
-    FOREIGN KEY (id_operateur_receve) REFERENCES Operateur(id_operateur),
-    FOREIGN KEY (id_operateur_send) REFERENCES Operateur(id_operateur)
+    id_operateur_source INTEGER NOT NULL,
+    id_operateur_destination INTEGER NOT NULL,
+    pourcentage DECIMAL(5,2) NOT NULL DEFAULT 0,
+    FOREIGN KEY (id_operateur_source) REFERENCES Operateur(id_operateur),
+    FOREIGN KEY (id_operateur_destination) REFERENCES Operateur(id_operateur),
+    UNIQUE(id_operateur_source, id_operateur_destination)
 );
 
 -- Table Client
@@ -74,12 +76,12 @@ INSERT INTO Operateur (nom, prefixe) VALUES
 ('Telma', '034'),
 ('Airtel', '033');
 
-INSERT INTO Client (numero_telephone,nom) VALUES
-('0331562072','Jean'),
-('0348101301','Rakoto'),
-('0321256078','Rabe'),
-('0335026660','Karl'),
-('0325877760','Jean');
+INSERT INTO Client (numero_telephone, nom) VALUES
+('0331562072', 'Jean'),
+('0348101301', 'Rakoto'),
+('0321256078', 'Rabe'),
+('0335026660', 'Karl'),
+('0325877760', 'Jean');
 
 INSERT INTO Compte (id_client, id_operateur, solde) VALUES
 (1, 1, 50000.00),
@@ -92,7 +94,7 @@ INSERT INTO Compte (id_client, id_operateur, solde) VALUES
 (5, 2, 90000.00);
 
 INSERT INTO Tarif (id_type_operation, montant_min, montant_max, frais) VALUES
--- retrait (id_type_operation = 2)
+-- retrait
 (2, 100, 1000, 50),
 (2, 1001, 5000, 50),
 (2, 5001, 10000, 100),
@@ -104,7 +106,7 @@ INSERT INTO Tarif (id_type_operation, montant_min, montant_max, frais) VALUES
 (2, 500001, 1000000, 2500),
 (2, 1000001, 2000000, 3000),
 
--- transfert (id_type_operation = 3)
+-- transfert
 (3, 100, 1000, 50),
 (3, 1001, 5000, 50),
 (3, 5001, 10000, 100),
@@ -116,7 +118,6 @@ INSERT INTO Tarif (id_type_operation, montant_min, montant_max, frais) VALUES
 (3, 500001, 1000000, 2500),
 (3, 1000001, 2000000, 3000);
 
-
 INSERT INTO Acte (id_compte_source, id_compte_destination, id_type_operation, montant, frais_applique, statut) VALUES
 (1, NULL, 1, 50000.00, 0, 'Réussi'),
 (3, NULL, 2, 10000.00, 100, 'Réussi'),
@@ -124,7 +125,16 @@ INSERT INTO Acte (id_compte_source, id_compte_destination, id_type_operation, mo
 (5, NULL, 2, 5000.00, 50, 'Réussi'),
 (4, 3, 3, 15000.00, 150, 'Réussi');
 
-INSERT INTO Commission (id_operateur, pourcentage) VALUES
-(1, 0.50),
-(2, 0.45),
-(3, 0.30);
+
+INSERT INTO Commission (id_operateur_source, id_operateur_destination, pourcentage) VALUES
+-- Orange (1) vers les autres
+(1, 2, 2.50),  -- Orange -> Telma
+(1, 3, 3.00),  -- Orange -> Airtel
+
+-- Telma (2) vers les autres
+(2, 1, 2.00),  -- Telma -> Orange
+(2, 3, 2.50),  -- Telma -> Airtel
+
+-- Airtel (3) vers les autres
+(3, 1, 3.50),  -- Airtel -> Orange
+(3, 2, 3.00);  -- Airtel -> Telma

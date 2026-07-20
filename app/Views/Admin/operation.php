@@ -1,4 +1,3 @@
-<!-- app/Views/admin/operation.php -->
 <!DOCTYPE html>
 <html>
 <head>
