@@ -18,7 +18,9 @@
 
     <p>
         <a href="<?= base_url('compte/' . $compte['id_compte'] . '/depot') ?>">Faire un dépôt</a> |
-        <a href="<?= base_url('compte/' . $compte['id_compte'] . '/retrait') ?>">Faire un retrait</a>
+        <a href="<?= base_url('compte/' . $compte['id_compte'] . '/retrait') ?>">Faire un retrait</a> |
+        <a href="<?= base_url('compte/' . $compte['id_compte'] . '/transfert') ?>">Faire un transfert</a> |
+        <a href="<?= base_url('compte/' . $compte['id_compte'] . '/historique') ?>">Voir l'historique</a>
     </p>
 
     <br>

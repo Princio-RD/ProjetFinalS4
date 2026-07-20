@@ -180,4 +180,108 @@ class OperationController extends BaseController
 
         return redirect()->to('/compte/' . $idCompte . '/solde')->with('success', $msg);
     }
+
+    public function transfertForm($idCompte)
+    {
+        $compte = $this->verifierCompte($idCompte);
+        if ($compte === null) {
+            return $this->redirect;
+        }
+
+        return view('client/transfert', ['compte' => $compte]);
+    }
+
+    public function transfert($idCompte)
+    {
+        $compte = $this->verifierCompte($idCompte);
+        if ($compte === null) {
+            return $this->redirect;
+        }
+
+        $idDestination = (int) $this->request->getPost('id_compte_destination');
+        $montant       = (float) $this->request->getPost('montant');
+
+        if ($montant <= 0) {
+            return redirect()->back()->with('error', 'Le montant doit être supérieur à 0.');
+        }
+
+        if ($idDestination === $idCompte) {
+            return redirect()->back()->with('error', 'Le compte destinataire doit être différent du compte source.');
+        }
+
+        $compteDestination = $this->compteModel->find($idDestination);
+        if (!$compteDestination) {
+            return redirect()->back()->with('error', 'Le compte destinataire est introuvable.');
+        }
+
+        $typeTransfert = $this->operationModel->where('libelle', 'Transfert')->first();
+        if (!$typeTransfert) {
+            return redirect()->back()->with('error', 'Type d\'opération « Transfert » introuvable.');
+        }
+
+        $frais = $this->tarifModel->calculerFrais($typeTransfert['id_type_operation'], $montant);
+        $totalDebite = $montant + $frais;
+
+        if ($totalDebite > $compte['solde']) {
+            return redirect()->back()->with('error', 'Solde insuffisant pour ce transfert (montant + frais de ' . number_format($frais, 2, ',', ' ') . ' FCFA).');
+        }
+
+        $db = $this->compteModel->db;
+        $db->transStart();
+
+        $this->compteModel->update($idCompte, [
+            'solde' => $compte['solde'] - $totalDebite,
+        ]);
+
+        $this->compteModel->update($idDestination, [
+            'solde' => $compteDestination['solde'] + $montant,
+        ]);
+
+        $this->transactionModel->insert([
+            'id_compte_source'      => $idCompte,
+            'id_compte_destination' => $idDestination,
+            'id_type_operation'     => $typeTransfert['id_type_operation'],
+            'montant'               => $montant,
+            'frais_applique'        => $frais,
+            'statut'                => 'Réussi',
+        ]);
+
+        $db->transComplete();
+
+        if ($db->transStatus() === false) {
+            return redirect()->back()->with('error', 'Échec du transfert. Veuillez réessayer.');
+        }
+
+        $msg = 'Transfert de ' . number_format($montant, 2, ',', ' ') . ' FCFA vers le compte n° ' . $idDestination . ' effectué avec succès.';
+        if ($frais > 0) {
+            $msg .= ' Frais appliqués : ' . number_format($frais, 2, ',', ' ') . ' FCFA.';
+        }
+
+        return redirect()->to('/compte/' . $idCompte . '/solde')->with('success', $msg);
+    }
+
+    public function historique($idCompte)
+    {
+        $compte = $this->verifierCompte($idCompte);
+        if ($compte === null) {
+            return $this->redirect;
+        }
+
+        $transactions = $this->transactionModel
+            ->select('Transaction.*, Operation.libelle')
+            ->join('Operation', 'Operation.id_type_operation = Transaction.id_type_operation', 'left')
+            ->groupStart()
+            ->where('id_compte_source', $idCompte)
+            ->orWhere('id_compte_destination', $idCompte)
+            ->groupEnd()
+            ->orderBy('date_operation', 'DESC')
+            ->findAll();
+
+        $data = [
+            'compte'       => $compte,
+            'transactions' => $transactions,
+        ];
+
+        return view('client/historique', $data);
+    }
 }
