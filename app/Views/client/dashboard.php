@@ -28,6 +28,7 @@
                         <a href="<?= base_url('compte/' . $compte['id_compte'] . '/solde') ?>">Solde</a> |
                         <a href="<?= base_url('compte/' . $compte['id_compte'] . '/depot') ?>">Dépôt</a> |
                         <a href="<?= base_url('compte/' . $compte['id_compte'] . '/retrait') ?>">Retrait</a>
+                        <a href="<?= base_url('compte/' . $compte['id_compte'] . '/transfert') ?>">transfert</a>
                     </td>
                 </tr>
             <?php endforeach; ?>

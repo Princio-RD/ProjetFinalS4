@@ -79,9 +79,6 @@ INSERT INTO Compte (id_client, id_operateur, solde) VALUES
 (4, 3, 12000.00),
 (5, 2, 90000.00);
 
--- =========================================================
--- Exemple de barème de frais pour les retraits
--- =========================================================
 INSERT INTO Tarif (id_type_operation, montant_min, montant_max, frais) VALUES
 (2, 100, 1000, 50),
 (2, 1001, 5000, 50),
@@ -94,9 +91,7 @@ INSERT INTO Tarif (id_type_operation, montant_min, montant_max, frais) VALUES
 (2, 500001, 1000000, 2500),
 (2, 1000001, 2000000, 3000);
 
--- =========================================================
--- Exemple d'actes (transactions)
--- =========================================================
+
 INSERT INTO Acte (id_compte_source, id_compte_destination, id_type_operation, montant, frais_applique, statut) VALUES
 (1, NULL, 1, 50000.00, 0, 'Réussi'),
 (3, NULL, 2, 10000.00, 100, 'Réussi'),

@@ -14,6 +14,13 @@ class OperationController extends BaseController
     protected $tarifModel;
     protected $transactionModel;
 
+    /**
+     
+     *
+     * @var \CodeIgniter\HTTP\RedirectResponse|null
+     */
+    protected $redirect = null;
+
     public function __construct()
     {
         $this->compteModel = new CompteModel();
@@ -22,15 +29,19 @@ class OperationController extends BaseController
         $this->transactionModel = new TransactionModel();
     }
 
-    private function verifierCompte(int $idCompte)
+ 
+    private function verifierCompte(int $idCompte): ?array
     {
         if (!session()->get('isLoggedIn')) {
-            return redirect()->to('/login');
+            $this->redirect = redirect()->to('/login');
+            return null;
         }
 
         $compte = $this->compteModel->find($idCompte);
         if (!$compte || $compte['id_client'] != session()->get('client_id')) {
-            return redirect()->to('/dashboard')->with('error', 'Compte introuvable ou non autorisé.');
+            $this->redirect = redirect()->to('/dashboard')
+                ->with('error', 'Compte introuvable ou non autorisé.');
+            return null;
         }
 
         return $compte;
@@ -39,8 +50,8 @@ class OperationController extends BaseController
     public function solde($idCompte)
     {
         $compte = $this->verifierCompte($idCompte);
-        if ($compte instanceof \CodeIgniter\HTTP\RedirectResponse) {
-            return $compte;
+        if ($compte === null) {
+            return $this->redirect;
         }
 
         $data = [
@@ -54,17 +65,18 @@ class OperationController extends BaseController
     public function depotForm($idCompte)
     {
         $compte = $this->verifierCompte($idCompte);
-        if ($compte instanceof \CodeIgniter\HTTP\RedirectResponse) {
-            return $compte;
+        if ($compte === null) {
+            return $this->redirect;
         }
 
         return view('client/depot', ['compte' => $compte]);
     }
+
     public function depot($idCompte)
     {
         $compte = $this->verifierCompte($idCompte);
-        if ($compte instanceof \CodeIgniter\HTTP\RedirectResponse) {
-            return $compte;
+        if ($compte === null) {
+            return $this->redirect;
         }
 
         $montant = (float) $this->request->getPost('montant');
@@ -78,7 +90,7 @@ class OperationController extends BaseController
             return redirect()->back()->with('error', 'Type d\'opération « Dépôt » introuvable.');
         }
 
-        $db = \Config\Database::connect();
+        $db = $this->compteModel->db;
         $db->transStart();
 
         $this->compteModel->update($idCompte, [
@@ -104,21 +116,21 @@ class OperationController extends BaseController
             ->with('success', 'Dépôt de ' . number_format($montant, 2, ',', ' ') . ' FCFA effectué avec succès.');
     }
 
-   
     public function retraitForm($idCompte)
     {
         $compte = $this->verifierCompte($idCompte);
-        if ($compte instanceof \CodeIgniter\HTTP\RedirectResponse) {
-            return $compte;
+        if ($compte === null) {
+            return $this->redirect;
         }
 
         return view('client/retrait', ['compte' => $compte]);
     }
+
     public function retrait($idCompte)
     {
         $compte = $this->verifierCompte($idCompte);
-        if ($compte instanceof \CodeIgniter\HTTP\RedirectResponse) {
-            return $compte;
+        if ($compte === null) {
+            return $this->redirect;
         }
 
         $montant = (float) $this->request->getPost('montant');
@@ -139,7 +151,7 @@ class OperationController extends BaseController
             return redirect()->back()->with('error', 'Solde insuffisant pour ce retrait (montant + frais de ' . number_format($frais, 2, ',', ' ') . ' FCFA).');
         }
 
-        $db = \Config\Database::connect();
+        $db = $this->compteModel->db;
         $db->transStart();
 
         $this->compteModel->update($idCompte, [
