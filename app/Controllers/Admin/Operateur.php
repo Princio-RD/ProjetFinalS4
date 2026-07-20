@@ -42,4 +42,41 @@ class Operateur extends BaseController
         $model->delete($id);
         return redirect()->to('/admin/operateur')->with('success', 'Préfixe supprimé');
     }
+
+    public function edit($id)
+    {
+        if (!session()->get('admin_logged_in')) {
+            return redirect()->to('/admin/login');
+        }
+
+        $model = new OperateurModel();
+
+        $operateur = $model->find($id);
+
+        if (!$operateur) {
+            return redirect()->to('/admin/operateur')->with('error', 'Opérateur non trouvé.');
+        }
+
+        $operateurs = $model->findAll();
+
+        // Passer les deux variables
+        return view('admin/edit', [
+            'operateur' => $operateur,
+            'operateurs' => $operateurs
+        ]);
+    }
+
+    public function update($id){
+        if (!session()->get('admin_logged_in')) {
+            return redirect()->to('/admin/login');
+        }
+
+        $model = new OperateurModel();
+        $model->update($id, [
+            'nom' => $this->request->getPost('nom'),
+            'prefixe' => $this->request->getPost('prefixe')
+        ]);
+
+        return redirect()->to('/admin/operateur')->with('success', 'Préfixe mis à jour');
+    }
 }
