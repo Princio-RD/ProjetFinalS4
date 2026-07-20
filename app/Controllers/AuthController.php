@@ -30,7 +30,6 @@ class AuthController extends BaseController
             return redirect()->back()->with('error', 'Numéro de téléphone non trouvé : ' . $numero);
         }
 
-        // Debug : afficher le contenu du client
         $clientId = $client['id_client'] ?? 'NON TROUVÉ';
         $debugMsg = 'Client: ' . print_r($client, true) . ' | id_client=' . $clientId;
 
