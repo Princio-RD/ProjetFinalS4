@@ -203,31 +203,15 @@ class OperationController extends BaseController
             return $this->redirect;
         }
 
-        $telephoneDestination = $this->request->getPost('telephone_destination');
-        $montant             = (float) $this->request->getPost('montant');
+        $telephones = $this->request->getPost('telephone_destination');
+        $montants   = $this->request->getPost('montant');
 
-        if ($montant <= 0) {
-            return redirect()->back()->with('error', 'Le montant doit être supérieur à 0.');
+        if (empty($telephones) || empty($montants)) {
+            return redirect()->back()->with('error', 'Veuillez ajouter au moins un destinataire avec un montant.');
         }
 
-        if (empty($telephoneDestination)) {
-            return redirect()->back()->with('error', 'Le numéro de téléphone du destinataire est requis.');
-        }
-
-        $clientDestination = $this->clientModel->where('numero_telephone', $telephoneDestination)->first();
-        if (!$clientDestination) {
-            return redirect()->back()->with('error', 'Aucun client trouvé avec ce numéro de téléphone.');
-        }
-
-        $compteDestination = $this->compteModel->where('id_client', $clientDestination['id_client'])->first();
-        if (!$compteDestination) {
-            return redirect()->back()->with('error', 'Le client destinataire n\'a aucun compte actif.');
-        }
-
-        $idDestination = (int) $compteDestination['id_compte'];
-
-        if ($idDestination === $idCompte) {
-            return redirect()->back()->with('error', 'Le compte destinataire doit être différent du compte source.');
+        if (count($telephones) !== count($montants)) {
+            return redirect()->back()->with('error', 'Données invalides. Veuillez réessayer.');
         }
 
         $typeTransfert = $this->operationModel->where('libelle', 'Transfert')->first();
@@ -235,32 +219,74 @@ class OperationController extends BaseController
             return redirect()->back()->with('error', 'Type d\'opération « Transfert » introuvable.');
         }
 
-        $frais = $this->tarifModel->calculerFrais($typeTransfert['id_type_operation'], $montant);
-        $totalDebite = $montant + $frais;
-
-        if ($totalDebite > $compte['solde']) {
-            return redirect()->back()->with('error', 'Solde insuffisant pour ce transfert (montant + frais de ' . number_format($frais, 2, ',', ' ') . ' Ariary).');
-        }
-
         $db = $this->compteModel->db;
         $db->transStart();
+
+        $totalDebite = 0;
+        $transferts = [];
+
+        foreach ($telephones as $index => $telephone) {
+            $telephone = trim($telephone);
+            $montant   = (float) $montants[$index];
+
+            if (empty($telephone) || $montant <= 0) {
+                $db->transRollback();
+                return redirect()->back()->with('error', 'Tous les champs doivent être remplis et les montants supérieurs à 0.');
+            }
+
+            $clientDestination = $this->clientModel->where('numero_telephone', $telephone)->first();
+            if (!$clientDestination) {
+                $db->transRollback();
+                return redirect()->back()->with('error', 'Aucun client trouvé avec le numéro ' . esc($telephone) . '.');
+            }
+
+            $compteDestination = $this->compteModel->where('id_client', $clientDestination['id_client'])->first();
+            if (!$compteDestination) {
+                $db->transRollback();
+                return redirect()->back()->with('error', 'Le client destinataire ' . esc($telephone) . ' n\'a aucun compte actif.');
+            }
+
+            $idDestination = (int) $compteDestination['id_compte'];
+
+            if ($idDestination === $idCompte) {
+                $db->transRollback();
+                return redirect()->back()->with('error', 'Le compte destinataire doit être différent du compte source pour le numéro ' . esc($telephone) . '.');
+            }
+
+            $frais = $this->tarifModel->calculerFrais($typeTransfert['id_type_operation'], $montant);
+            $totalDebite += $montant + $frais;
+
+            $transferts[] = [
+                'idDestination' => $idDestination,
+                'montant'       => $montant,
+                'frais'         => $frais,
+                'compteDest'    => $compteDestination,
+            ];
+        }
+
+        if ($totalDebite > $compte['solde']) {
+            $db->transRollback();
+            return redirect()->back()->with('error', 'Solde insuffisant pour ce transfert (total débité : ' . number_format($totalDebite, 2, ',', ' ') . ' Ariary).');
+        }
 
         $this->compteModel->update($idCompte, [
             'solde' => $compte['solde'] - $totalDebite,
         ]);
 
-        $this->compteModel->update($idDestination, [
-            'solde' => $compteDestination['solde'] + $montant,
-        ]);
+        foreach ($transferts as $transfert) {
+            $this->compteModel->update($transfert['idDestination'], [
+                'solde' => $transfert['compteDest']['solde'] + $transfert['montant'],
+            ]);
 
-        $this->acteModel->insert([
-            'id_compte_source'      => $idCompte,
-            'id_compte_destination' => $idDestination,
-            'id_type_operation'     => $typeTransfert['id_type_operation'],
-            'montant'               => $montant,
-            'frais_applique'        => $frais,
-            'statut'                => 'Réussi',
-        ]);
+            $this->acteModel->insert([
+                'id_compte_source'      => $idCompte,
+                'id_compte_destination' => $transfert['idDestination'],
+                'id_type_operation'     => $typeTransfert['id_type_operation'],
+                'montant'               => $transfert['montant'],
+                'frais_applique'        => $transfert['frais'],
+                'statut'                => 'Réussi',
+            ]);
+        }
 
         $db->transComplete();
 
@@ -268,13 +294,11 @@ class OperationController extends BaseController
             return redirect()->back()->with('error', 'Échec du transfert. Veuillez réessayer.');
         }
 
-        $msg = 'Transfert de ' . number_format($montant, 2, ',', ' ') . ' Ariary vers le compte n° ' . $idDestination . ' effectué avec succès.';
-        if ($frais > 0) {
-            $msg .= ' Frais appliqués : ' . number_format($frais, 2, ',', ' ') . ' Ariary.';
-        }
-
+        $msg = 'Transfert de ' . number_format($totalDebite, 2, ',', ' ') . ' Ariary vers ' . count($transferts) . ' compte(s) effectué avec succès.';
         return redirect()->to('/compte/' . $idCompte . '/solde')->with('success', $msg);
     }
+
+   
 
     public function historique($idCompte)
     {
