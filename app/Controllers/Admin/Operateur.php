@@ -4,6 +4,7 @@ namespace App\Controllers\Admin;
 
 use App\Controllers\BaseController;
 use App\Models\OperateurModel;
+use App\Models\CommissionModel;
 
 class Operateur extends BaseController
 {
@@ -13,8 +14,15 @@ class Operateur extends BaseController
             return redirect()->to('/admin/login');
         }
 
-        $model = new OperateurModel();
-        return view('admin/operateur', ['operateurs' => $model->findAll()]);
+        $operateurModel = new OperateurModel();
+        $commissionModel = new CommissionModel();
+
+        $data = [
+            'operateurs' => $operateurModel->findAll(),
+            'commissions' => $commissionModel->getAllCommissions()
+        ];
+
+        return view('admin/operateur', $data);
     }
 
     public function store()
@@ -32,6 +40,7 @@ class Operateur extends BaseController
         return redirect()->to('/admin/operateur')->with('success', 'Préfixe ajouté');
     }
 
+    // operateur
     public function delete($id)
     {
         if (!session()->get('admin_logged_in')) {
@@ -50,6 +59,7 @@ class Operateur extends BaseController
         }
 
         $model = new OperateurModel();
+        $commissionModel = new CommissionModel();
 
         $operateur = $model->find($id);
 
@@ -58,15 +68,17 @@ class Operateur extends BaseController
         }
 
         $operateurs = $model->findAll();
+        $commissions = $commissionModel->getAllCommissions();
 
-        // Passer les deux variables
         return view('admin/edit', [
             'operateur' => $operateur,
-            'operateurs' => $operateurs
+            'operateurs' => $operateurs,
+            'commissions' => $commissions
         ]);
     }
 
-    public function update($id){
+    public function update($id)
+    {
         if (!session()->get('admin_logged_in')) {
             return redirect()->to('/admin/login');
         }
@@ -78,5 +90,46 @@ class Operateur extends BaseController
         ]);
 
         return redirect()->to('/admin/operateur')->with('success', 'Préfixe mis à jour');
+    }
+
+    // commission
+    public function storeCommission()
+    {
+        if (!session()->get('admin_logged_in')) {
+            return redirect()->to('/admin/login');
+        }
+
+        $commissionModel = new CommissionModel();
+
+        $existing = $commissionModel
+            ->where('id_operateur_source', $this->request->getPost('id_operateur_source'))
+            ->where('id_operateur_destination', $this->request->getPost('id_operateur_destination'))
+            ->first();
+
+        if ($existing) {
+            $commissionModel->update($existing['id_commission'], [
+                'pourcentage' => $this->request->getPost('pourcentage')
+            ]);
+        } else {
+            $commissionModel->save([
+                'id_operateur_source' => $this->request->getPost('id_operateur_source'),
+                'id_operateur_destination' => $this->request->getPost('id_operateur_destination'),
+                'pourcentage' => $this->request->getPost('pourcentage')
+            ]);
+        }
+
+        return redirect()->to('/admin/operateur')->with('success', 'Commission configurée');
+    }
+
+    public function deleteCommission($id)
+    {
+        if (!session()->get('admin_logged_in')) {
+            return redirect()->to('/admin/login');
+        }
+
+        $commissionModel = new CommissionModel();
+        $commissionModel->delete($id);
+
+        return redirect()->to('/admin/operateur')->with('success', 'Commission supprimée');
     }
 }
