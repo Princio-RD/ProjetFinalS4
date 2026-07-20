@@ -9,6 +9,7 @@ use App\Models\CompteModel;
 use App\Models\OperationModel;
 use App\Models\TarifModel;
 use App\Models\ActeModel;
+use App\Models\CommissionModel;
 
 class OperationController extends BaseController
 {
@@ -17,6 +18,7 @@ class OperationController extends BaseController
     protected $operationModel;
     protected $tarifModel;
     protected $acteModel;
+    protected $commissionModel;
 
     /**
      
@@ -32,6 +34,7 @@ class OperationController extends BaseController
         $this->operationModel = new OperationModel();
         $this->tarifModel = new TarifModel();
         $this->acteModel = new ActeModel();
+        $this->commissionModel = new CommissionModel();
     }
 
  
@@ -223,7 +226,10 @@ class OperationController extends BaseController
         $db->transStart();
 
         $totalDebite = 0;
+        $totalCommission = 0;
+        $totalMontantTransfere = 0;
         $transferts = [];
+        $soldesDestinations = [];
 
         foreach ($telephones as $index => $telephone) {
             $telephone = trim($telephone);
@@ -234,13 +240,13 @@ class OperationController extends BaseController
                 return redirect()->back()->with('error', 'Tous les champs doivent être remplis et les montants supérieurs à 0.');
             }
 
-            $clientDestination = $this->clientModel->where('numero_telephone', $telephone)->first();
-            if (!$clientDestination) {
+            $compteDestination = $this->compteModel->where('numero_telephone', $telephone)->first();
+            if (!$compteDestination) {
                 $db->transRollback();
                 return redirect()->back()->with('error', 'Aucun client trouvé avec le numéro ' . esc($telephone) . '.');
             }
 
-            $compteDestination = $this->compteModel->where('id_client', $clientDestination['id_client'])->first();
+            $clientDestination = $this->clientModel->find($compteDestination['id_client']);
             if (!$compteDestination) {
                 $db->transRollback();
                 return redirect()->back()->with('error', 'Le client destinataire ' . esc($telephone) . ' n\'a aucun compte actif.');
@@ -254,14 +260,33 @@ class OperationController extends BaseController
             }
 
             $frais = $this->tarifModel->calculerFrais($typeTransfert['id_type_operation'], $montant);
-            $totalDebite += $montant + $frais;
+
+            // Commission si opérateurs différents
+            $commission = 0;
+            if ($compte['id_operateur'] != $compteDestination['id_operateur']) {
+                $pourcentage = $this->commissionModel->getCommission(
+                    $compte['id_operateur'],
+                    $compteDestination['id_operateur']
+                );
+                $commission = $montant * ($pourcentage / 100);
+            }
+
+            $totalDebite += $montant + $frais + $commission;
+            $totalCommission += $commission;
+            $totalMontantTransfere += $montant;
+
+            // Utiliser le solde déjà mis à jour si plusieurs transferts vers le même compte
+            $soldeActuelDest = $soldesDestinations[$idDestination] ?? $compteDestination['solde'];
 
             $transferts[] = [
                 'idDestination' => $idDestination,
                 'montant'       => $montant,
                 'frais'         => $frais,
-                'compteDest'    => $compteDestination,
+                'commission'    => $commission,
+                'soldeDest'     => $soldeActuelDest,
             ];
+
+            $soldesDestinations[$idDestination] = $soldeActuelDest + $montant;
         }
 
         if ($totalDebite > $compte['solde']) {
@@ -275,7 +300,7 @@ class OperationController extends BaseController
 
         foreach ($transferts as $transfert) {
             $this->compteModel->update($transfert['idDestination'], [
-                'solde' => $transfert['compteDest']['solde'] + $transfert['montant'],
+                'solde' => $transfert['soldeDest'] + $transfert['montant'],
             ]);
 
             $this->acteModel->insert([
@@ -284,6 +309,7 @@ class OperationController extends BaseController
                 'id_type_operation'     => $typeTransfert['id_type_operation'],
                 'montant'               => $transfert['montant'],
                 'frais_applique'        => $transfert['frais'],
+                'commission_appliquee'  => $transfert['commission'],
                 'statut'                => 'Réussi',
             ]);
         }
@@ -294,7 +320,10 @@ class OperationController extends BaseController
             return redirect()->back()->with('error', 'Échec du transfert. Veuillez réessayer.');
         }
 
-        $msg = 'Transfert de ' . number_format($totalDebite, 2, ',', ' ') . ' Ariary vers ' . count($transferts) . ' compte(s) effectué avec succès.';
+        $msg = 'Transfert de ' . number_format($totalMontantTransfere, 2, ',', ' ') . ' Ariary vers ' . count($transferts) . ' compte(s) effectué avec succès.';
+        if ($totalCommission > 0) {
+            $msg .= ' Commission appliquée : ' . number_format($totalCommission, 2, ',', ' ') . ' Ariary.';
+        }
         return redirect()->to('/compte/' . $idCompte . '/solde')->with('success', $msg);
     }
 

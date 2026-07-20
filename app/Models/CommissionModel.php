@@ -21,7 +21,15 @@ class CommissionModel extends Model
                        ->where('id_operateur_destination', $idDestination)
                        ->first();
         
-        return $result ? (float) $result['pourcentage'] : 0;
+        if ($result) {
+            return (float) $result['pourcentage'];
+        }
+
+        $resultInverse = $this->where('id_operateur_source', $idDestination)
+                              ->where('id_operateur_destination', $idSource)
+                              ->first();
+
+        return $resultInverse ? (float) $resultInverse['pourcentage'] : 0;
     }
 
     public function getAllCommissions()
