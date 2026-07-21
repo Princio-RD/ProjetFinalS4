@@ -120,6 +120,7 @@ INSERT INTO Tarif (id_type_operation, montant_min, montant_max, frais) VALUES
 (2, 250001, 500000, 1500),
 (2, 500001, 1000000, 2500),
 (2, 1000001, 2000000, 3000),
+
 (3, 100, 1000, 50),
 (3, 1001, 5000, 50),
 (3, 5001, 10000, 100),
@@ -135,14 +136,18 @@ INSERT INTO Commission (id_operateur_source, id_operateur_destination, pourcenta
 -- orange
 (1, 2, 2.50), -- orange--> telma
 (1, 3, 3.00), -- orange -->airtel
+(1, 1, 50.0), -- orange --> orange
+
 
 -- telma
 (2, 1, 2.00), -- telma --> orange
 (2, 3, 2.50), -- telma --> airtel
+(2, 2, 50.0), -- telam --> telma
 
 -- airtel
 (3, 1, 3.50), -- airtel --> orange
-(3, 2, 3.00); -- airtel --> telma
+(3, 2, 3.00), -- airtel --> telma
+(3, 3, 50.0); -- airtel --> airtel 
 
 INSERT INTO Acte (id_compte_source, id_compte_destination, id_type_operation, montant, frais_applique, commission_appliquee, statut) VALUES
 (1, NULL, 1, 50000.00, 0, 0, 'Réussi'),

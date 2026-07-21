@@ -241,6 +241,8 @@ class OperationController extends BaseController
                 return redirect()->back()->with('error', 'Destinataire invalide.');
             }
 
+
+
             $idDestination = (int) $compteDestination['id_compte'];
             
             // Calculs
@@ -251,6 +253,12 @@ class OperationController extends BaseController
             if ($compte['id_operateur'] != $compteDestination['id_operateur']) {
                 $pourcentage = $this->commissionModel->getCommission($compte['id_operateur'], $compteDestination['id_operateur']);
                 $commission = $fraisTransfert * ($pourcentage / 100);
+            }
+            // reduction pour le meme operateur (modifiable dans l'admin prefix)
+            else {
+                $pourcentage = $this->commissionModel->getCommission($compte['id_operateur'], $compteDestination['id_operateur']);
+                $fraisTransfert = $fraisTransfert - ($fraisTransfert * ($pourcentage / 100));
+                $fraisRetrait = $fraisRetrait - ($fraisRetrait * ($pourcentage / 100));
             }
 
             $totalDebite += $montant + $fraisTransfert + $fraisRetrait + $commission;
@@ -314,7 +322,6 @@ class OperationController extends BaseController
         if ($compte === null) {
             return $this->redirect;
         }
-
         $transactions = $this->acteModel
             ->select('Acte.*, Operation.libelle, Acte.id_acte as numero_transaction')
             ->join('Operation', 'Operation.id_type_operation = Acte.id_type_operation', 'left')

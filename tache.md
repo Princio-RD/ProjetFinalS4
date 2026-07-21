@@ -334,3 +334,15 @@
 - [x] Envoi multiple fonctionnel
 - [x] Tag v2 cree
 - [x] Push sur GitHub
+
+
+
+Aleas Princio: Reduction de tout les frais par le meme operateur(retrait et transfert)
+- [x] mettre a jour la fonction transfert dans client
+- [x] mettre les donnes dans la base de donnes
+- [x] mettre a jour le pourcentage dans la partie admininistrateur dans la page prefixe
+---
+
+## Checklist Aleas
+- [] push sur github
+- [] tag ETU004239 cree
