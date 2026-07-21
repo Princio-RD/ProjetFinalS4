@@ -66,6 +66,16 @@ CREATE TABLE Acte (
     FOREIGN KEY (id_type_operation) REFERENCES Operation(id_type_operation)
 );
 
+CREATE TABLE Epargne (
+    id_epargne INTEGER PRIMARY KEY AUTOINCREMENT,
+    id_compte INTEGER NOT NULL,
+    pourcentage DECIMAL(5,2) NOT NULL DEFAULT 0,
+    montant  DECIMAL(15,2) NOT NULL,
+    date_operation DATETIME DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY(id_compte) REFERENCES Compte(id_compte)
+);
+
+
 -- =========================================================
 -- Données de base
 -- =========================================================

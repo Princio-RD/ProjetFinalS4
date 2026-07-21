@@ -184,6 +184,27 @@ class OperationController extends BaseController
         return redirect()->to('/compte/' . $idCompte . '/solde')->with('success', $msg);
     }
 
+
+
+    public function getSoldeCompteTransfert($idCompte)
+    { 
+        $compte = $this->verifierCompte($idCompte);
+        if ($compte === null) {
+            return $this->redirect;
+        } 
+
+        $pourcentageEpargne = 0;
+    
+          $comptes = $this->clientModel->find($idCompte);
+      
+        $data = [
+             'solde'  => $compte
+        ];
+
+        return view('client/epargne' ,$data);
+        
+
+    }
     public function transfertForm($idCompte)
     {
         $compte = $this->verifierCompte($idCompte);
@@ -193,6 +214,8 @@ class OperationController extends BaseController
 
         return view('client/transfert', ['compte' => $compte]);
     }
+
+   
 
     public function transfert($idCompte)
     {
@@ -225,6 +248,10 @@ class OperationController extends BaseController
         $totalFraisRetrait = 0;
         $transferts = [];
         $soldesDestinations = [];
+         $montantEpargne = 0;
+         $montantRecus = 0;
+         $ClientDestinateur = $this -> clientModel ->find($compteDestination);
+         $pourcentageEpargne  = 0;
 
         foreach ($telephones as $index => $telephone) {
             $telephone = trim($telephone);
@@ -242,7 +269,7 @@ class OperationController extends BaseController
             }
 
             $idDestination = (int) $compteDestination['id_compte'];
-            
+              
             // Calculs
             $fraisTransfert = $this->tarifModel->calculerFrais($typeTransfert['id_type_operation'], $montant);
             $fraisRetrait = $this->tarifModel->calculerFrais($typeRetrait['id_type_operation'], $montant);
@@ -304,6 +331,8 @@ class OperationController extends BaseController
         if ($totalCommission > 0) {
             $msg .= ', Commission: ' . number_format($totalCommission, 0, ',', ' ') . ' Ar';
         }
+        
+        
         
         return redirect()->to('/compte/' . $idCompte . '/solde')->with('success', $msg);
     }
