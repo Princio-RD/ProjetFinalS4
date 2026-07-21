@@ -32,6 +32,7 @@
                         <tr>
                             <th><i class="bi bi-calendar3"></i> Date</th>
                             <th><i class="bi bi-tag"></i> Type</th>
+                            <th><i class="bi bi-tag"></i> destinataire</th>
                             <th class="text-end"><i class="bi bi-coin"></i> Montant (Ar)</th>
                             <th class="text-end"><i class="bi bi-receipt"></i> Frais (Ar)</th>
                             <th class="text-end"><i class="bi bi-percent"></i> Commission (Ar)</th>
@@ -63,6 +64,7 @@
                                     <?= esc($t['libelle'] ?? 'N/A') ?>
                                 </span>
                             </td>
+                            <td class="text-end fw-bold"><?= number_format($t['id_compte_destination'], 0, ',', ' ') ?></td>
                             <td class="text-end fw-bold"><?= number_format($t['montant'], 0, ',', ' ') ?></td>
                             <td class="text-end"><?= number_format($t['frais_applique'] ?? 0, 0, ',', ' ') ?></td>
                             <td class="text-end"><?= number_format($t['commission_appliquee'] ?? 0, 0, ',', ' ') ?></td>
